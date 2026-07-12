@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Inside the Edit | Editkaro.in</title>
+    <meta name="description" content="Take a look behind the scenes of Editkaro.in. Learn about our video editing process, meet our editors, and experience our color grading with our interactive slider.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <!-- Shared Tailwind Configurations -->
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-tint": "#ddb7ff",
+                        "tertiary": "#4cd7f6",
+                        "secondary-fixed": "#ffd9e4",
+                        "primary-fixed": "#f0dbff",
+                        "surface-container-high": "#2a2930",
+                        "glass-border": "rgba(255, 255, 255, 0.12)",
+                        "surface-dim": "#131319",
+                        "outline-variant": "#4d4354",
+                        "surface-variant": "#35343b",
+                        "background-surface": "#0A0A14",
+                        "surface-container-low": "#1b1b22",
+                        "on-error-container": "#ffdad6",
+                        "surface": "#131319",
+                        "inverse-primary": "#842bd2",
+                        "on-surface": "#e4e1eb",
+                        "surface-container-highest": "#35343b",
+                        "on-background": "#e4e1eb",
+                        "on-primary-fixed": "#2c0051",
+                        "secondary-container": "#aa0266",
+                        "background": "#131319",
+                        "on-error": "#690005",
+                        "on-primary": "#490080",
+                        "text-primary": "#FFFFFF",
+                        "neon-pink": "#EC4899",
+                        "background-deep": "#030307",
+                        "primary": "#ddb7ff",
+                        "on-surface-variant": "#cfc2d6",
+                        "text-secondary": "#94A3B8",
+                        "secondary": "#ffb0cd",
+                        "on-tertiary-fixed-variant": "#004e5c",
+                        "secondary-fixed-dim": "#ffb0cd",
+                        "primary-fixed-dim": "#ddb7ff",
+                        "neon-cyan": "#06B6D4",
+                        "on-secondary-container": "#ffbad3",
+                        "tertiary-fixed": "#acedff",
+                        "on-primary-fixed-variant": "#6900b3",
+                        "inverse-on-surface": "#303037",
+                        "on-tertiary-container": "#002f38",
+                        "on-primary-container": "#400071",
+                        "error-container": "#93000a",
+                        "on-secondary-fixed": "#3e0022",
+                        "error": "#ffb4ab",
+                        "surface-container-lowest": "#0e0e14",
+                        "tertiary-fixed-dim": "#4cd7f6",
+                        "primary-container": "#b76dff",
+                        "surface-container": "#1f1f26",
+                        "inverse-surface": "#e4e1eb",
+                        "on-tertiary": "#003640",
+                        "outline": "#988d9f",
+                        "on-secondary-fixed-variant": "#8c0053",
+                        "on-secondary": "#640039",
+                        "tertiary-container": "#009eb9",
+                        "neon-purple": "#A855F7",
+                        "on-tertiary-fixed": "#001f26",
+                        "surface-bright": "#393840"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    spacing: {
+                        "margin-mobile": "16px",
+                        "gutter": "24px",
+                        "unit": "4px",
+                        "margin-desktop": "64px",
+                        "container-max": "1280px"
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            background-color: #030307;
+            color: #e4e1eb;
+            overflow-x: hidden;
+            font-family: 'Inter', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .glass-card {
+            background: rgba(10, 10, 20, 0.7);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .diagonal-bg {
+            clip-path: polygon(0 0, 100% 5%, 100% 100%, 0 95%);
+        }
+        .scanline {
+            background: linear-gradient(to bottom, transparent 50%, rgba(6, 182, 212, 0.05) 50%);
+            background-size: 100% 4px;
+            pointer-events: none;
+        }
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 15px rgba(168, 85, 247, 0.4); }
+            50% { box-shadow: 0 0 30px rgba(236, 72, 153, 0.6); }
+        }
+        .animate-pulse-glow {
+            animation: pulse-glow 3s infinite ease-in-out;
+        }
+        .slider-handle {
+            cursor: ew-resize;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(to right, #06B6D4, #A855F7);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="selection:bg-neon-pink/30">
+
+    <!-- Sticky Glassmorphic Navbar -->
+    <nav class="fixed top-0 w-full z-50 bg-surface/70 backdrop-blur-xl border-b border-glass-border shadow-[0_0_15px_rgba(221,183,255,0.1)]">
+        <div class="flex justify-between items-center px-4 md:px-16 py-4 max-w-7xl mx-auto">
+            <a class="font-Outfit text-2xl font-bold bg-gradient-to-r from-neon-purple to-neon-pink bg-clip-text text-transparent" href="index.html">Editkaro<span class="text-neon-cyan">.in</span></a>
+            
+            <!-- Desktop Links -->
+            <div class="hidden md:flex gap-8 items-center">
+                <a class="font-medium text-on-surface-variant hover:text-white transition-colors pb-1 relative nav-link" href="index.html">Home</a>
+                <a class="font-medium text-on-surface-variant hover:text-white transition-colors pb-1 relative nav-link" href="portfolio.html">Portfolio</a>
+                <a class="font-medium text-neon-cyan pb-1 relative nav-link active" href="inside-the-edit.html">Inside the Edit</a>
+                <a class="font-medium text-on-surface-variant hover:text-white transition-colors pb-1 relative nav-link" href="pricing.html">Pricing Customizer</a>
+                <a class="font-medium text-on-surface-variant hover:text-white transition-colors pb-1 relative nav-link" href="about.html">About Us</a>
+                <a class="font-medium text-on-surface-variant hover:text-white transition-colors pb-1 relative nav-link" href="contact.html">Contact Us</a>
+                <a class="font-medium text-on-surface-variant hover:text-white transition-colors pb-1 relative nav-link" href="booking.html">Start Project</a>
+            </div>
+            
+            <div class="flex items-center gap-4">
+                <button class="hidden md:block bg-gradient-to-r from-neon-purple to-neon-pink text-white px-6 py-2 rounded-lg font-semibold hover:shadow-[0_0_15px_rgba(168,85,247,0.5)] transition-all transform active:scale-95" onclick="window.location.href='dashboard.html'">
+                    Client Portal
+                </button>
+                
+                <!-- Hamburger Menu Button (Mobile) -->
+                <button id="mobile-menu-toggle" class="flex md:hidden text-on-surface-variant hover:text-white focus:outline-none" aria-label="Toggle Mobile Menu">
+                    <span class="material-symbols-outlined text-3xl">menu</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Sidebar Backdrop Overlay -->
+    <div id="mobile-menu-backdrop" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm md:hidden opacity-0 pointer-events-none transition-opacity duration-300"></div>
+
+    <!-- Mobile Sidebar Drawer -->
+    <div id="mobile-menu" class="fixed top-0 left-0 bottom-0 w-72 z-[60] bg-background-deep/95 backdrop-blur-2xl border-r border-glass-border md:hidden flex flex-col p-6 -translate-x-full transition-transform duration-300">
+        <!-- Close Button & Brand -->
+        <div class="flex justify-between items-center mb-10">
+            <span class="font-Outfit text-2xl font-bold bg-gradient-to-r from-neon-purple to-neon-pink bg-clip-text text-transparent">Editkaro<span class="text-neon-cyan">.in</span></span>
+            <button id="mobile-menu-close" class="text-on-surface-variant hover:text-white focus:outline-none" aria-label="Close Mobile Menu">
+                <span class="material-symbols-outlined text-2xl">close</span>
+            </button>
+        </div>
+        <!-- Nav Links -->
+        <div class="flex flex-col gap-3 flex-grow">
+            <a class="px-4 py-3 rounded-xl font-semibold text-sm transition-all text-on-surface-variant hover:bg-white/5" href="index.html" id="m-link-home">Home</a>
+            <a class="px-4 py-3 rounded-xl font-semibold text-sm transition-all text-on-surface-variant hover:bg-white/5" href="portfolio.html" id="m-link-portfolio">Portfolio</a>
+            <a class="px-4 py-3 rounded-xl font-semibold text-sm transition-all bg-primary-container/20 text-neon-purple border border-neon-purple/30" href="inside-the-edit.html" id="m-link-inside">Inside the Edit</a>
+            <a class="px-4 py-3 rounded-xl font-semibold text-sm transition-all text-on-surface-variant hover:bg-white/5" href="pricing.html" id="m-link-pricing">Pricing Customizer</a>
+            <a class="px-4 py-3 rounded-xl font-semibold text-sm transition-all text-on-surface-variant hover:bg-white/5" href="about.html" id="m-link-about">About Us</a>
+            <a class="px-4 py-3 rounded-xl font-semibold text-sm transition-all text-on-surface-variant hover:bg-white/5" href="contact.html" id="m-link-contact">Contact Us</a>
+            <a class="px-4 py-3 rounded-xl font-semibold text-sm transition-all text-on-surface-variant hover:bg-white/5 border border-dashed border-neon-pink/30 hover:border-neon-pink/60" href="booking.html" id="m-link-booking">Start Project</a>
+        </div>
+        <div class="pt-6 border-t border-glass-border">
+            <button class="w-full bg-gradient-to-r from-neon-purple to-neon-pink text-white py-3 rounded-xl font-semibold text-sm hover:shadow-[0_0_15px_rgba(168,85,247,0.5)] transition-all" onclick="window.location.href='dashboard.html'">
+                Client Portal
+            </button>
+        </div>
+    </div>
+
+    <!-- Page Title Header -->
+    <header class="relative pt-32 pb-20 px-4 md:px-16 overflow-hidden">
+        <div class="relative z-10 max-w-4xl mx-auto text-center">
+            <h1 class="text-3xl md:text-5xl font-extrabold mb-4 leading-tight tracking-tight text-white">
+                Crafting <span class="text-neon-cyan">Digital Adrenaline</span>
+            </h1>
+            <p class="text-sm md:text-base text-on-surface-variant mb-8 max-w-xl mx-auto">
+                Step inside our digital workshop. We don't just cut clips; we engineer attention using high-octane post-production and cyber-brutalist aesthetics.
+            </p>
+        </div>
+    </header>
+
+    <!-- Before & After Slider Section -->
+    <section class="py-20 px-4 md:px-16 bg-surface-container-lowest relative" id="slider-section">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-extrabold mb-4 text-white">The Alchemy of Edit</h2>
+                    <p class="text-on-surface-variant max-w-xl">Slide to see how we transform flat log footage into high-contrast, neon-infused masterpieces that stop the scroll.</p>
+                </div>
+                <div class="flex gap-4">
+                    <span class="flex items-center gap-2 text-xs font-bold text-on-surface-variant">
+                        <span class="w-3 h-3 rounded-full bg-slate-500"></span> RAW FOOTAGE
+                    </span>
+                    <span class="flex items-center gap-2 text-xs font-bold text-neon-cyan">
+                        <span class="w-3 h-3 rounded-full bg-neon-cyan animate-pulse"></span> THE EDIT
+                    </span>
+                </div>
+            </div>
+
+            <!-- Slider Container -->
+            <div class="relative w-full aspect-video rounded-xl overflow-hidden glass-card group" id="comparison-slider">
+                <!-- After Image (Color Graded) -->
+                <div class="absolute inset-0 w-full h-full bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDWYux1uO-IphlO4nAXU9A68MBwLEYu_NFErW1ncKNZVVXoADdxn3R7dzeeVBPGODRHQlceWPSz9iUNc1BSz7ucpKZphwKZby-s8Ll-BgttlWuGZFAFpqjidMrKvZyfwWw3KO_z-D8mwLArYk1OJFb6uGqeFagQGWxTvx1TaLxnab5u0yEJYqFICRO1pPOeXPQfBtHONmjI0eXwtwmlWDQZjNyoO-BJ_Js_kyJrA5ew9jHTyfLAjYtw')">
+                    <div class="absolute inset-0 scanline opacity-30"></div>
+                </div>
+                <!-- Before Image (Log/Flat) -->
+                <div class="absolute inset-0 h-full bg-cover bg-center overflow-hidden border-r-2 border-white/50" id="before-image" style="width: 50%; background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAFFrJgNxYD5f0rUGwHSIWu8Nr93S_jFuD_SVMkVNhdemrVGZdnXMLbVFAUUgJjBj3RhN3voQ-OAr408jWXvvdMSc0OgUKe5X0-OZD1F9OG-gqIhSQd5T0CZvbWM5ZsPsM6GafqDsRKqBvyVDifBE67CyUeubGXQIi6Rh5ZI-ty9S6VR0u8sZvUL5uoHJLSOUN0ncMjG6_MCceavqPs3uJAaGaPLWOW5DoXpLtNvCrir4hqOuKgUct9')">
+                </div>
+                <!-- Handle -->
+                <div class="absolute top-0 bottom-0 left-1/2 w-1 bg-white shadow-[0_0_15px_white] slider-handle flex items-center justify-center z-20" id="slider-handle" style="transform: translateX(-50%)">
+                    <div class="w-10 h-10 rounded-full bg-white text-black flex items-center justify-center shadow-xl">
+                        <span class="material-symbols-outlined text-[20px]">unfold_more</span>
+                    </div>
+                </div>
+                <!-- Labels -->
+                <div class="absolute bottom-6 left-6 z-30 pointer-events-none">
+                    <span class="bg-black/60 backdrop-blur-md px-4 py-2 rounded-full border border-white/10 text-xs font-semibold uppercase tracking-widest text-white">Original RAW</span>
+                </div>
+                <div class="absolute bottom-6 right-6 z-30 pointer-events-none text-right">
+                    <span class="bg-neon-pink/20 backdrop-blur-md px-4 py-2 rounded-full border border-neon-pink/50 text-xs font-semibold uppercase tracking-widest text-neon-pink">Editkaro Grade</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Meet the Editors Section -->
+    <section class="py-24 px-4 md:px-16 bg-background-deep relative overflow-hidden" id="team-section">
+        <div class="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-neon-purple/5 to-transparent"></div>
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="text-center mb-16">
+                <span class="badge mb-2">The Creators</span>
+                <h2 class="text-3xl md:text-5xl font-extrabold mb-4 text-white">The Architects of Viral</h2>
+                <p class="text-on-surface-variant max-w-2xl mx-auto text-lg">Our editors aren't just technicians; they are visual storytellers specializing in the rhythm of attention.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Editor 1 -->
+                <div class="glass-card p-6 rounded-xl hover:border-neon-cyan/50 transition-all duration-500 group">
+                    <div class="aspect-[3/4] rounded-lg overflow-hidden mb-6 relative">
+                        <img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHDo8V-y3fW76J16kLV-DvroTnb7Psk_hDTMogm1SY-F2L7rn4M8xErXmU6UFoFK-_mMyvYmCIJ-oxt9PMqGuh0Y5NAFzpVbuMqBy2XOCbjQmDm6x9lraVHwusridqIrzd7v_Id2R2Gn4UdJdTyGmNhh2Dm-udFH6fIIBWgm_KpC2gxSUuZ__1kUC0DUwokNuIDaunW3ZEAQkIiUhTOlP6kS-lj6GtaLc1j1trABsp_LhyoqIAqQ52"/>
+                        <div class="absolute top-4 right-4 bg-neon-cyan/95 text-black px-3 py-1 rounded-full text-xs font-bold shadow-[0_0_10px_rgba(6,182,212,0.3)]">RETENTION</div>
+                    </div>
+                    <h3 class="text-xl md:text-2xl font-bold mb-1 text-white">Alex "Volt" Chen</h3>
+                    <p class="text-neon-cyan font-semibold mb-4 text-sm">Lead Motion Architect</p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="bg-white/5 border border-white/10 px-3 py-1 rounded text-xs text-on-surface-variant">After Effects</span>
+                        <span class="bg-white/5 border border-white/10 px-3 py-1 rounded text-xs text-on-surface-variant">Premiere Pro</span>
+                        <span class="bg-white/5 border border-white/10 px-3 py-1 rounded text-xs text-on-surface-variant">C4D</span>
+                    </div>
+                    <p class="text-sm text-on-surface-variant mb-6">Expert in hooks design, kinetic text grids, and fast retention spikes. Ranks in top 5% editing shorts.</p>
+                    <div style="font-weight: 700; color: var(--neon-cyan); font-size: 1.1rem;">50M+ Views Generated</div>
+                </div>
+
+                <!-- Editor 2 -->
+                <div class="glass-card p-6 rounded-xl border-neon-pink/20 hover:border-neon-pink/50 transition-all duration-500 group md:translate-y-8">
+                    <div class="aspect-[3/4] rounded-lg overflow-hidden mb-6 relative">
+                        <img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBO3iFTBbwr2kXhMd7VL37o6cQKQqhLNv5KXh0K1eppNORHJbB9mYUJXcbQQWtlb6UKvTxmb30k8dJaNfC76Bmo9LTl2-6L5E8e3kXpTSt2ytTXQ4ueEoN4jRL8YrBpKJindgo6XUwjs4Axm6YWVfX23FjZg8AgYuOHWedoo5jdlsU1fBhqcvDYk2BgQDKHhWhHMSmswDWrAPN9f1_QpRT5VKVPHbJSkZDA2Ubqn445g7oKKwAQgiHV"/>
+                        <div class="absolute top-4 right-4 bg-neon-pink text-white px-3 py-1 rounded-full text-xs font-bold shadow-[0_0_10px_rgba(236,72,153,0.3)]">COLOR</div>
+                    </div>
+                    <h3 class="text-xl md:text-2xl font-bold mb-1 text-white">Sarah "Prism" K.</h3>
+                    <p class="text-neon-pink font-semibold mb-4 text-sm">Senior Color Scientist</p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="bg-white/5 border border-white/10 px-3 py-1 rounded text-xs text-on-surface-variant">DaVinci Resolve</span>
+                        <span class="bg-white/5 border border-white/10 px-3 py-1 rounded text-xs text-on-surface-variant">Log Workflows</span>
+                    </div>
+                    <p class="text-sm text-on-surface-variant mb-6">Cinematic LUT workflows, desaturated corrections, and storytelling layout pacing. Edits long vlogs.</p>
+                    <div style="font-weight: 700; color: var(--neon-pink); font-size: 1.1rem;">25M+ Views Generated</div>
+                </div>
+
+                <!-- Editor 3 -->
+                <div class="glass-card p-6 rounded-xl hover:border-neon-purple/50 transition-all duration-500 group">
+                    <div class="aspect-[3/4] rounded-lg overflow-hidden mb-6 relative">
+                        <img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMDEEpElYqhmUDRcOtdPN957ZDhpTr1GDjiTq_rJGondOdm9xrw7s01_5n11LTKdI9bHvzyRSnMAsbBOzEddu1XHQ-hrsyM2Pim5oxgJ3XkJdnrb3dFuYuzs_ZYgPRHwrsAR6SbLMeLze01xTD69dJi6NRIZnsqjKI6OnjX4GguG1RsSYOqCoTDTl-B0sy91SUE6gTTfFbkswtaYKqLuogfvInsfs2rZm0Lk-YK-Ev0deQeFliT95b"/>
+                        <div class="absolute top-4 right-4 bg-neon-purple text-white px-3 py-1 rounded-full text-xs font-bold shadow-[0_0_10px_rgba(168,85,247,0.3)]">BEATS</div>
+                    </div>
+                    <h3 class="text-xl md:text-2xl font-bold mb-1 text-white">Jordan "Snap" Reed</h3>
+                    <p class="text-neon-purple font-semibold mb-4 text-sm">Hooks &amp; Gaming Expert</p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="bg-white/5 border border-white/10 px-3 py-1 rounded text-xs text-on-surface-variant">Premiere Pro</span>
+                        <span class="bg-white/5 border border-white/10 px-3 py-1 rounded text-xs text-on-surface-variant">Audition</span>
+                    </div>
+                    <p class="text-sm text-on-surface-variant mb-6">High-energy speed ramping, sound design synchronization, and dynamic zoom highlights.</p>
+                    <div style="font-weight: 700; color: var(--neon-purple); font-size: 1.1rem;">40M+ Views Generated</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Post-Production timeline Section -->
+    <section class="py-24 px-4 md:px-16 bg-background-surface" id="timeline-section">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-20">
+                <span class="badge">Lab Workflow</span>
+                <h2 class="text-3xl md:text-5xl font-extrabold mb-4 text-white">Our Processing Pipeline</h2>
+                <p class="text-on-surface-variant text-lg">The systematic destruction and reconstruction of raw footage.</p>
+            </div>
+            
+            <div class="relative pl-12 md:pl-0">
+                <!-- Vertical Line -->
+                <div class="absolute left-6 md:left-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-neon-cyan via-neon-purple to-neon-pink md:-translate-x-1/2"></div>
+                
+                <!-- Step 1 -->
+                <div class="relative mb-24 md:flex items-center justify-between reveal-node">
+                    <div class="md:w-[45%] mb-4 md:mb-0 md:text-right">
+                        <h4 class="text-xl font-bold text-neon-cyan mb-2">01. INGESTION</h4>
+                        <p class="text-on-surface-variant text-sm">We take your raw footage (LOG, 4K, 8K) and map the narrative trajectory. No frame is wasted.</p>
+                    </div>
+                    <div class="absolute left-[-24px] md:left-1/2 md:-translate-x-1/2 w-12 h-12 rounded-full bg-background-surface border-2 border-neon-cyan flex items-center justify-center z-10 shadow-[0_0_15px_rgba(6,182,212,0.5)]">
+                        <span class="material-symbols-outlined text-neon-cyan">cloud_upload</span>
+                    </div>
+                    <div class="hidden md:block md:w-[45%]"></div>
+                </div>
+                
+                <!-- Step 2 -->
+                <div class="relative mb-24 md:flex items-center justify-between reveal-node">
+                    <div class="hidden md:block md:w-[45%]"></div>
+                    <div class="absolute left-[-24px] md:left-1/2 md:-translate-x-1/2 w-12 h-12 rounded-full bg-background-surface border-2 border-neon-purple flex items-center justify-center z-10 shadow-[0_0_15px_rgba(168,85,247,0.5)]">
+                        <span class="material-symbols-outlined text-neon-purple">shutter_speed</span>
+                    </div>
+                    <div class="md:w-[45%] mb-4 md:mb-0">
+                        <h4 class="text-xl font-bold text-neon-purple mb-2">02. THE HOOK</h4>
+                        <p class="text-on-surface-variant text-sm">The first 3 seconds are war. We engineer high-retention intros using aggressive pacing and kinetic typography.</p>
+                    </div>
+                </div>
+                
+                <!-- Step 3 -->
+                <div class="relative mb-24 md:flex items-center justify-between reveal-node">
+                    <div class="md:w-[45%] mb-4 md:mb-0 md:text-right">
+                        <h4 class="text-xl font-bold text-tertiary mb-2">03. SONIC DESIGN</h4>
+                        <p class="text-on-surface-variant text-sm">Sound is 50% of the video. Layered foley, rhythmic SFX, and frequency-balanced mastering for crystal clear audio.</p>
+                    </div>
+                    <div class="absolute left-[-24px] md:left-1/2 md:-translate-x-1/2 w-12 h-12 rounded-full bg-background-surface border-2 border-tertiary flex items-center justify-center z-10 shadow-[0_0_15px_rgba(76,215,246,0.5)]">
+                        <span class="material-symbols-outlined text-tertiary">graphic_eq</span>
+                    </div>
+                    <div class="hidden md:block md:w-[45%]"></div>
+                </div>
+                
+                <!-- Step 4 -->
+                <div class="relative mb-24 md:flex items-center justify-between reveal-node">
+                    <div class="hidden md:block md:w-[45%]"></div>
+                    <div class="absolute left-[-24px] md:left-1/2 md:-translate-x-1/2 w-12 h-12 rounded-full bg-background-surface border-2 border-secondary flex items-center justify-center z-10 shadow-[0_0_15px_rgba(255,176,205,0.5)]">
+                        <span class="material-symbols-outlined text-secondary">forum</span>
+                    </div>
+                    <div class="md:w-[45%] mb-4 md:mb-0">
+                        <h4 class="text-xl font-bold text-secondary mb-2">04. COLLABORATION</h4>
+                        <p class="text-on-surface-variant text-sm">Real-time frame-by-frame feedback loop. We refine until every pixel aligns with your brand's pulse.</p>
+                    </div>
+                </div>
+                
+                <!-- Step 5 -->
+                <div class="relative md:flex items-center justify-between reveal-node">
+                    <div class="md:w-[45%] mb-4 md:mb-0 md:text-right">
+                        <h4 class="text-xl font-bold text-neon-pink mb-2">05. DEPLOYMENT</h4>
+                        <p class="text-on-surface-variant text-sm">Final render optimization for platform-specific algorithms. Ready to go viral on YouTube, IG, or TikTok.</p>
+                    </div>
+                    <div class="absolute left-[-24px] md:left-1/2 md:-translate-x-1/2 w-12 h-12 rounded-full bg-background-surface border-2 border-neon-pink flex items-center justify-center z-10 animate-pulse-glow">
+                        <span class="material-symbols-outlined text-neon-pink">rocket_launch</span>
+                    </div>
+                    <div class="hidden md:block md:w-[45%]"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-background-deep relative bottom-0 border-t border-glass-border">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12 px-4 md:px-16 py-16 max-w-7xl mx-auto">
+            <div class="flex flex-col gap-6">
+                <div class="text-2xl font-bold text-primary font-Outfit">Editkaro<span class="text-neon-cyan">.in</span></div>
+                <p class="text-sm text-on-surface-variant">Elevating digital content through high-octane post-production and algorithmic mastery.</p>
+                <div class="flex gap-4">
+                    <a class="w-10 h-10 rounded-full glass-card flex items-center justify-center hover:text-neon-cyan transition-colors" href="https://youtube.com">
+                        <i class="ri-youtube-fill"></i>
+                    </a>
+                    <a class="w-10 h-10 rounded-full glass-card flex items-center justify-center hover:text-neon-pink transition-colors" href="https://instagram.com">
+                        <i class="ri-instagram-line"></i>
+                    </a>
+                    <a class="w-10 h-10 rounded-full glass-card flex items-center justify-center hover:text-neon-purple transition-colors" href="https://twitter.com">
+                        <i class="ri-twitter-line"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="flex flex-col gap-4">
+                <h4 class="text-sm font-bold text-white uppercase tracking-widest">Solutions</h4>
+                <a class="text-sm text-on-surface-variant hover:text-white transition-colors" href="pricing.html">Short-form Magic</a>
+                <a class="text-sm text-on-surface-variant hover:text-white transition-colors" href="pricing.html">Long-form Mastery</a>
+                <a class="text-sm text-on-surface-variant hover:text-white transition-colors" href="dashboard.html">Client Workspace</a>
+                <a class="text-sm text-on-surface-variant hover:text-white transition-colors" href="pricing.html">Thumbnail Design</a>
+            </div>
+            <div class="flex flex-col gap-4">
+                <h4 class="text-sm font-bold text-white uppercase tracking-widest">Company</h4>
+                <a class="text-sm text-on-surface-variant hover:text-white transition-colors" href="about.html">About Us</a>
+                <a class="text-sm text-on-surface-variant hover:text-white transition-colors" href="contact.html">Contact Us</a>
+                <a class="text-sm text-on-surface-variant hover:text-white transition-colors" href="inside-the-edit.html">Inside The Edit</a>
+                <a class="text-sm text-on-surface-variant hover:text-white transition-colors" href="about.html#team-section">Our Editors</a>
+                <a class="text-sm text-on-surface-variant hover:text-white transition-colors" href="inside-the-edit.html#timeline-section">Our Process</a>
+                <a class="text-sm text-on-surface-variant hover:text-white transition-colors" href="booking.html">Discovery Call</a>
+            </div>
+            <div class="flex flex-col gap-6">
+                <h4 class="text-sm font-bold text-white uppercase tracking-widest">The Newsletter</h4>
+                <p class="text-sm text-on-surface-variant">Get viral insights directly in your inbox.</p>
+                <form id="newsletter-form" class="flex flex-col gap-2">
+                    <div class="flex">
+                        <input id="newsletter-email" name="email" required class="bg-surface-container-low border-glass-border border-r-0 rounded-l-lg focus:ring-neon-cyan focus:border-neon-cyan text-white w-full px-4 py-2" placeholder="Email address" type="email"/>
+                        <button type="submit" class="bg-primary text-on-primary px-4 rounded-r-lg hover:opacity-80 transition-opacity">
+                            <span class="material-symbols-outlined">send</span>
+                        </button>
+                    </div>
+                    <span id="newsletter-status" class="text-xs hidden mt-1"></span>
+                </form>
+            </div>
+        </div>
+        <div class="px-4 md:px-16 py-8 border-t border-glass-border flex flex-col md:flex-row justify-between items-center gap-4 max-w-7xl mx-auto">
+            <span class="text-xs text-on-surface-variant">© 2026 Editkaro.in. All rights reserved. Made for VaultofCodes.</span>
+            <div class="flex gap-8">
+                <a class="text-xs text-on-surface-variant hover:text-tertiary transition-colors" href="#">Terms</a>
+                <a class="text-xs text-on-surface-variant hover:text-tertiary transition-colors" href="#">Privacy</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- App JavaScript -->
+    <script src="app.js?v=1.5"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Before/After Slider Interaction
+            const sliderContainer = document.getElementById('comparison-slider');
+            const beforeImage = document.getElementById('before-image');
+            const handle = document.getElementById('slider-handle');
+
+            const moveSlider = (e) => {
+                const rect = sliderContainer.getBoundingClientRect();
+                const x = e.clientX || (e.touches && e.touches[0].clientX);
+                let position = ((x - rect.left) / rect.width) * 100;
+
+                if (position < 0) position = 0;
+                if (position > 100) position = 100;
+
+                beforeImage.style.width = `${position}%`;
+                handle.style.left = `${position}%`;
+            };
+
+            if (sliderContainer) {
+                sliderContainer.addEventListener('mousemove', moveSlider);
+                sliderContainer.addEventListener('touchmove', moveSlider);
+            }
+
+            // Timeline Fade-in intersections
+            const revealNodes = document.querySelectorAll('.reveal-node');
+            const observerOptions = { threshold: 0.1 };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('opacity-100');
+                        entry.target.classList.remove('opacity-0', 'translate-y-10');
+                    }
+                });
+            }, observerOptions);
+
+            revealNodes.forEach(node => {
+                node.classList.add('opacity-0', 'translate-y-10', 'transition-all', 'duration-1000');
+                observer.observe(node);
+            });
+        });
+    </script>
+    <!-- Floating Cursor Glow Shader -->
+    <div class="fixed w-64 h-64 rounded-full bg-neon-purple/20 blur-[100px] pointer-events-none z-0 transition-opacity opacity-0" id="cursor-glow"></div>
+</body>
+</html>

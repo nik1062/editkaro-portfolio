@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Editkaro | Booking Portal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Outfit:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-tint": "#ddb7ff",
+                    "tertiary": "#4cd7f6",
+                    "secondary-fixed": "#ffd9e4",
+                    "primary-fixed": "#f0dbff",
+                    "surface-container-high": "#2a2930",
+                    "glass-border": "rgba(255, 255, 255, 0.12)",
+                    "surface-dim": "#131319",
+                    "outline-variant": "#4d4354",
+                    "surface-variant": "#35343b",
+                    "background-surface": "#0A0A14",
+                    "surface-container-low": "#1b1b22",
+                    "on-error-container": "#ffdad6",
+                    "surface": "#131319",
+                    "inverse-primary": "#842bd2",
+                    "on-surface": "#e4e1eb",
+                    "surface-container-highest": "#35343b",
+                    "on-background": "#e4e1eb",
+                    "on-primary-fixed": "#2c0051",
+                    "secondary-container": "#aa0266",
+                    "background": "#131319",
+                    "on-error": "#690005",
+                    "on-primary": "#490080",
+                    "text-primary": "#FFFFFF",
+                    "neon-pink": "#EC4899",
+                    "background-deep": "#030307",
+                    "primary": "#ddb7ff",
+                    "on-surface-variant": "#cfc2d6",
+                    "text-secondary": "#94A3B8",
+                    "secondary": "#ffb0cd",
+                    "on-tertiary-fixed-variant": "#004e5c",
+                    "secondary-fixed-dim": "#ffb0cd",
+                    "primary-fixed-dim": "#ddb7ff",
+                    "neon-cyan": "#06B6D4",
+                    "on-secondary-container": "#ffbad3",
+                    "tertiary-fixed": "#acedff",
+                    "on-primary-fixed-variant": "#6900b3",
+                    "inverse-on-surface": "#303037",
+                    "on-tertiary-container": "#002f38",
+                    "on-primary-container": "#400071",
+                    "error-container": "#93000a",
+                    "on-secondary-fixed": "#3e0022",
+                    "error": "#ffb4ab",
+                    "surface-container-lowest": "#0e0e14",
+                    "tertiary-fixed-dim": "#4cd7f6",
+                    "primary-container": "#b76dff",
+                    "surface-container": "#1f1f26",
+                    "inverse-surface": "#e4e1eb",
+                    "on-tertiary": "#003640",
+                    "outline": "#988d9f",
+                    "on-secondary-fixed-variant": "#8c0053",
+                    "on-secondary": "#640039",
+                    "tertiary-container": "#009eb9",
+                    "neon-purple": "#A855F7",
+                    "on-tertiary-fixed": "#001f26",
+                    "surface-bright": "#393840"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-mobile": "16px",
+                    "gutter": "24px",
+                    "unit": "4px",
+                    "margin-desktop": "64px",
+                    "container-max": "1280px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Outfit"],
+                    "body-md": ["Inter"],
+                    "label-lg": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-md": ["Outfit"],
+                    "display-lg-mobile": ["Outfit"],
+                    "headline-xl": ["Outfit"],
+                    "body-lg": ["Inter"],
+                    "display-lg": ["Outfit"]
+            },
+            "fontSize": {
+                    "headline-lg": ["32px", {"lineHeight": "1.3", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "label-lg": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "display-lg-mobile": ["48px", {"lineHeight": "1.2", "fontWeight": "800"}],
+                    "headline-xl": ["48px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "display-lg": ["72px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(10, 10, 20, 0.7);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .neon-glow-primary:hover {
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
+            border-color: #A855F7;
+        }
+        .diagonal-bg {
+            clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%);
+        }
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #06B6D4 !important;
+            box-shadow: 0 0 10px rgba(6, 182, 212, 0.2);
+        }
+        .step-transition {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .active-step-indicator {
+            background: linear-gradient(to right, #A855F7, #EC4899);
+            box-shadow: 0 0 15px rgba(236, 72, 153, 0.5);
+        }
+        .calendar-day:hover:not(.empty) {
+            background: rgba(6, 182, 212, 0.1);
+            color: #06B6D4;
+        }
+    </style>
+</head>
+<body class="bg-background-deep text-on-background font-body-md min-h-screen selection:bg-neon-purple selection:text-white">
+<!-- TopNavBar Shell -->
+<nav class="fixed top-0 w-full z-50 bg-surface/70 dark:bg-surface/70 backdrop-blur-xl border-b border-glass-border shadow-[0_0_15px_rgba(221,183,255,0.1)]">
+<div class="flex justify-between items-center px-margin-desktop py-4 max-w-container-max mx-auto">
+<a class="font-headline-lg text-headline-lg font-bold bg-gradient-to-r from-neon-purple to-neon-pink bg-clip-text text-transparent" href="#">Editkaro</a>
+<div class="hidden md:flex items-center gap-8">
+<a class="font-label-lg text-label-lg text-on-surface-variant hover:text-primary transition-colors" href="#">Home</a>
+<a class="font-label-lg text-label-lg text-on-surface-variant hover:text-primary transition-colors" href="#">Portfolio</a>
+<a class="font-label-lg text-label-lg text-on-surface-variant hover:text-primary transition-colors" href="#">Inside the Edit</a>
+<a class="font-label-lg text-label-lg text-on-surface-variant hover:text-primary transition-colors" href="#">Pricing</a>
+<a class="font-label-lg text-label-lg text-neon-cyan border-b-2 border-neon-cyan pb-1" href="#">Contact</a>
+</div>
+<button class="px-6 py-2 bg-gradient-to-r from-neon-purple to-neon-pink text-white font-label-lg text-label-lg rounded-lg neon-glow-primary transition-all active:scale-95">Client Portal</button>
+</div>
+</nav>
+<main class="pt-32 pb-24 relative overflow-hidden">
+<!-- Atmospheric Background Shaders -->
+
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop relative z-10">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+<!-- Left Column: Information & Status -->
+<div class="lg:col-span-5 space-y-8">
+<div class="space-y-4">
+<span class="inline-block px-4 py-1 rounded-full border border-neon-cyan/30 bg-neon-cyan/5 text-neon-cyan font-label-sm text-label-sm uppercase tracking-widest">Intake System v2.4</span>
+<h1 class="font-headline-xl text-headline-xl bg-gradient-to-br from-white to-on-surface-variant bg-clip-text text-transparent">Ready to go viral?</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-md">Our onboarding process is optimized for speed. Tell us about your creative vision and sync with our post-production engine.</p>
+</div>
+<div class="space-y-6">
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 rounded-full flex items-center justify-center bg-surface-container border border-glass-border">
+<span class="material-symbols-outlined text-neon-purple">bolt</span>
+</div>
+<div>
+<h4 class="font-headline-md text-headline-md text-white">Rapid Turnaround</h4>
+<p class="text-on-surface-variant">First drafts delivered within 48-72 hours of asset upload.</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 rounded-full flex items-center justify-center bg-surface-container border border-glass-border">
+<span class="material-symbols-outlined text-neon-cyan">video_settings</span>
+</div>
+<div>
+<h4 class="font-headline-md text-headline-md text-white">Full Post Pipeline</h4>
+<p class="text-on-surface-variant">Color grading, sound design, and retention-focused storytelling.</p>
+</div>
+</div>
+</div>
+<!-- Progress Tracker (Desktop) -->
+<div class="hidden lg:block pt-12">
+<div class="relative pl-8 border-l-2 border-surface-container-high space-y-12">
+<div class="relative">
+<div class="absolute -left-[41px] top-0 w-5 h-5 rounded-full active-step-indicator"></div>
+<h5 class="text-white font-bold">Step 1: Visual DNA</h5>
+<p class="text-label-sm text-on-surface-variant">Define your editing style and pacing.</p>
+</div>
+<div class="relative">
+<div class="absolute -left-[41px] top-0 w-5 h-5 rounded-full bg-surface-container-high border-2 border-background-deep"></div>
+<h5 class="text-on-surface-variant font-bold opacity-50">Step 2: Source Intelligence</h5>
+<p class="text-label-sm text-on-surface-variant opacity-50">Connect your content ecosystem.</p>
+</div>
+<div class="relative">
+<div class="absolute -left-[41px] top-0 w-5 h-5 rounded-full bg-surface-container-high border-2 border-background-deep"></div>
+<h5 class="text-on-surface-variant font-bold opacity-50">Step 3: Commercial Lock</h5>
+<p class="text-label-sm text-on-surface-variant opacity-50">Finalize budget and production tier.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Interactive Multi-Step Form -->
+<div class="lg:col-span-7">
+<div class="glass-card rounded-2xl p-8 md:p-12 shadow-2xl relative overflow-hidden">
+<div class="absolute top-0 right-0 w-64 h-64 bg-neon-purple/10 blur-[100px]"></div>
+<form class="relative z-10 min-h-[500px] flex flex-col" id="bookingForm">
+<!-- Step 1: Style Selection -->
+<div class="step-content space-y-8 animate-in fade-in slide-in-from-right-8 duration-500" id="step1">
+<div class="space-y-2">
+<h2 class="font-headline-lg text-headline-lg text-white">Choose Your Vibe</h2>
+<p class="text-on-surface-variant">Which editing aesthetic fits your brand best?</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<label class="group cursor-pointer">
+<input class="hidden peer" name="style" type="radio" value="retention"/>
+<div class="p-6 rounded-xl border border-glass-border bg-surface-container-low transition-all peer-checked:border-neon-purple peer-checked:bg-neon-purple/5 group-hover:bg-white/5">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-neon-purple text-3xl">timer</span>
+<div class="w-5 h-5 rounded-full border-2 border-glass-border peer-checked:bg-neon-purple flex items-center justify-center">
+<div class="w-2 h-2 rounded-full bg-white hidden peer-checked:block"></div>
+</div>
+</div>
+<h3 class="text-white font-bold mb-1">High Retention</h3>
+<p class="text-label-sm text-on-surface-variant">Fast cuts, dynamic captions, and meme-infused pacing.</p>
+</div>
+</label>
+<label class="group cursor-pointer">
+<input class="hidden peer" name="style" type="radio" value="cinematic"/>
+<div class="p-6 rounded-xl border border-glass-border bg-surface-container-low transition-all peer-checked:border-neon-cyan peer-checked:bg-neon-cyan/5 group-hover:bg-white/5">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-neon-cyan text-3xl">movie</span>
+<div class="w-5 h-5 rounded-full border-2 border-glass-border peer-checked:bg-neon-cyan flex items-center justify-center">
+<div class="w-2 h-2 rounded-full bg-white hidden peer-checked:block"></div>
+</div>
+</div>
+<h3 class="text-white font-bold mb-1">Cinematic Raw</h3>
+<p class="text-label-sm text-on-surface-variant">Smooth transitions, color mastery, and atmospheric sound design.</p>
+</div>
+</label>
+<label class="group cursor-pointer">
+<input class="hidden peer" name="style" type="radio" value="corporate"/>
+<div class="p-6 rounded-xl border border-glass-border bg-surface-container-low transition-all peer-checked:border-neon-pink peer-checked:bg-neon-pink/5 group-hover:bg-white/5">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-neon-pink text-3xl">business_center</span>
+<div class="w-5 h-5 rounded-full border-2 border-glass-border peer-checked:bg-neon-pink flex items-center justify-center">
+<div class="w-2 h-2 rounded-full bg-white hidden peer-checked:block"></div>
+</div>
+</div>
+<h3 class="text-white font-bold mb-1">Professional / Ed-Tech</h3>
+<p class="text-label-sm text-on-surface-variant">Clean layouts, motion graphics, and clear information hierarchy.</p>
+</div>
+</label>
+<label class="group cursor-pointer">
+<input class="hidden peer" name="style" type="radio" value="custom"/>
+<div class="p-6 rounded-xl border border-glass-border bg-surface-container-low transition-all peer-checked:border-white peer-checked:bg-white/5 group-hover:bg-white/5">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-on-surface-variant text-3xl">auto_fix_high</span>
+<div class="w-5 h-5 rounded-full border-2 border-glass-border peer-checked:bg-white flex items-center justify-center">
+<div class="w-2 h-2 rounded-full bg-black hidden peer-checked:block"></div>
+</div>
+</div>
+<h3 class="text-white font-bold mb-1">Hybrid Custom</h3>
+<p class="text-label-sm text-on-surface-variant">Tell us your vision and we'll engineer a unique signature style.</p>
+</div>
+</label>
+</div>
+</div>
+<!-- Step 2: Channel Link -->
+<div class="step-content hidden space-y-8 animate-in fade-in slide-in-from-right-8 duration-500" id="step2">
+<div class="space-y-2">
+<h2 class="font-headline-lg text-headline-lg text-white">Connect Your Pulse</h2>
+<p class="text-on-surface-variant">Where does your content live currently?</p>
+</div>
+<div class="space-y-6">
+<div class="space-y-2">
+<label class="text-label-lg font-bold text-white block">Main Channel URL</label>
+<div class="relative">
+<span class="absolute left-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-on-surface-variant">link</span>
+<input class="w-full bg-surface-container-lowest border border-glass-border rounded-xl py-4 pl-12 pr-4 text-white focus:ring-0" placeholder="youtube.com/@yourchannel" type="url"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-label-lg font-bold text-white block">Average Monthly Uploads</label>
+<div class="grid grid-cols-4 gap-2">
+<button class="py-3 rounded-lg border border-glass-border bg-surface-container-low text-white hover:border-neon-cyan transition-colors" type="button">1-3</button>
+<button class="py-3 rounded-lg border border-neon-cyan bg-neon-cyan/10 text-white" type="button">4-8</button>
+<button class="py-3 rounded-lg border border-glass-border bg-surface-container-low text-white hover:border-neon-cyan transition-colors" type="button">8-15</button>
+<button class="py-3 rounded-lg border border-glass-border bg-surface-container-low text-white hover:border-neon-cyan transition-colors" type="button">15+</button>
+</div>
+</div>
+<div class="p-6 rounded-xl bg-neon-pink/5 border border-neon-pink/20 flex gap-4">
+<span class="material-symbols-outlined text-neon-pink">info</span>
+<p class="text-label-sm text-on-surface-variant">Linking your channel allows our creative directors to audit your current retention metrics before our call.</p>
+</div>
+</div>
+</div>
+<!-- Step 3: Budget & Strategy -->
+<div class="step-content hidden space-y-8 animate-in fade-in slide-in-from-right-8 duration-500" id="step3">
+<div class="space-y-2">
+<h2 class="font-headline-lg text-headline-lg text-white">Investment Scope</h2>
+<p class="text-on-surface-variant">Select your monthly production budget.</p>
+</div>
+<div class="space-y-8">
+<div class="space-y-4">
+<div class="flex justify-between text-white font-bold">
+<span>Budget Range</span>
+<span class="text-neon-cyan" id="budgetValue">$1,500 - $3,000 /mo</span>
+</div>
+<input class="w-full h-2 bg-surface-container-high rounded-lg appearance-none cursor-pointer accent-neon-cyan" id="budgetRange" max="4" min="1" step="1" type="range" value="2"/>
+<div class="flex justify-between text-label-sm text-on-surface-variant uppercase tracking-tighter">
+<span>Starter</span>
+<span>Growth</span>
+<span>Scale</span>
+<span>Enterprise</span>
+</div>
+</div>
+<div class="glass-card p-6 rounded-xl border-neon-purple/30">
+<h4 class="text-white font-bold mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-neon-purple">calendar_month</span>
+                                            Select Strategy Call Time
+                                        </h4>
+<!-- Custom Calendar Grid -->
+<div class="bg-background-deep/50 rounded-lg p-4 border border-glass-border">
+<div class="flex justify-between items-center mb-4">
+<span class="text-white font-bold">November 2024</span>
+<div class="flex gap-2">
+<button class="p-1 hover:bg-white/10 rounded" type="button"><span class="material-symbols-outlined text-sm">chevron_left</span></button>
+<button class="p-1 hover:bg-white/10 rounded" type="button"><span class="material-symbols-outlined text-sm">chevron_right</span></button>
+</div>
+</div>
+<div class="grid grid-cols-7 gap-1 text-center mb-2">
+<div class="text-[10px] text-on-surface-variant font-bold uppercase">Mo</div>
+<div class="text-[10px] text-on-surface-variant font-bold uppercase">Tu</div>
+<div class="text-[10px] text-on-surface-variant font-bold uppercase">We</div>
+<div class="text-[10px] text-on-surface-variant font-bold uppercase">Th</div>
+<div class="text-[10px] text-on-surface-variant font-bold uppercase">Fr</div>
+<div class="text-[10px] text-on-surface-variant font-bold uppercase">Sa</div>
+<div class="text-[10px] text-on-surface-variant font-bold uppercase">Su</div>
+</div>
+<div class="grid grid-cols-7 gap-1">
+<!-- Empty days for alignment -->
+<div class="h-8 empty"></div><div class="h-8 empty"></div><div class="h-8 empty"></div><div class="h-8 empty"></div>
+<button class="h-8 text-xs rounded calendar-day text-on-surface-variant" type="button">1</button>
+<button class="h-8 text-xs rounded calendar-day text-on-surface-variant" type="button">2</button>
+<button class="h-8 text-xs rounded calendar-day text-on-surface-variant" type="button">3</button>
+<button class="h-8 text-xs rounded calendar-day text-on-surface-variant" type="button">4</button>
+<button class="h-8 text-xs rounded calendar-day border border-neon-cyan text-neon-cyan font-bold" type="button">5</button>
+<button class="h-8 text-xs rounded calendar-day text-on-surface-variant" type="button">6</button>
+<button class="h-8 text-xs rounded calendar-day bg-neon-cyan text-black font-bold" type="button">7</button>
+<button class="h-8 text-xs rounded calendar-day text-on-surface-variant" type="button">8</button>
+<button class="h-8 text-xs rounded calendar-day text-on-surface-variant" type="button">9</button>
+<button class="h-8 text-xs rounded calendar-day text-on-surface-variant" type="button">10</button>
+<!-- ... more days -->
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Form Navigation -->
+<div class="mt-auto pt-12 flex justify-between items-center">
+<button class="invisible px-6 py-3 rounded-lg border border-glass-border text-on-surface-variant hover:text-white transition-colors flex items-center gap-2" id="prevBtn" type="button">
+<span class="material-symbols-outlined">arrow_back</span> Back
+                                </button>
+<button class="px-10 py-4 bg-gradient-to-r from-neon-purple to-neon-pink text-white font-bold rounded-lg shadow-lg hover:scale-105 active:scale-95 transition-all flex items-center gap-2 group" id="nextBtn" type="button">
+                                    Next Phase <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>
+<!-- Featured Editors Bento (Asymmetric) -->
+<section class="mt-40 max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<h2 class="font-headline-lg text-headline-lg text-white mb-12">Match with a Lead Editor</h2>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6 h-auto md:h-[600px]">
+<div class="md:col-span-8 group relative overflow-hidden rounded-2xl glass-card">
+<img class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700" data-alt="A professional video editor working in a dimly lit studio with multiple high-end monitors. The workspace is glowing with purple and cyan ambient lighting. The editor is wearing high-quality headphones and focusing on a complex timeline on the screen. The aesthetic is futuristic and high-octane." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD496Zmybbd7dPwfyv6oY2gJjnDj32XTrAt2YHKR77bH-UopEBbW05FJKOFRKkTOGG443GGAoNjffQWZZfZddmJW988_o9VEPvDnX_SSC5ClbZHi2B2N0_zfab7aRGAnPUaHomQTkUicDaaHWSAnxjr8CubsM3lYZs1xHe_V5RTqpG5yAHYKXdwls9deZ9Rz3lQeWTjxIDhQLOPaQxG_VkjSRmaf6tSFFUtWk2J8Lu9dIXhMQgGfehC"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background-deep via-transparent to-transparent"></div>
+<div class="absolute bottom-8 left-8">
+<span class="px-3 py-1 bg-neon-purple text-white font-label-sm rounded-full mb-4 inline-block">Available Now</span>
+<h3 class="text-3xl font-headline-xl text-white">Alex 'Cuts' Vane</h3>
+<p class="text-on-surface-variant">Specialist in Retention &amp; Viral Hooks for Tech YouTubers.</p>
+</div>
+</div>
+<div class="md:col-span-4 grid grid-rows-2 gap-6">
+<div class="glass-card rounded-2xl p-6 flex flex-col justify-between border-t-2 border-neon-cyan/50">
+<div class="flex justify-between">
+<span class="material-symbols-outlined text-neon-cyan text-4xl">verified_user</span>
+<div class="text-right">
+<div class="text-white font-bold">12 Active</div>
+<div class="text-xs text-on-surface-variant">Projects in pipeline</div>
+</div>
+</div>
+<div>
+<h4 class="text-white font-bold">Quality Standard</h4>
+<p class="text-sm text-on-surface-variant">Every frame is reviewed by a Senior Creative Director before delivery.</p>
+</div>
+</div>
+<div class="glass-card rounded-2xl p-6 flex flex-col justify-between border-b-2 border-neon-pink/50">
+<img class="w-full h-24 object-cover rounded-lg mb-4 opacity-40" data-alt="A close-up high-resolution shot of a mechanical keyboard with glowing RGB lighting in shades of pink and blue. The background is a blurred digital workstation with professional editing equipment. The mood is high-energy, creative, and technologically sophisticated." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMKr2UjTRCdrRvjG-ZpquloCKkHEtSGB4FwjxKRE7xV2rnAEqH3QThqI6fP1jqSbuDymTKXcKelF1fv-iMslOzbh4YtnYo5T1zc6uQZOzDj_poFjkNvDgo_FNMKyZrRX8gNBlZSONEIXArQcZYKvSVTkBR_s1DBUEzeStBott3e2qPnoqPtpS3rknUMePDXWxw7gfpE5ryJwH9MBe_Dj2onfWjgn5o9D0FdPYuyIcFkPbOwh4kv4eC"/>
+<button class="w-full py-3 bg-white/5 border border-glass-border rounded-lg text-white font-bold hover:bg-white/10 transition-colors">See Team Profiles</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer Shell -->
+<footer class="bg-background-deep relative border-t border-glass-border">
+<div class="max-w-container-max mx-auto px-margin-desktop py-16 grid grid-cols-1 md:grid-cols-4 gap-gutter">
+<div class="col-span-1 md:col-span-2">
+<div class="font-headline-md text-headline-md font-bold text-primary mb-6">Editkaro</div>
+<p class="text-on-surface-variant max-w-sm">The world's premier post-production hub for high-growth creators. We turn raw footage into digital assets that perform.</p>
+</div>
+<div class="flex flex-col gap-4">
+<span class="text-white font-bold uppercase tracking-widest text-xs">Navigation</span>
+<a class="text-on-surface-variant hover:text-white transition-colors" href="#">Home</a>
+<a class="text-on-surface-variant hover:text-white transition-colors" href="#">Portfolio</a>
+<a class="text-on-surface-variant hover:text-white transition-colors" href="#">Careers</a>
+</div>
+<div class="flex flex-col gap-4">
+<span class="text-white font-bold uppercase tracking-widest text-xs">Legal</span>
+<a class="text-on-surface-variant hover:text-white transition-colors" href="#">Terms</a>
+<a class="text-on-surface-variant hover:text-white transition-colors" href="#">Privacy</a>
+<div class="flex gap-4 mt-4">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary">public</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary">smart_display</span>
+</div>
+</div>
+</div>
+<div class="max-w-container-max mx-auto px-margin-desktop py-8 border-t border-glass-border/50 text-center text-label-sm text-on-surface-variant">
+            © 2024 Editkaro. All rights reserved.
+        </div>
+</footer>
+<script>
+        // Multi-step Form Logic
+        let currentStep = 1;
+        const totalSteps = 3;
+        const nextBtn = document.getElementById('nextBtn');
+        const prevBtn = document.getElementById('prevBtn');
+        const form = document.getElementById('bookingForm');
+
+        function updateForm() {
+            // Hide all steps
+            document.querySelectorAll('.step-content').forEach(el => el.classList.add('hidden'));
+            // Show current step
+            document.getElementById(`step${currentStep}`).classList.remove('hidden');
+
+            // Toggle prev button visibility
+            if (currentStep === 1) {
+                prevBtn.classList.add('invisible');
+            } else {
+                prevBtn.classList.remove('invisible');
+            }
+
+            // Update next button text
+            if (currentStep === totalSteps) {
+                nextBtn.innerHTML = 'Lock in Strategy <span class="material-symbols-outlined">rocket_launch</span>';
+                nextBtn.classList.add('from-neon-cyan', 'to-neon-purple');
+            } else {
+                nextBtn.innerHTML = 'Next Phase <span class="material-symbols-outlined">arrow_forward</span>';
+                nextBtn.classList.remove('from-neon-cyan', 'to-neon-purple');
+            }
+        }
+
+        nextBtn.addEventListener('click', () => {
+            if (currentStep < totalSteps) {
+                currentStep++;
+                updateForm();
+            } else {
+                // Handle submission
+                nextBtn.innerHTML = 'Booking...';
+                setTimeout(() => {
+                    alert('Strategy Call Scheduled! Check your email for confirmation.');
+                    window.location.reload();
+                }, 1500);
+            }
+        });
+
+        prevBtn.addEventListener('click', () => {
+            if (currentStep > 1) {
+                currentStep--;
+                updateForm();
+            }
+        });
+
+        // Budget Slider Logic
+        const range = document.getElementById('budgetRange');
+        const valueLabel = document.getElementById('budgetValue');
+        const budgets = {
+            '1': '$500 - $1,500 /mo',
+            '2': '$1,500 - $3,000 /mo',
+            '3': '$3,000 - $6,000 /mo',
+            '4': '$6,000+ /mo'
+        };
+
+        range.addEventListener('input', (e) => {
+            valueLabel.innerText = budgets[e.target.value];
+        });
+
+        // Small Micro-interaction for radio buttons
+        document.querySelectorAll('input[type="radio"]').forEach(radio => {
+            radio.addEventListener('change', () => {
+                // Quick transition feel
+                const parent = radio.closest('label');
+                parent.classList.add('scale-95');
+                setTimeout(() => parent.classList.remove('scale-95'), 100);
+            });
+        });
+    </script>
+</body></html>

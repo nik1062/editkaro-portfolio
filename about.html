@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>About Us | Editkaro.in</title>
+    <meta name="description" content="Meet the creative minds behind Editkaro.in. Learn about our mission, vision, core values, and post-production philosophy.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <!-- Shared Tailwind Configurations -->
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-tint": "#ddb7ff",
+                        "tertiary": "#4cd7f6",
+                        "secondary-fixed": "#ffd9e4",
+                        "primary-fixed": "#f0dbff",
+                        "surface-container-high": "#2a2930",
+                        "glass-border": "rgba(255, 255, 255, 0.12)",
+                        "surface-dim": "#131319",
+                        "outline-variant": "#4d4354",
+                        "surface-variant": "#35343b",
+                        "background-surface": "#0A0A14",
+                        "surface-container-low": "#1b1b22",
+                        "on-error-container": "#ffdad6",
+                        "surface": "#131319",
+                        "inverse-primary": "#842bd2",
+                        "on-surface": "#e4e1eb",
+                        "surface-container-highest": "#35343b",
+                        "on-background": "#e4e1eb",
+                        "on-primary-fixed": "#2c0051",
+                        "secondary-container": "#aa0266",
+                        "background": "#131319",
+                        "on-error": "#690005",
+                        "on-primary": "#490080",
+                        "text-primary": "#FFFFFF",
+                        "neon-pink": "#EC4899",
+                        "background-deep": "#030307",
+                        "primary": "#ddb7ff",
+                        "on-surface-variant": "#cfc2d6",
+                        "text-secondary": "#94A3B8",
+                        "secondary": "#ffb0cd",
+                        "on-tertiary-fixed-variant": "#004e5c",
+                        "secondary-fixed-dim": "#ffb0cd",
+                        "primary-fixed-dim": "#ddb7ff",
+                        "neon-cyan": "#06B6D4",
+                        "on-secondary-container": "#ffbad3",
+                        "tertiary-fixed": "#acedff",
+                        "on-primary-fixed-variant": "#6900b3",
+                        "inverse-on-surface": "#303037",
+                        "on-tertiary-container": "#002f38",
+                        "on-primary-container": "#400071",
+                        "error-container": "#93000a",
+                        "on-secondary-fixed": "#3e0022",
+                        "error": "#ffb4ab",
+                        "surface-container-lowest": "#0e0e14",
+                        "tertiary-fixed-dim": "#4cd7f6",
+                        "primary-container": "#b76dff",
+                        "surface-container": "#1f1f26",
+                        "inverse-surface": "#e4e1eb",
+                        "on-tertiary": "#003640",
+                        "outline": "#988d9f",
+                        "on-secondary-fixed-variant": "#8c0053",
+                        "on-secondary": "#640039",
+                        "tertiary-container": "#009eb9",
+                        "neon-purple": "#A855F7",
+                        "on-tertiary-fixed": "#001f26",
+                        "surface-bright": "#393840"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            background-color: #030307;
+            color: #e4e1eb;
+            overflow-x: hidden;
+            font-family: 'Inter', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .glass-card {
+            background: rgba(10, 10, 20, 0.7);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(to right, #06B6D4, #A855F7);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+        .gradient-border-card {
+            position: relative;
+            background: rgba(10, 10, 20, 0.8);
+            border-radius: 1rem;
+            z-index: 1;
+        }
+        .gradient-border-card::before {
+            content: "";
+            position: absolute;
+            top: -1px; left: -1px; right: -1px; bottom: -1px;
+            background: linear-gradient(to right bottom, #A855F7, #EC4899, #06B6D4);
+            border-radius: 1rem;
+            z-index: -1;
+            opacity: 0.2;
+            transition: opacity 0.3s ease;
+        }
+        .gradient-border-card:hover::before {
+            opacity: 0.6;
+        }
+    </style>
+</head>
+<body class="selection:bg-neon-pink/30">
+
+    <!-- Sticky Glassmorphic Navbar -->
+    <nav class="fixed top-0 w-full z-50 bg-surface/70 backdrop-blur-xl border-b border-glass-border shadow-[0_0_15px_rgba(221,183,255,0.1)]">
+        <div class="flex justify-between items-center px-4 md:px-16 py-4 max-w-7xl mx-auto">
+            <a class="font-Outfit text-2xl font-bold bg-gradient-to-r from-neon-purple to-neon-pink bg-clip-text text-transparent" href="index.html">Editkaro<span class="text-neon-cyan">.in</span></a>
+            
+            <!-- Desktop Links -->
+            <div class="hidden md:flex gap-8 items-center">
+                <a class="font-medium text-on-surface-variant hover:text-white transition-colors pb-1 relative nav-link" href="index.html">Home</a>
+                <a class="font-medium text-on-surface-variant hover:text-white transition-colors pb-1 relative nav-link" href="portfolio.html">Portfolio</a>
+                <a class="font-medium text-on-surface-variant hover:text-white transition-colors pb-1 relative nav-link" href="inside-the-edit.html">Inside the Edit</a>
+                <a class="font-medium text-on-surface-variant hover:text-white transition-colors pb-1 relative nav-link" href="pricing.html">Pricing Customizer</a>
+                <a class="font-medium text-neon-cyan pb-1 relative nav-link active" href="about.html">About Us</a>
+                <a class="font-medium text-on-surface-variant hover:text-white transition-colors pb-1 relative nav-link" href="contact.html">Contact Us</a>
+                <a class="font-medium text-on-surface-variant hover:text-white transition-colors pb-1 relative nav-link" href="booking.html">Start Project</a>
+            </div>
+            
+            <div class="flex items-center gap-4">
+                <button class="hidden md:block bg-gradient-to-r from-neon-purple to-neon-pink text-white px-6 py-2 rounded-lg font-semibold hover:shadow-[0_0_15px_rgba(168,85,247,0.5)] transition-all transform active:scale-95" onclick="window.location.href='dashboard.html'">
+                    Client Portal
+                </button>
+                
+                <!-- Hamburger Menu Button (Mobile) -->
+                <button id="mobile-menu-toggle" class="flex md:hidden text-on-surface-variant hover:text-white focus:outline-none" aria-label="Toggle Mobile Menu">
+                    <span class="material-symbols-outlined text-3xl">menu</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Sidebar Backdrop Overlay -->
+    <div id="mobile-menu-backdrop" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm md:hidden opacity-0 pointer-events-none transition-opacity duration-300"></div>
+
+    <!-- Mobile Sidebar Drawer -->
+    <div id="mobile-menu" class="fixed top-0 left-0 bottom-0 w-72 z-[60] bg-background-deep/95 backdrop-blur-2xl border-r border-glass-border md:hidden flex flex-col p-6 -translate-x-full transition-transform duration-300">
+        <!-- Close Button & Brand -->
+        <div class="flex justify-between items-center mb-10">
+            <span class="font-Outfit text-2xl font-bold bg-gradient-to-r from-neon-purple to-neon-pink bg-clip-text text-transparent">Editkaro<span class="text-neon-cyan">.in</span></span>
+            <button id="mobile-menu-close" class="text-on-surface-variant hover:text-white focus:outline-none" aria-label="Close Mobile Menu">
+                <span class="material-symbols-outlined text-2xl">close</span>
+            </button>
+        </div>
+        <!-- Nav Links -->
+        <div class="flex flex-col gap-3 flex-grow">
+            <a class="px-4 py-3 rounded-xl font-semibold text-sm transition-all text-on-surface-variant hover:bg-white/5" href="index.html" id="m-link-home">Home</a>
+            <a class="px-4 py-3 rounded-xl font-semibold text-sm transition-all text-on-surface-variant hover:bg-white/5" href="portfolio.html" id="m-link-portfolio">Portfolio</a>
+            <a class="px-4 py-3 rounded-xl font-semibold text-sm transition-all text-on-surface-variant hover:bg-white/5" href="inside-the-edit.html" id="m-link-inside">Inside the Edit</a>
+            <a class="px-4 py-3 rounded-xl font-semibold text-sm transition-all text-on-surface-variant hover:bg-white/5" href="pricing.html" id="m-link-pricing">Pricing Customizer</a>
+            <a class="px-4 py-3 rounded-xl font-semibold text-sm transition-all bg-primary-container/20 text-neon-purple border border-neon-purple/30" href="about.html" id="m-link-about">About Us</a>
+            <a class="px-4 py-3 rounded-xl font-semibold text-sm transition-all text-on-surface-variant hover:bg-white/5" href="contact.html" id="m-link-contact">Contact Us</a>
+            <a class="px-4 py-3 rounded-xl font-semibold text-sm transition-all text-on-surface-variant hover:bg-white/5 border border-dashed border-neon-pink/30 hover:border-neon-pink/60" href="booking.html" id="m-link-booking">Start Project</a>
+        </div>
+        <div class="pt-6 border-t border-glass-border">
+            <button class="w-full bg-gradient-to-r from-neon-purple to-neon-pink text-white py-3 rounded-xl font-semibold text-sm hover:shadow-[0_0_15px_rgba(168,85,247,0.5)] transition-all" onclick="window.location.href='dashboard.html'">
+                Client Portal
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="pt-32 space-y-32">
+
+        <!-- Hero Section -->
+        <section class="max-w-4xl mx-auto text-center px-4 space-y-6">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-neon-cyan/30 bg-neon-cyan/5 mb-4">
+                <span class="w-2 h-2 rounded-full bg-neon-cyan animate-pulse" style="box-shadow: 0 0 10px #06b6d4;"></span>
+                <span class="font-medium text-xs text-neon-cyan tracking-widest uppercase">The Editing Engine</span>
+            </div>
+            <h1 class="text-3xl md:text-5xl font-extrabold text-white leading-tight">
+                Behind Every <span class="text-transparent bg-clip-text bg-gradient-to-r from-neon-purple via-neon-pink to-neon-cyan">Viral Video.</span>
+            </h1>
+            <p class="text-sm text-on-surface-variant max-w-xl mx-auto">
+                Editkaro.in is a high-octane post-production and social media marketing agency. We turn raw footage into high-retention visual content engineered for growth.
+            </p>
+        </section>
+
+        <!-- Mission & Vision Section -->
+        <section class="max-w-7xl mx-auto px-4 md:px-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="glass-card rounded-2xl p-10 flex flex-col justify-between border-t-2 border-neon-purple/50">
+                    <div>
+                        <span class="material-symbols-outlined text-neon-purple text-5xl mb-6">workspace_premium</span>
+                        <h2 class="text-2xl font-bold text-white mb-4">Our Mission</h2>
+                        <p class="text-on-surface-variant leading-relaxed">
+                            To empower creators and brands by translating raw, flat camera logs into highly retention-optimized visual masterpieces. We believe edit styles shouldn't just look pretty—they must perform against algorithmic pacing.
+                        </p>
+                    </div>
+                </div>
+                <div class="glass-card rounded-2xl p-10 flex flex-col justify-between border-t-2 border-neon-cyan/50">
+                    <div>
+                        <span class="material-symbols-outlined text-neon-cyan text-5xl mb-6">visibility</span>
+                        <h2 class="text-2xl font-bold text-white mb-4">Our Vision</h2>
+                        <p class="text-on-surface-variant leading-relaxed">
+                            To establish the gold standard of creator-editor collaboration. By building real-time iteration portals and matching channels with specialized editing tier talent, we bridge the gap between creative impulse and viral feedback.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Core Values Section -->
+        <section class="max-w-7xl mx-auto px-4 md:px-16">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-extrabold text-white">Our Core <span class="text-neon-pink">Values</span></h2>
+                <p class="text-on-surface-variant mt-4">The principles that guide our post-production suite.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Value 1 -->
+                <div class="gradient-border-card p-8 space-y-4">
+                    <span class="material-symbols-outlined text-neon-purple text-4xl">psychology</span>
+                    <h3 class="text-xl font-bold text-white">Retention-First Pacing</h3>
+                    <p class="text-sm text-on-surface-variant leading-relaxed">
+                        We design with psychological anchors, dynamic audio levels, and immediate loop hook elements that maximize audience watch-time.
+                    </p>
+                </div>
+                
+                <!-- Value 2 -->
+                <div class="gradient-border-card p-8 space-y-4">
+                    <span class="material-symbols-outlined text-neon-cyan text-4xl">palette</span>
+                    <h3 class="text-xl font-bold text-white">Grading Perfection</h3>
+                    <p class="text-sm text-on-surface-variant leading-relaxed">
+                        We color correct raw camera styles to perfection, establishing high-end color grading that defines brand identities and matches studio styles.
+                    </p>
+                </div>
+                
+                <!-- Value 3 -->
+                <div class="gradient-border-card p-8 space-y-4">
+                    <span class="material-symbols-outlined text-neon-pink text-4xl">devices</span>
+                    <h3 class="text-xl font-bold text-white">Collaborative Portal</h3>
+                    <p class="text-sm text-on-surface-variant leading-relaxed">
+                        Through direct review boards and timestamped commentary tools, we maintain transparent workflows between editing suites and creators.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Creative Editors Showcase -->
+        <section class="max-w-7xl mx-auto px-4 md:px-16 pb-20" id="team-section">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-extrabold text-white">Meet the <span class="text-neon-cyan">Specialists</span></h2>
+                <p class="text-on-surface-variant mt-4">Post-production veterans commanding high organic views.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Team Member 1 -->
+                <div class="glass-card rounded-2xl overflow-hidden group">
+                    <div class="h-64 overflow-hidden relative">
+                        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80" alt="Alex Chen">
+                        <div class="absolute inset-0 bg-gradient-to-t from-background-deep via-transparent to-transparent"></div>
+                        <span class="absolute bottom-4 left-4 bg-neon-purple/80 text-white text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">Founder / Short-form Lead</span>
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <h3 class="text-xl font-bold text-white">Alex 'Cuts' Chen</h3>
+                        <p class="text-sm text-on-surface-variant leading-relaxed">
+                            Pioneered fast-paced visual retention editing. Generated over 50M+ combined views for premier tech creators.
+                        </p>
+                        <div class="flex gap-4 text-on-surface-variant pt-2 border-t border-white/5">
+                            <a href="#" class="hover:text-white transition-colors"><i class="ri-twitter-line text-lg"></i></a>
+                            <a href="#" class="hover:text-white transition-colors"><i class="ri-linkedin-box-line text-lg"></i></a>
+                            <a href="#" class="hover:text-white transition-colors"><i class="ri-youtube-line text-lg"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 2 -->
+                <div class="glass-card rounded-2xl overflow-hidden group">
+                    <div class="h-64 overflow-hidden relative">
+                        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80" alt="Jordan Reed">
+                        <div class="absolute inset-0 bg-gradient-to-t from-background-deep via-transparent to-transparent"></div>
+                        <span class="absolute bottom-4 left-4 bg-neon-cyan/80 text-white text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">Gaming & Anime Lead</span>
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <h3 class="text-xl font-bold text-white">Jordan Reed</h3>
+                        <p class="text-sm text-on-surface-variant leading-relaxed">
+                            Expert in advanced sound design, timing montages, and high-energy pacing. Behind some of the biggest gaming clips on YouTube.
+                        </p>
+                        <div class="flex gap-4 text-on-surface-variant pt-2 border-t border-white/5">
+                            <a href="#" class="hover:text-white transition-colors"><i class="ri-twitter-line text-lg"></i></a>
+                            <a href="#" class="hover:text-white transition-colors"><i class="ri-linkedin-box-line text-lg"></i></a>
+                            <a href="#" class="hover:text-white transition-colors"><i class="ri-instagram-line text-lg"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 3 -->
+                <div class="glass-card rounded-2xl overflow-hidden group">
+                    <div class="h-64 overflow-hidden relative">
+                        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80" alt="Sarah K.">
+                        <div class="absolute inset-0 bg-gradient-to-t from-background-deep via-transparent to-transparent"></div>
+                        <span class="absolute bottom-4 left-4 bg-neon-pink/80 text-white text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">Documentary & Grading Lead</span>
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <h3 class="text-xl font-bold text-white">Sarah K.</h3>
+                        <p class="text-sm text-on-surface-variant leading-relaxed">
+                            Specializes in color grading showreels and pacing documentaries. Crafts visual stories that keep viewers hooked for hours.
+                        </p>
+                        <div class="flex gap-4 text-on-surface-variant pt-2 border-t border-white/5">
+                            <a href="#" class="hover:text-white transition-colors"><i class="ri-twitter-line text-lg"></i></a>
+                            <a href="#" class="hover:text-white transition-colors"><i class="ri-linkedin-box-line text-lg"></i></a>
+                            <a href="#" class="hover:text-white transition-colors"><i class="ri-dribbble-line text-lg"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="max-w-7xl mx-auto px-4 md:px-16 text-center py-20 bg-surface-container-low rounded-3xl border border-glass-border">
+            <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-6">Let's Create Something <span class="text-neon-pink">Unforgettable</span></h2>
+            <p class="text-on-surface-variant max-w-xl mx-auto mb-10 text-sm md:text-base">
+                Join high-performing creators scaling their traffic with retention-optimized video editing. Secure your dedicated editor today.
+            </p>
+            <button class="bg-gradient-to-r from-neon-purple to-neon-pink text-white px-10 py-4 rounded-lg font-bold hover:shadow-[0_0_15px_rgba(168,85,247,0.5)] transition-all transform hover:scale-105" onclick="window.location.href='booking.html'">
+                Onboard With Us <span class="material-symbols-outlined ml-1">arrow_forward</span>
+            </button>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-background-deep border-t border-glass-border mt-32">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12 px-4 md:px-16 py-16 max-w-7xl mx-auto">
+            <div class="flex flex-col gap-6">
+                <div class="text-2xl font-bold text-primary font-Outfit">Editkaro<span class="text-neon-cyan">.in</span></div>
+                <p class="text-sm text-on-surface-variant">Elevating digital content through high-octane post-production and algorithmic mastery.</p>
+                <div class="flex gap-4">
+                    <a class="w-10 h-10 rounded-full glass-card flex items-center justify-center hover:text-neon-cyan transition-colors" href="https://youtube.com">
+                        <i class="ri-youtube-fill"></i>
+                    </a>
+                    <a class="w-10 h-10 rounded-full glass-card flex items-center justify-center hover:text-neon-pink transition-colors" href="https://instagram.com">
+                        <i class="ri-instagram-line"></i>
+                    </a>
+                    <a class="w-10 h-10 rounded-full glass-card flex items-center justify-center hover:text-neon-purple transition-colors" href="https://twitter.com">
+                        <i class="ri-twitter-line"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="flex flex-col gap-4">
+                <h4 class="text-sm font-bold text-white uppercase tracking-widest">Solutions</h4>
+                <a class="text-sm text-on-surface-variant hover:text-white transition-colors" href="pricing.html">Short-form Magic</a>
+                <a class="text-sm text-on-surface-variant hover:text-white transition-colors" href="pricing.html">Long-form Mastery</a>
+                <a class="text-sm text-on-surface-variant hover:text-white transition-colors" href="dashboard.html">Client Workspace</a>
+                <a class="text-sm text-on-surface-variant hover:text-white transition-colors" href="pricing.html">Thumbnail Design</a>
+            </div>
+            <div class="flex flex-col gap-4">
+                <h4 class="text-sm font-bold text-white uppercase tracking-widest">Company</h4>
+                <a class="text-sm text-on-surface-variant hover:text-white transition-colors" href="inside-the-edit.html">Inside The Edit</a>
+                <a class="text-sm text-on-surface-variant hover:text-white transition-colors" href="about.html#team-section">Our Editors</a>
+                <a class="text-sm text-on-surface-variant hover:text-white transition-colors" href="inside-the-edit.html#timeline-section">Our Process</a>
+                <a class="text-sm text-on-surface-variant hover:text-white transition-colors" href="booking.html">Discovery Call</a>
+            </div>
+            <div class="flex flex-col gap-6">
+                <h4 class="text-sm font-bold text-white uppercase tracking-widest">The Newsletter</h4>
+                <p class="text-sm text-on-surface-variant">Get viral insights directly in your inbox.</p>
+                <form id="newsletter-form" class="flex flex-col gap-2">
+                    <div class="flex">
+                        <input id="newsletter-email" name="email" required class="bg-surface-container-low border-glass-border border-r-0 rounded-l-lg focus:ring-neon-cyan focus:border-neon-cyan text-white w-full px-4 py-2" placeholder="Email address" type="email"/>
+                        <button type="submit" class="bg-primary text-on-primary px-4 rounded-r-lg hover:opacity-80 transition-opacity">
+                            <span class="material-symbols-outlined">send</span>
+                        </button>
+                    </div>
+                    <span id="newsletter-status" class="text-xs hidden mt-1"></span>
+                </form>
+            </div>
+        </div>
+        <div class="px-4 md:px-16 py-8 border-t border-glass-border flex flex-col md:flex-row justify-between items-center gap-4 max-w-7xl mx-auto text-xs text-on-surface-variant">
+            <span>© 2026 Editkaro.in. All rights reserved. Made for VaultofCodes.</span>
+            <div class="flex gap-8">
+                <a class="hover:text-tertiary transition-colors" href="#">Terms</a>
+                <a class="hover:text-tertiary transition-colors" href="#">Privacy</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- App JavaScript -->
+    <script src="app.js?v=1.5"></script>
+</body>
+</html>

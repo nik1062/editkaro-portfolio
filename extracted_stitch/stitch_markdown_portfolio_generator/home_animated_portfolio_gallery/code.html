@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Editkaro | High-Retention Video Editing</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Shared Components Styles -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-tint": "#ddb7ff",
+                    "tertiary": "#4cd7f6",
+                    "secondary-fixed": "#ffd9e4",
+                    "primary-fixed": "#f0dbff",
+                    "surface-container-high": "#2a2930",
+                    "glass-border": "rgba(255, 255, 255, 0.12)",
+                    "surface-dim": "#131319",
+                    "outline-variant": "#4d4354",
+                    "surface-variant": "#35343b",
+                    "background-surface": "#0A0A14",
+                    "surface-container-low": "#1b1b22",
+                    "on-error-container": "#ffdad6",
+                    "surface": "#131319",
+                    "inverse-primary": "#842bd2",
+                    "on-surface": "#e4e1eb",
+                    "surface-container-highest": "#35343b",
+                    "on-background": "#e4e1eb",
+                    "on-primary-fixed": "#2c0051",
+                    "secondary-container": "#aa0266",
+                    "background": "#131319",
+                    "on-error": "#690005",
+                    "on-primary": "#490080",
+                    "text-primary": "#FFFFFF",
+                    "neon-pink": "#EC4899",
+                    "background-deep": "#030307",
+                    "primary": "#ddb7ff",
+                    "on-surface-variant": "#cfc2d6",
+                    "text-secondary": "#94A3B8",
+                    "secondary": "#ffb0cd",
+                    "on-tertiary-fixed-variant": "#004e5c",
+                    "secondary-fixed-dim": "#ffb0cd",
+                    "primary-fixed-dim": "#ddb7ff",
+                    "neon-cyan": "#06B6D4",
+                    "on-secondary-container": "#ffbad3",
+                    "tertiary-fixed": "#acedff",
+                    "on-primary-fixed-variant": "#6900b3",
+                    "inverse-on-surface": "#303037",
+                    "on-tertiary-container": "#002f38",
+                    "on-primary-container": "#400071",
+                    "error-container": "#93000a",
+                    "on-secondary-fixed": "#3e0022",
+                    "error": "#ffb4ab",
+                    "surface-container-lowest": "#0e0e14",
+                    "tertiary-fixed-dim": "#4cd7f6",
+                    "primary-container": "#b76dff",
+                    "surface-container": "#1f1f26",
+                    "inverse-surface": "#e4e1eb",
+                    "on-tertiary": "#003640",
+                    "outline": "#988d9f",
+                    "on-secondary-fixed-variant": "#8c0053",
+                    "on-secondary": "#640039",
+                    "tertiary-container": "#009eb9",
+                    "neon-purple": "#A855F7",
+                    "on-tertiary-fixed": "#001f26",
+                    "surface-bright": "#393840"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-mobile": "16px",
+                    "gutter": "24px",
+                    "unit": "4px",
+                    "margin-desktop": "64px",
+                    "container-max": "1280px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Outfit"],
+                    "body-md": ["Inter"],
+                    "label-lg": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-md": ["Outfit"],
+                    "display-lg-mobile": ["Outfit"],
+                    "headline-xl": ["Outfit"],
+                    "body-lg": ["Inter"],
+                    "display-lg": ["Outfit"]
+            },
+            "fontSize": {
+                    "headline-lg": ["32px", {"lineHeight": "1.3", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "label-lg": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "display-lg-mobile": ["48px", {"lineHeight": "1.2", "fontWeight": "800"}],
+                    "headline-xl": ["48px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "display-lg": ["72px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #030307;
+            color: #e4e1eb;
+            overflow-x: hidden;
+        }
+        .nebula-bg {
+            background: radial-gradient(circle at 50% 50%, rgba(168, 85, 247, 0.1) 0%, transparent 60%),
+                        radial-gradient(circle at 100% 0%, rgba(236, 72, 153, 0.05) 0%, transparent 40%),
+                        radial-gradient(circle at 0% 100%, rgba(6, 182, 212, 0.05) 0%, transparent 40%);
+        }
+        .diagonal-divide {
+            clip-path: polygon(0 0, 100% 5%, 100% 100%, 0 95%);
+        }
+        .glass-card {
+            background: rgba(10, 10, 20, 0.7);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 15px rgba(236, 72, 153, 0.4); }
+            50% { box-shadow: 0 0 30px rgba(236, 72, 153, 0.7); }
+        }
+        .animate-pulse-glow {
+            animation: pulse-glow 3s infinite ease-in-out;
+        }
+        .marquee-container {
+            display: flex;
+            width: 200%;
+            animation: scroll 30s linear infinite;
+        }
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        /* Portfolio Motion Effects */
+        .portfolio-grid-container {
+            position: relative;
+            --mouse-x: 50%;
+            --mouse-y: 50%;
+        }
+        .portfolio-grid-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle 400px at var(--mouse-x) var(--mouse-y), rgba(6, 182, 212, 0.08), transparent 80%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .reveal-item {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .reveal-item.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .portfolio-card {
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.4s ease, box-shadow 0.4s ease;
+        }
+        .portfolio-card:hover {
+            transform: scale(1.05);
+            border-color: rgba(6, 182, 212, 0.5);
+            box-shadow: 0 0 25px rgba(6, 182, 212, 0.2);
+        }
+        .portfolio-card.neon-purple-hover:hover {
+            border-color: rgba(168, 85, 247, 0.5);
+            box-shadow: 0 0 25px rgba(168, 85, 247, 0.2);
+        }
+        .portfolio-card.neon-pink-hover:hover {
+            border-color: rgba(236, 72, 153, 0.5);
+            box-shadow: 0 0 25px rgba(236, 72, 153, 0.2);
+        }
+
+        .play-overlay {
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        .portfolio-card:hover .play-overlay {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .reveal-item, .portfolio-card, .play-overlay, .marquee-container {
+                animation: none !important;
+                transition: none !important;
+                opacity: 1 !important;
+                transform: none !important;
+            }
+        }
+    </style>
+</head>
+<body class="nebula-bg">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-surface/70 backdrop-blur-xl border-b border-glass-border shadow-[0_0_15px_rgba(221,183,255,0.1)]">
+<div class="flex justify-between items-center px-4 md:px-16 py-4 max-w-7xl mx-auto">
+<a class="font-headline-lg text-headline-lg font-bold bg-gradient-to-r from-neon-purple to-neon-pink bg-clip-text text-transparent" href="#">Editkaro</a>
+<div class="hidden md:flex gap-8 items-center">
+<a class="font-label-lg text-label-lg text-neon-cyan border-b-2 border-neon-cyan pb-1" href="#">Home</a>
+<a class="font-label-lg text-label-lg text-on-surface-variant hover:text-primary transition-colors" href="#">Portfolio</a>
+<a class="font-label-lg text-label-lg text-on-surface-variant hover:text-primary transition-colors" href="#">Inside the Edit</a>
+<a class="font-label-lg text-label-lg text-on-surface-variant hover:text-primary transition-colors" href="#">Pricing</a>
+<a class="font-label-lg text-label-lg text-on-surface-variant hover:text-primary transition-colors" href="#">Contact</a>
+</div>
+<button class="bg-gradient-to-r from-neon-purple to-neon-pink text-white px-6 py-2 rounded-lg font-label-lg text-label-lg hover:shadow-[0_0_15px_rgba(168,85,247,0.5)] transition-all transform active:scale-95">
+                Client Portal
+            </button>
+</div>
+</nav>
+<main class="pt-24">
+<!-- Hero Section -->
+<section class="relative px-4 md:px-16 pt-20 pb-32 max-w-7xl mx-auto overflow-hidden">
+<div class="relative z-10 flex flex-col items-center text-center">
+<div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-neon-cyan/30 bg-neon-cyan/5 mb-8">
+<span class="w-2 h-2 rounded-full bg-neon-cyan animate-pulse"></span>
+<span class="font-label-sm text-label-sm text-neon-cyan tracking-widest uppercase">Viral Mastery Unlocked</span>
+</div>
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg max-w-4xl mb-8">
+                    High-Retention <span class="text-transparent bg-clip-text bg-gradient-to-r from-neon-purple via-neon-pink to-neon-cyan">Video Editing</span> That Drives Virality
+                </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mb-12">
+                    Stop losing viewers in the first 3 seconds. We transform your raw footage into high-octane visual experiences optimized for algorithmic dominance.
+                </p>
+<div class="flex flex-col md:flex-row gap-6 mb-20">
+<button class="bg-gradient-to-r from-neon-purple to-neon-pink text-white px-10 py-5 rounded-lg font-headline-md text-headline-md animate-pulse-glow hover:scale-105 transition-transform">
+                        Lock in Price
+                    </button>
+<button class="border-2 border-neon-cyan text-neon-cyan px-10 py-5 rounded-lg font-headline-md text-headline-md hover:bg-neon-cyan/10 transition-all">
+                        View Portfolio
+                    </button>
+</div>
+<!-- Stats Cards -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
+<div class="glass-card p-8 rounded-xl flex flex-col items-center">
+<span class="font-display-lg-mobile text-display-lg-mobile text-primary font-extrabold">100M+</span>
+<span class="font-label-lg text-label-lg text-on-surface-variant uppercase tracking-widest mt-2">Views Generated</span>
+</div>
+<div class="glass-card p-8 rounded-xl flex flex-col items-center border-neon-pink/30">
+<span class="font-display-lg-mobile text-display-lg-mobile text-neon-pink font-extrabold">92%</span>
+<span class="font-label-lg text-label-lg text-on-surface-variant uppercase tracking-widest mt-2">Avg. Retention</span>
+</div>
+<div class="glass-card p-8 rounded-xl flex flex-col items-center border-neon-cyan/30">
+<span class="font-display-lg-mobile text-display-lg-mobile text-neon-cyan font-extrabold">24-Hr</span>
+<span class="font-label-lg text-label-lg text-on-surface-variant uppercase tracking-widest mt-2">Rapid Delivery</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Client Marquee -->
+<section class="bg-surface-container-low py-12 border-y border-glass-border overflow-hidden">
+<div class="marquee-container flex items-center gap-24">
+<div class="flex items-center gap-24 shrink-0">
+<span class="font-headline-md text-headline-md text-on-surface-variant/50 font-bold">LOGAN PAUL</span>
+<span class="font-headline-md text-headline-md text-on-surface-variant/50 font-bold">MRBEAST GAMING</span>
+<span class="font-headline-md text-headline-md text-on-surface-variant/50 font-bold">AIRRACK</span>
+<span class="font-headline-md text-headline-md text-on-surface-variant/50 font-bold">IMAN GADZHI</span>
+<span class="font-headline-md text-headline-md text-on-surface-variant/50 font-bold">ALI ABDAAL</span>
+<span class="font-headline-md text-headline-md text-on-surface-variant/50 font-bold">ZHO</span>
+</div>
+<!-- Duplicate for seamless loop -->
+<div class="flex items-center gap-24 shrink-0">
+<span class="font-headline-md text-headline-md text-on-surface-variant/50 font-bold">LOGAN PAUL</span>
+<span class="font-headline-md text-headline-md text-on-surface-variant/50 font-bold">MRBEAST GAMING</span>
+<span class="font-headline-md text-headline-md text-on-surface-variant/50 font-bold">AIRRACK</span>
+<span class="font-headline-md text-headline-md text-on-surface-variant/50 font-bold">IMAN GADZHI</span>
+<span class="font-headline-md text-headline-md text-on-surface-variant/50 font-bold">ALI ABDAAL</span>
+<span class="font-headline-md text-headline-md text-on-surface-variant/50 font-bold">ZHO</span>
+</div>
+</div>
+</section>
+<!-- Portfolio Grid -->
+<section class="px-4 md:px-16 py-32 max-w-7xl mx-auto portfolio-grid-container" id="portfolio-section">
+<div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8 reveal-item">
+<div>
+<h2 class="font-headline-xl text-headline-xl mb-4">Masterpiece <span class="text-tertiary">Gallery</span></h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">Curated edits that defined trends and shattered view counts across platforms.</p>
+</div>
+<div class="flex flex-wrap gap-4">
+<button class="px-6 py-2 rounded-full glass-card text-neon-cyan border-neon-cyan font-label-lg text-label-lg">All Works</button>
+<button class="px-6 py-2 rounded-full glass-card text-on-surface-variant hover:text-white font-label-lg text-label-lg transition-colors">Shorts</button>
+<button class="px-6 py-2 rounded-full glass-card text-on-surface-variant hover:text-white font-label-lg text-label-lg transition-colors">Gaming</button>
+<button class="px-6 py-2 rounded-full glass-card text-on-surface-variant hover:text-white font-label-lg text-label-lg transition-colors">Documentary</button>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-gutter" id="portfolio-grid">
+<!-- Shorts (9:16) -->
+<div class="group relative aspect-[9/16] rounded-2xl overflow-hidden glass-card cursor-pointer portfolio-card reveal-item">
+<div class="w-full h-full bg-cover bg-center" data-alt="A dynamic portrait-oriented vertical video thumbnail for a high-energy mobile short." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAihnkImzvPAItoPDuJUhULYMUruPWnxxVnna77xfWTK_PP5iquKxESHFb5LOK_0jpN7SJBASTeqO2MKlzeAv55_O4gcM5P5OD47kYvNRD7VTOdtBe2JKRhVcu5E8AqexcnQMbYiq-1GTuwfN7pOfk0x8j8SoBMOWix3vI2FKM9v2E6KwlC5ogb5y2tLLjMYELAiS2RCRoWirkhKJYUwYeBYhPg8kjHy8pY4GRvLI1EzuelOXm1a7RM')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity"></div>
+<div class="absolute inset-0 flex items-center justify-center play-overlay">
+<div class="w-16 h-16 rounded-full bg-neon-cyan/20 backdrop-blur-md flex items-center justify-center border border-neon-cyan shadow-[0_0_20px_rgba(6,182,212,0.5)]">
+<span class="material-symbols-outlined text-neon-cyan text-4xl" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</div>
+</div>
+<div class="absolute bottom-6 left-6 right-6">
+<span class="font-label-sm text-label-sm text-neon-cyan uppercase tracking-tighter mb-1 block">Short-form</span>
+<h3 class="font-headline-md text-headline-md">Creator Hype Real</h3>
+</div>
+</div>
+<!-- Long Form (16:9) span 2 -->
+<div class="group relative md:col-span-2 aspect-[16/9] rounded-2xl overflow-hidden glass-card cursor-pointer portfolio-card neon-purple-hover reveal-item">
+<div class="w-full h-full bg-cover bg-center" data-alt="A widescreen landscape-oriented cinematic video frame showing a futuristic high-tech gaming setup." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCHpHSiKt-3I_nSQyf26xoc_OtN_2pi18ES3uutd9bPunaGrfxEhz44i1ab-TAjuNwiSCxohGKAZA9v5FSsISbt1lGFj9bFFeW09Eh-OZMfKzWyt1HWcNeA5aX8RaONw_EkSE0G_luQX82JKC61DLRyCdzdJZM73eScalSZ4DhiL_-qmg1zYhjL31oqaUZJYTCX0anZaGCUYypGjYVWhU6eDcieFdlcWD-0O7rUAqU30NuWbqKdAxEm')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+<div class="absolute inset-0 flex items-center justify-center play-overlay">
+<div class="w-20 h-20 rounded-full bg-neon-purple/20 backdrop-blur-md flex items-center justify-center border border-neon-purple shadow-[0_0_20px_rgba(168,85,247,0.5)]">
+<span class="material-symbols-outlined text-neon-purple text-5xl" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</div>
+</div>
+<div class="absolute bottom-6 left-6 right-6">
+<span class="font-label-sm text-label-sm text-neon-purple uppercase tracking-tighter mb-1 block">Long-form</span>
+<h3 class="font-headline-lg text-headline-lg">Gaming Odyssey: Level 99</h3>
+</div>
+</div>
+<!-- Shorts (9:16) -->
+<div class="group relative aspect-[9/16] rounded-2xl overflow-hidden glass-card cursor-pointer portfolio-card neon-pink-hover reveal-item">
+<div class="w-full h-full bg-cover bg-center" data-alt="Vertical 9:16 aspect ratio video thumbnail featuring a lifestyle vlog shot." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDj_rQSF90NFDi64KWuzYDimkronPUxBmDvU1S3-XkhM1DerUayQjlY1rJgd8HTZ3IxNh2afMf7Wavm5UPHODnajaO1fRDDj_KLtlwldXIruUMxVPI7jyxRnPogfpm8F0TRxiMm_h9xP8Rb-KwcCQghZFoyxv80wouOdBwUXAwnxCSJwMXt5VHG-itzRbPGHLFZ_3wcN-YlYXX4_sVgi8e3sjn0TYUXmyfpN47G-QS6Xe0-zMjmMby8')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+<div class="absolute inset-0 flex items-center justify-center play-overlay">
+<div class="w-16 h-16 rounded-full bg-neon-pink/20 backdrop-blur-md flex items-center justify-center border border-neon-pink shadow-[0_0_20px_rgba(236,72,153,0.5)]">
+<span class="material-symbols-outlined text-neon-pink text-4xl" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</div>
+</div>
+<div class="absolute bottom-6 left-6 right-6">
+<span class="font-label-sm text-label-sm text-neon-pink uppercase tracking-tighter mb-1 block">Vlog</span>
+<h3 class="font-headline-md text-headline-md">City Lights Vibe</h3>
+</div>
+</div>
+<!-- Long Form (16:9) span 2 -->
+<div class="group relative md:col-span-2 aspect-[16/9] rounded-2xl overflow-hidden glass-card cursor-pointer portfolio-card reveal-item">
+<div class="w-full h-full bg-cover bg-center" data-alt="A wide cinematic landscape frame showcasing an educational documentary style edit." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDPsmgk8IyAV5kGx1RHjCvixRpmIN13z4G74OU_e5n_IGHPKTtErEcsDqhPP4BcVi0vqSQnmbIVkZApRdYyISGmlp63J_An1-WGxH1MXp2MNlSKAuN9T3-ZilTue1lh5CkxbkeHvwQnSfBftq41N95NoCtVE_vsxc0S-kfpCY7OH31fDULZ2UD4lCqwApYvB3LG1aRpJ15_5y8E5I9vvH8_6RSoRqi12MaW2Kp2ouHZHNy2cF7hJ1Ck')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+<div class="absolute inset-0 flex items-center justify-center play-overlay">
+<div class="w-20 h-20 rounded-full bg-tertiary/20 backdrop-blur-md flex items-center justify-center border border-tertiary shadow-[0_0_20px_rgba(76,215,246,0.5)]">
+<span class="material-symbols-outlined text-tertiary text-5xl" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</div>
+</div>
+<div class="absolute bottom-6 left-6 right-6">
+<span class="font-label-sm text-label-sm text-tertiary uppercase tracking-tighter mb-1 block">Documentary</span>
+<h3 class="font-headline-lg text-headline-lg">Future Tech Explainer</h3>
+</div>
+</div>
+<!-- Shorts (9:16) -->
+<div class="group relative aspect-[9/16] rounded-2xl overflow-hidden glass-card cursor-pointer portfolio-card neon-purple-hover reveal-item">
+<div class="w-full h-full bg-cover bg-center" data-alt="Vertical format video preview for a high-intensity workout reel." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCdobloq-EKcoDG6MmXEZ7OuzwY-Qa5QVqzd3998JH0TfVx86LWIyyT_AigR1xTe2bzFOEX23dnDHVGhKRvv7J23ZvHZEpb2mr-Gww9OmHSPhubn5gcp2DL-x97K-UuFME4j_bRk4Y7H_vNKBdkx8GF4gYYrKn1UNNcoa7QwFNZx9x6IsV3Y9z1pt2hMbW2VBZX2ogLDehLl7clhnK2WRhoPV5Ei5mj3EG0HR0O4W1nyj01ulJMQmHU')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+<div class="absolute inset-0 flex items-center justify-center play-overlay">
+<div class="w-16 h-16 rounded-full bg-primary/20 backdrop-blur-md flex items-center justify-center border border-primary shadow-[0_0_20px_rgba(221,183,255,0.5)]">
+<span class="material-symbols-outlined text-primary text-4xl" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</div>
+</div>
+<div class="absolute bottom-6 left-6 right-6">
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-tighter mb-1 block">Fitness</span>
+<h3 class="font-headline-md text-headline-md">Peak Performance</h3>
+</div>
+</div>
+<!-- Shorts (9:16) -->
+<div class="group relative aspect-[9/16] rounded-2xl overflow-hidden glass-card cursor-pointer portfolio-card reveal-item">
+<div class="w-full h-full bg-cover bg-center" data-alt="A portrait-oriented thumbnail for a fashion lookbook video." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDBUue3qSRPJh2b7t-sgYTAZSRPbnm4ioasoGV56XN9OmfnUx8a2acogpQ-TjEGM0CIe9c_QnljDYsRg5v3iY7WWSvpHu7RiIa-xFurOcWRtu4X-moWmP4YE2W6mbf0U6JBoESngIoEB71MRTu2Rmql-IhNd_quT-2CpajXEIiXpfwHwS33jNlZfzSZ6bG2YlgfdgmkB1oN-oFrp9PntM75NCII-FtwAtkCn69VjJxs4KJD4SWX805_')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+<div class="absolute inset-0 flex items-center justify-center play-overlay">
+<div class="w-16 h-16 rounded-full bg-neon-cyan/20 backdrop-blur-md flex items-center justify-center border border-neon-cyan shadow-[0_0_20px_rgba(6,182,212,0.5)]">
+<span class="material-symbols-outlined text-neon-cyan text-4xl" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</div>
+</div>
+<div class="absolute bottom-6 left-6 right-6">
+<span class="font-label-sm text-label-sm text-neon-cyan uppercase tracking-tighter mb-1 block">Fashion</span>
+<h3 class="font-headline-md text-headline-md">Streetwear 2077</h3>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section with Diagonal -->
+<section class="relative bg-surface-container-highest py-32 overflow-hidden diagonal-divide my-20">
+<div class="relative z-10 px-4 md:px-16 max-w-7xl mx-auto flex flex-col items-center text-center">
+<h2 class="font-display-lg text-display-lg-mobile md:text-display-lg mb-8">Ready to <span class="text-neon-pink">Go Viral?</span></h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mb-12">
+                    Join 500+ creators who have scaled their channels with Editkaro's retention-focused post-production. Limited slots available for new clients.
+                </p>
+<button class="bg-white text-background-deep px-12 py-6 rounded-lg font-headline-md text-headline-md font-bold hover:bg-neon-cyan hover:text-white transition-all transform hover:scale-105 shadow-[0_10px_30px_rgba(255,255,255,0.2)]">
+                    Apply for Client Workspace
+                </button>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-background-deep relative bottom-0 border-t border-glass-border">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-4 md:px-16 py-16 max-w-7xl mx-auto">
+<div class="flex flex-col gap-6">
+<div class="font-headline-md text-headline-md font-bold text-primary">Editkaro</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Elevating digital content through high-octane post-production and algorithmic mastery.</p>
+<div class="flex gap-4">
+<a class="w-10 h-10 rounded-full glass-card flex items-center justify-center hover:text-neon-cyan transition-colors" href="#">
+<span class="material-symbols-outlined">public</span>
+</a>
+<a class="w-10 h-10 rounded-full glass-card flex items-center justify-center hover:text-neon-pink transition-colors" href="#">
+<span class="material-symbols-outlined">camera</span>
+</a>
+<a class="w-10 h-10 rounded-full glass-card flex items-center justify-center hover:text-neon-purple transition-colors" href="#">
+<span class="material-symbols-outlined">play_circle</span>
+</a>
+</div>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="font-label-lg text-label-lg text-white uppercase tracking-widest">Solutions</h4>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-white transition-colors" href="#">Short-form Magic</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-white transition-colors" href="#">Long-form Mastery</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-white transition-colors" href="#">Channel Management</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-white transition-colors" href="#">Thumbnail Design</a>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="font-label-lg text-label-lg text-white uppercase tracking-widest">Company</h4>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-white transition-colors" href="#">About Us</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-white transition-colors" href="#">Careers</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-white transition-colors" href="#">Terms</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-white transition-colors" href="#">Privacy</a>
+</div>
+<div class="flex flex-col gap-6">
+<h4 class="font-label-lg text-label-lg text-white uppercase tracking-widest">The Newsletter</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Get viral insights directly in your inbox.</p>
+<div class="flex">
+<input class="bg-surface-container-low border-glass-border border-r-0 rounded-l-lg focus:ring-neon-cyan focus:border-neon-cyan text-white w-full" placeholder="Email address" type="email"/>
+<button class="bg-primary text-on-primary px-4 rounded-r-lg hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+</div>
+</div>
+<div class="px-4 md:px-16 py-8 border-t border-glass-border flex flex-col md:flex-row justify-between items-center gap-4 max-w-7xl mx-auto">
+<span class="font-label-sm text-label-sm text-on-surface-variant">© 2024 Editkaro. All rights reserved.</span>
+<div class="flex gap-8">
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-tertiary transition-colors" href="#">Terms</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-tertiary transition-colors" href="#">Privacy</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-tertiary transition-colors" href="#">Careers</a>
+</div>
+</div>
+</footer>
+<script>
+        // Intersection Observer for Scroll Reveal
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    const items = entry.target.querySelectorAll('.reveal-item');
+                    items.forEach((item, index) => {
+                        setTimeout(() => {
+                            item.classList.add('active');
+                        }, index * 100); // Staggered delay
+                    });
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        const portfolioSection = document.getElementById('portfolio-section');
+        if (portfolioSection) {
+            revealObserver.observe(portfolioSection);
+        }
+
+        // Interactive Mouse Glow Effect
+        const portfolioContainer = document.querySelector('.portfolio-grid-container');
+        if (portfolioContainer) {
+            portfolioContainer.addEventListener('mousemove', (e) => {
+                if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+                
+                const rect = portfolioContainer.getBoundingClientRect();
+                const x = ((e.clientX - rect.left) / rect.width) * 100;
+                const y = ((e.clientY - rect.top) / rect.height) * 100;
+                
+                portfolioContainer.style.setProperty('--mouse-x', `${x}%`);
+                portfolioContainer.style.setProperty('--mouse-y', `${y}%`);
+            });
+        }
+
+        // Keep existing glass card effect for other cards if needed
+        document.querySelectorAll('.glass-card:not(.portfolio-card)').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+    </script>
+</body></html>

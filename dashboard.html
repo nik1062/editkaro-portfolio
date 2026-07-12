@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Client Workspace | Editkaro.in</title>
+    <meta name="description" content="Manage your editing workflow, upload raw footages, and review drafts with frame-by-frame timestamp comments in the Editkaro workspace portal.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <!-- Shared Tailwind Custom Configurations -->
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-tint": "#ddb7ff",
+                        "tertiary": "#4cd7f6",
+                        "secondary-fixed": "#ffd9e4",
+                        "primary-fixed": "#f0dbff",
+                        "surface-container-high": "#2a2930",
+                        "glass-border": "rgba(255, 255, 255, 0.12)",
+                        "surface-dim": "#131319",
+                        "outline-variant": "#4d4354",
+                        "surface-variant": "#35343b",
+                        "background-surface": "#0A0A14",
+                        "surface-container-low": "#1b1b22",
+                        "on-error-container": "#ffdad6",
+                        "surface": "#131319",
+                        "inverse-primary": "#842bd2",
+                        "on-surface": "#e4e1eb",
+                        "surface-container-highest": "#35343b",
+                        "on-background": "#e4e1eb",
+                        "on-primary-fixed": "#2c0051",
+                        "secondary-container": "#aa0266",
+                        "background": "#131319",
+                        "on-error": "#690005",
+                        "on-primary": "#490080",
+                        "text-primary": "#FFFFFF",
+                        "neon-pink": "#EC4899",
+                        "background-deep": "#030307",
+                        "primary": "#ddb7ff",
+                        "on-surface-variant": "#cfc2d6",
+                        "text-secondary": "#94A3B8",
+                        "secondary": "#ffb0cd",
+                        "on-tertiary-fixed-variant": "#004e5c",
+                        "secondary-fixed-dim": "#ffb0cd",
+                        "primary-fixed-dim": "#ddb7ff",
+                        "neon-cyan": "#06B6D4",
+                        "on-secondary-container": "#ffbad3",
+                        "tertiary-fixed": "#acedff",
+                        "on-primary-fixed-variant": "#6900b3",
+                        "inverse-on-surface": "#303037",
+                        "on-tertiary-container": "#002f38",
+                        "on-primary-container": "#400071",
+                        "error-container": "#93000a",
+                        "on-secondary-fixed": "#3e0022",
+                        "error": "#ffb4ab",
+                        "surface-container-lowest": "#0e0e14",
+                        "tertiary-fixed-dim": "#4cd7f6",
+                        "primary-container": "#b76dff",
+                        "surface-container": "#1f1f26",
+                        "inverse-surface": "#e4e1eb",
+                        "on-tertiary": "#003640",
+                        "outline": "#988d9f",
+                        "on-secondary-fixed-variant": "#8c0053",
+                        "on-secondary": "#640039",
+                        "tertiary-container": "#009eb9",
+                        "neon-purple": "#A855F7",
+                        "on-tertiary-fixed": "#001f26",
+                        "surface-bright": "#393840"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    spacing: {
+                        "margin-mobile": "16px",
+                        "gutter": "24px",
+                        "unit": "4px",
+                        "margin-desktop": "64px",
+                        "container-max": "1280px"
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            background-color: #030307;
+            color: #e4e1eb;
+            overflow-x: hidden;
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom scrollbars */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: rgba(10, 10, 20, 0.7); }
+        ::-webkit-scrollbar-thumb { background: #A855F7; border-radius: 10px; }
+        
+        .glass-panel {
+            backdrop-filter: blur(16px);
+            background: rgba(10, 10, 20, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .neon-glow-cyan:hover {
+            box-shadow: 0 0 15px rgba(6, 182, 212, 0.4);
+        }
+        .neon-glow-purple {
+            box-shadow: 0 0 15px rgba(168, 85, 247, 0.3);
+        }
+        .video-scanline {
+            background: linear-gradient(to bottom, transparent 50%, rgba(6, 182, 212, 0.05) 50%);
+            background-size: 100% 4px;
+            pointer-events: none;
+        }
+        .file-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.04);
+            border-radius: 8px;
+            margin-bottom: 0.8rem;
+            transition: all 0.3s;
+        }
+        .file-row:hover {
+            border-color: rgba(6, 182, 212, 0.2);
+            background: rgba(255,255,255,0.04);
+        }
+    </style>
+</head>
+<body class="bg-background-deep text-on-surface font-body-md overflow-x-hidden selection:bg-neon-purple selection:text-white">
+
+    <!-- Layout Wrapper -->
+    <div class="relative z-10 flex min-h-screen">
+        
+        <!-- Sidebar Navigation -->
+        <aside class="w-72 fixed left-0 top-0 h-full glass-panel border-r-0 flex flex-col z-50 transition-transform duration-300 -translate-x-full lg:translate-x-0">
+            <div class="p-8 flex justify-between items-center">
+                <span class="font-Outfit text-2xl font-bold bg-gradient-to-r from-neon-purple to-neon-pink bg-clip-text text-transparent">Editkaro<span class="text-neon-cyan">.in</span></span>
+                <button id="dashboard-sidebar-close" class="lg:hidden p-1 text-on-surface-variant hover:text-white" aria-label="Close Sidebar">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            
+            <nav class="flex-1 px-4 py-4 space-y-2" id="sidebar-tabs">
+                <a class="flex items-center gap-4 px-4 py-3 rounded-xl bg-primary-container/20 text-neon-purple border border-neon-purple/30 group sidebar-item active" data-tab="projects" href="#">
+                    <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+                    <span class="font-semibold text-sm">Projects</span>
+                </a>
+                <a class="flex items-center gap-4 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-white/5 transition-all group sidebar-item" data-tab="files" href="#">
+                    <span class="material-symbols-outlined">folder_open</span>
+                    <span class="font-semibold text-sm">Files</span>
+                </a>
+                <a class="flex items-center gap-4 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-white/5 transition-all group sidebar-item" data-tab="billing" href="#">
+                    <span class="material-symbols-outlined">payments</span>
+                    <span class="font-semibold text-sm">Billing</span>
+                </a>
+                <a class="flex items-center gap-4 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-white/5 transition-all group sidebar-item" data-tab="chat" href="#">
+                    <span class="material-symbols-outlined">chat</span>
+                    <span class="font-semibold text-sm">Team Chat</span>
+                </a>
+            </nav>
+
+            <div class="p-6 mt-auto space-y-4">
+                <div class="p-4 glass-panel rounded-2xl bg-surface-container-low border-neon-cyan/20">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-[10px] font-bold text-neon-cyan">PRO PLAN</span>
+                        <span class="text-[10px] text-on-surface-variant" id="tracker-percent">80%</span>
+                    </div>
+                    <div class="h-1.5 w-full bg-surface-dim rounded-full overflow-hidden">
+                        <div class="h-full bg-neon-cyan w-[80%] shadow-[0_0_8px_rgba(6,182,212,0.6)]" id="tracker-bar"></div>
+                    </div>
+                    <p class="text-[10px] mt-2 text-on-surface-variant" id="tracker-text">12 of 15 edits remaining</p>
+                </div>
+                
+                <button class="w-full py-3 bg-white/5 border border-glass-border rounded-xl text-xs text-white hover:bg-white/10 transition-colors" onclick="window.location.href='index.html'">
+                    Return to Site
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="flex-1 p-4 md:p-8 lg:p-12 lg:ml-72 min-w-0">
+            
+            <!-- Mobile Header Bar -->
+            <div class="flex lg:hidden items-center justify-between p-4 bg-surface/50 backdrop-blur-md border border-glass-border rounded-2xl mb-8">
+                <button id="dashboard-sidebar-toggle" class="p-2 text-on-surface hover:text-neon-cyan focus:outline-none" aria-label="Open Sidebar">
+                    <span class="material-symbols-outlined text-3xl">menu</span>
+                </button>
+                <span class="font-Outfit text-xl font-bold bg-gradient-to-r from-neon-purple to-neon-pink bg-clip-text text-transparent">Editkaro</span>
+                <div class="w-8 h-8 rounded-full overflow-hidden border border-neon-pink">
+                    <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCneH6yFJuxuHWeXG2NDW7BZMd6E7EtwlbU3tfxYuv_NKf9UZZB9otdULUF-UKbkuvlPbgBtk6FXXXO6gKy4PvpyoFa5azGI4DZqiLR_DdPhl9gxikPY3iulHO7eOqy8o1jx1hBqNGSw6j4RhslShu3DUFw2vi0xg1qfmaQ8BkMcOtrZinPHHnV4rG_2QtFCnpBRqmO-nRKtgqvaIjLXJBXhILNrF4FB4jKhXVPQq7-ZvbHicilqxB3"/>
+                </div>
+            </div>
+
+            <!-- Header Section -->
+            <header class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 border-b border-glass-border/30 pb-6 gap-6">
+                <div>
+                    <h1 class="text-3xl md:text-4xl font-extrabold text-white mb-2 font-Outfit">Workspace</h1>
+                    <p class="text-sm text-on-surface-variant font-medium">Welcome back, <span class="text-primary font-bold">Acme Brand Corp</span>. Your viral content is cooking.</p>
+                </div>
+                <div class="flex items-center gap-4">
+                    <button class="p-2 glass-panel rounded-full text-on-surface hover:text-neon-cyan transition-colors" onclick="alert('Notification Feed: No new updates')">
+                        <span class="material-symbols-outlined">notifications</span>
+                    </button>
+                    <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-neon-pink">
+                        <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCneH6yFJuxuHWeXG2NDW7BZMd6E7EtwlbU3tfxYuv_NKf9UZZB9otdULUF-UKbkuvlPbgBtk6FXXXO6gKy4PvpyoFa5azGI4DZqiLR_DdPhl9gxikPY3iulHO7eOqy8o1jx1hBqNGSw6j4RhslShu3DUFw2vi0xg1qfmaQ8BkMcOtrZinPHHnV4rG_2QtFCnpBRqmO-nRKtgqvaIjLXJBXhILNrF4FB4jKhXVPQq7-ZvbHicilqxB3"/>
+                    </div>
+                </div>
+            </header>
+
+            <!-- 1. PROJECTS VIEW TAB -->
+            <section class="dashboard-section" id="tab-projects">
+                
+                <!-- Active Edits Progress Grid -->
+                <div class="mb-12">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-2xl font-bold text-white">Active Edits</h2>
+                        <span class="text-neon-cyan font-bold text-sm cursor-pointer" onclick="alert('Workspace History: Project Nike Air Max draft approved')">View History</span>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        
+                        <!-- Project Card 1 -->
+                        <div class="glass-panel p-6 rounded-3xl relative overflow-hidden group hover:border-neon-purple/50 transition-all cursor-pointer">
+                            <div class="flex justify-between items-start mb-8">
+                                <div>
+                                    <span class="bg-neon-purple/10 text-neon-purple px-3 py-1 rounded-full text-[10px] font-bold border border-neon-purple/20">IN PROGRESS</span>
+                                    <h3 class="text-xl font-bold text-white mt-3">Nike Launch Ad</h3>
+                                </div>
+                                <span class="material-symbols-outlined text-on-surface-variant group-hover:text-neon-purple transition-colors">more_vert</span>
+                            </div>
+                            <div class="space-y-4">
+                                <div class="flex justify-between text-xs">
+                                    <span class="text-on-surface-variant">Sound Design & Subs</span>
+                                    <span class="text-white">90%</span>
+                                </div>
+                                <div class="h-1 bg-surface-dim rounded-full">
+                                    <div class="h-full bg-gradient-to-r from-neon-purple to-neon-pink w-[90%] neon-glow-purple"></div>
+                                </div>
+                                <div class="flex -space-x-2 pt-2">
+                                    <div class="w-8 h-8 rounded-full border-2 border-background-deep overflow-hidden">
+                                        <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDATm9gyuqAx3MigYJw69ji8gGAT4lmlV780o6i9sfgjxfJFPf7Feu2DT5QOUANBSkG7EJl3GNPhx5JsG6ewPldMZpaL5yiJfVoyEzhcLYk4IoLEpUIre1nGO5geF9yuxkLNtKoL97U5T07xk2QGiiiMYUsXmVJNG2LvCW2rhU3VVQRJAzpXqDoEXGh9yAD2kN735Qn7xAUslxA19bvknzNYj3F5tdVg3u2p3P9Xz8D5uVGBaxMsSNZ"/>
+                                    </div>
+                                    <div class="w-8 h-8 rounded-full border-2 border-background-deep bg-surface-container-low flex items-center justify-center">
+                                        <span class="text-[10px] font-bold text-white">+1</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Project Card 2 -->
+                        <div class="glass-panel p-6 rounded-3xl relative overflow-hidden group hover:border-neon-cyan/50 transition-all cursor-pointer border-neon-cyan/30">
+                            <div class="flex justify-between items-start mb-8">
+                                <div>
+                                    <span class="bg-neon-cyan/10 text-neon-cyan px-3 py-1 rounded-full text-[10px] font-bold border border-neon-cyan/20">REVIEW READY</span>
+                                    <h3 class="text-xl font-bold text-white mt-3">Coffee Master V2</h3>
+                                </div>
+                                <span class="material-symbols-outlined text-on-surface-variant">more_vert</span>
+                            </div>
+                            <div class="space-y-4">
+                                <div class="flex justify-between text-xs">
+                                    <span class="text-on-surface-variant">Final Color Grade</span>
+                                    <span class="text-white">100%</span>
+                                </div>
+                                <div class="h-1 bg-surface-dim rounded-full">
+                                    <div class="h-full bg-neon-cyan w-full shadow-[0_0_8px_rgba(6,182,212,0.4)]"></div>
+                                </div>
+                                <button class="w-full py-2.5 bg-neon-cyan/10 border border-neon-cyan/30 text-neon-cyan rounded-xl font-bold text-sm hover:bg-neon-cyan hover:text-black transition-all mt-2" onclick="document.getElementById('review-board-anchor').scrollIntoView({behavior:'smooth'})">
+                                    Open Player
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Project Card 3 (Empty State) -->
+                        <div class="border-2 border-dashed border-glass-border p-6 rounded-3xl flex flex-col items-center justify-center text-center hover:bg-white/5 transition-all cursor-pointer" onclick="alert('FOOTAGE UPLOAD: In production, opens intake files selector.')">
+                            <div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center mb-4 text-on-surface-variant">
+                                <span class="material-symbols-outlined">add</span>
+                            </div>
+                            <p class="font-bold text-sm text-white">New Project</p>
+                            <p class="text-[10px] text-on-surface-variant mt-1">Upload raw assets</p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Interactive Review Board Section -->
+                <section class="grid grid-cols-1 lg:grid-cols-12 gap-8" id="review-board-anchor">
+                    
+                    <!-- Video Player Container -->
+                    <div class="lg:col-span-8 space-y-6">
+                        <div class="flex justify-between items-center">
+                            <h2 class="text-2xl font-bold text-white flex items-center gap-3">
+                                Review Board
+                                <span class="text-xs px-2.5 py-0.5 rounded bg-surface-container-high text-on-surface-variant">Draft 4</span>
+                            </h2>
+                            <div class="flex gap-2">
+                                <button class="px-4 py-2 glass-panel rounded-xl text-xs font-semibold hover:bg-white/10 flex items-center gap-2 text-white" onclick="alert('Downloading high-res ProRes export...')">
+                                    <span class="material-symbols-outlined text-[18px]">download</span> Export
+                                </button>
+                                <button class="px-4 py-2 bg-gradient-to-r from-neon-purple to-neon-pink rounded-xl text-white text-xs font-bold shadow-lg hover:scale-105 transition-transform" onclick="alert('Edit Approved! rendering final output files...')">
+                                    Approve Edit
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Video Player (Wired playing Mixkit MP4) -->
+                        <div class="relative aspect-video rounded-3xl overflow-hidden glass-panel border-4 border-surface-container-high group">
+                            <video id="review-video" src="https://assets.mixkit.co/videos/preview/mixkit-coffee-pouring-into-a-cup-from-a-coffee-maker-41982-large.mp4" class="w-full h-full object-cover" controls preload="metadata"></video>
+                            <div class="video-scanline absolute inset-0"></div>
+                        </div>
+                        
+                        <p style="color: #6b7280; font-size: 0.8rem; text-align: center;">
+                            <i class="ri-information-line"></i> Play draft video, pause, and log comments. Timestamps are clickable.
+                        </p>
+                    </div>
+
+                    <!-- Review Notes Sidebar -->
+                    <div class="lg:col-span-4 flex flex-col h-full space-y-6">
+                        <h3 class="text-xl font-bold text-white">Feedback Timestamps</h3>
+                        <div class="flex-1 glass-panel rounded-3xl overflow-hidden flex flex-col min-h-[380px] max-h-[480px]">
+                            
+                            <!-- Input -->
+                            <div class="p-6 border-b border-glass-border">
+                                <div class="relative">
+                                    <input class="w-full bg-surface-dim border-none rounded-xl px-4 py-3 text-sm text-white focus:ring-1 focus:ring-neon-cyan transition-all" id="new-comment-input" placeholder="Add a comment at video frame..." type="text"/>
+                                    <button class="absolute right-4 top-1/2 -translate-y-1/2 text-neon-cyan hover:text-neon-purple" id="submit-comment-btn">
+                                        <span class="material-symbols-outlined">send</span>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <!-- Scrollable log lists -->
+                            <div class="flex-grow overflow-y-auto p-4 space-y-4" id="comments-container">
+                                <!-- Comments render here -->
+                            </div>
+
+                        </div>
+                    </div>
+
+                </section>
+
+            </section>
+
+            <!-- 2. RAW MEDIA FILES TAB -->
+            <section class="dashboard-section hidden" id="tab-files">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-bold text-white">Footage & Assets Hub</h2>
+                    <button class="bg-gradient-to-r from-neon-purple to-neon-pink text-white px-5 py-2.5 rounded-lg text-sm font-semibold hover:shadow-lg transition-all" onclick="alert('Footage uploader active...')">
+                        <span class="material-symbols-outlined text-[18px]">upload_file</span> Upload Assets
+                    </button>
+                </div>
+                <p class="text-sm text-on-surface-variant mb-8">Upload raw video cuts, green screen backdrops, audio assets, or notes directly to editor local servers.</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+                    <div class="glass-panel p-6 rounded-2xl flex items-center gap-4">
+                        <i class="ri-folder-video-line text-3xl text-neon-purple"></i>
+                        <div>
+                            <div class="font-bold text-white text-sm">Raw Clips</div>
+                            <div class="text-xs text-on-surface-variant">14 files • 4.8 GB</div>
+                        </div>
+                    </div>
+                    <div class="glass-panel p-6 rounded-2xl flex items-center gap-4">
+                        <i class="ri-folder-music-line text-3xl text-neon-cyan"></i>
+                        <div>
+                            <div class="font-bold text-white text-sm">Audio Files</div>
+                            <div class="text-xs text-on-surface-variant">4 files • 120 MB</div>
+                        </div>
+                    </div>
+                    <div class="glass-panel p-6 rounded-2xl flex items-center gap-4">
+                        <i class="ri-folder-shield-line text-3xl text-neon-pink"></i>
+                        <div>
+                            <div class="font-bold text-white text-sm">Final Exports</div>
+                            <div class="text-xs text-on-surface-variant">2 drafts • 950 MB</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <h3 class="font-bold text-white">Recent Uploaded Assets</h3>
+                    <div class="file-row">
+                        <div class="flex items-center gap-3">
+                            <i class="ri-video-line text-neon-cyan text-lg"></i>
+                            <span class="text-sm text-white">A-Roll_Interview_Final.mp4</span>
+                        </div>
+                        <span class="text-xs text-on-surface-variant">Uploaded 3 hours ago • 1.2 GB</span>
+                    </div>
+                    <div class="file-row">
+                        <div class="flex items-center gap-3">
+                            <i class="ri-image-line text-neon-pink text-lg"></i>
+                            <span class="text-sm text-white">Acme_Logo_Vector.png</span>
+                        </div>
+                        <span class="text-xs text-on-surface-variant">Uploaded yesterday • 14 MB</span>
+                    </div>
+                    <div class="file-row">
+                        <div class="flex items-center gap-3">
+                            <i class="ri-music-2-line text-neon-purple text-lg"></i>
+                            <span class="text-sm text-white">Upbeat_Podcast_Theme.mp3</span>
+                        </div>
+                        <span class="text-xs text-on-surface-variant">Uploaded 2 days ago • 18 MB</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. BILLING TAB -->
+            <section class="dashboard-section hidden" id="tab-billing">
+                <h2 class="text-2xl font-bold text-white mb-6">Subscriptions & Billings</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+                    <div class="glass-panel p-8 rounded-2xl border-neon-purple/50 space-y-4">
+                        <h4 class="text-xs font-bold text-neon-purple uppercase tracking-widest">Active retainer plan</h4>
+                        <div class="text-4xl font-extrabold text-white" id="billing-price-val">$410<span class="text-sm text-on-surface-variant font-normal">/mo</span></div>
+                        <p class="text-xs text-on-surface-variant" id="billing-specs-val">4 Videos x Short-form (<60s) • Priority 48-Hour delivery • Active Upgrades: Sonic Design Suite</p>
+                        <button class="bg-white/5 border border-glass-border text-white text-xs px-4 py-2.5 rounded-lg hover:bg-white/10" onclick="window.location.href='pricing.html'">Configure Upgrades</button>
+                    </div>
+                    <div class="glass-panel p-8 rounded-2xl border-neon-cyan/50 space-y-4">
+                        <h4 class="text-xs font-bold text-neon-cyan uppercase tracking-widest">Billing Method</h4>
+                        <div class="flex items-center gap-4">
+                            <i class="ri-visa-line text-4xl text-white"></i>
+                            <div>
+                                <div class="font-bold text-white text-sm">Visa ending in 4242</div>
+                                <div class="text-xs text-on-surface-variant">Expires 12 / 2028</div>
+                            </div>
+                        </div>
+                        <button class="bg-white/5 border border-glass-border text-white text-xs px-4 py-2.5 rounded-lg hover:bg-white/10" onclick="alert('Payment Method menu loaded')">Change Card</button>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <h3 class="font-bold text-white">Transaction Logs</h3>
+                    <table class="w-full text-left text-xs text-on-surface-variant border-collapse">
+                        <thead>
+                            <tr class="border-b border-glass-border text-white font-bold">
+                                <th class="py-3 px-2">Invoice ID</th>
+                                <th class="py-3 px-2">Bill Date</th>
+                                <th class="py-3 px-2">Line Items</th>
+                                <th class="py-3 px-2">Total Amount</th>
+                                <th class="py-3 px-2">Receipt</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b border-glass-border/30">
+                                <td class="py-4 px-2">#INV-1090</td>
+                                <td class="py-4 px-2">July 10, 2026</td>
+                                <td class="py-4 px-2">Custom Monthly Retainer (Volume: 4, Priority 48h)</td>
+                                <td class="py-4 px-2 font-bold text-white">$410.00</td>
+                                <td class="py-4 px-2 text-neon-cyan cursor-pointer" onclick="alert('Downloading invoice PDF...')">Download <i class="ri-download-line"></i></td>
+                            </tr>
+                            <tr class="border-b border-glass-border/30">
+                                <td class="py-4 px-2">#INV-1044</td>
+                                <td class="py-4 px-2">June 10, 2026</td>
+                                <td class="py-4 px-2">Custom Monthly Retainer (Volume: 4, Priority 48h)</td>
+                                <td class="py-4 px-2 font-bold text-white">$410.00</td>
+                                <td class="py-4 px-2 text-neon-cyan cursor-pointer" onclick="alert('Downloading invoice PDF...')">Download <i class="ri-download-line"></i></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- 4. CHAT TAB -->
+            <section class="dashboard-section hidden" id="tab-chat">
+                <h2 class="text-2xl font-bold text-white mb-6">Editor Direct Stream</h2>
+                <div class="glass-panel p-6 rounded-2xl flex flex-col h-[400px]">
+                    
+                    <!-- Chat bubbles list -->
+                    <div class="flex-grow overflow-y-auto space-y-4 pr-2" id="chat-messages">
+                        <div class="flex items-start gap-3">
+                            <div class="w-8 h-8 rounded-full overflow-hidden border border-neon-purple shrink-0">
+                                <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_fI-qWGvFyjjsndMtOe5iJg0p6icz6TSKM-7gn-kmmDlrwKbfh9kroc7Z6ooLQ08v-BEn_RRMf-NQVfKEUk1SWm6LCjoYcWgFwFYByGoXUC3oWcDi3G3l3ezG4JZcFWC5-8QdDw4Xuht4ELrTaX0GZy2l4e5sBUFjm1CJqqFLNeXTsWV-G7WhYHevzpCN7IooEZdyWLfFJw5nu4Eqd0zyxUlDhBYT_wFtdaOpicF2I-uGGseH4ri4"/>
+                            </div>
+                            <div class="bg-white/5 border border-white/10 rounded-xl rounded-tl-none p-4 max-w-[70%] text-sm text-white">
+                                Hey! I completed the draft edits for the Nike Launch Ad. Added some fast transition kinetic subtitles. Let me know your thoughts on A-roll placement.
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3 justify-end">
+                            <div class="bg-neon-purple rounded-xl rounded-tr-none p-4 max-w-[70%] text-sm text-white shadow-lg shadow-neon-purple/10">
+                                Thanks! Checking it out now. Will leave timestamp comments in the Active Edits review player panel.
+                            </div>
+                            <div class="w-8 h-8 rounded-full overflow-hidden border border-neon-pink shrink-0">
+                                <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCneH6yFJuxuHWeXG2NDW7BZMd6E7EtwlbU3tfxYuv_NKf9UZZB9otdULUF-UKbkuvlPbgBtk6FXXXO6gKy4PvpyoFa5azGI4DZqiLR_DdPhl9gxikPY3iulHO7eOqy8o1jx1hBqNGSw6j4RhslShu3DUFw2vi0xg1qfmaQ8BkMcOtrZinPHHnV4rG_2QtFCnpBRqmO-nRKtgqvaIjLXJBXhILNrF4FB4jKhXVPQq7-ZvbHicilqxB3"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Input message -->
+                    <div class="relative mt-4 pt-4 border-t border-glass-border/40">
+                        <input class="w-full bg-surface-dim border-none rounded-xl px-4 py-3 text-sm text-white focus:ring-1 focus:ring-neon-cyan pr-12" id="chat-input" placeholder="Type a message to your editor..." type="text"/>
+                        <button class="absolute right-4 top-1/2 -translate-y-1/2 text-neon-cyan hover:text-neon-purple" id="send-chat-btn">
+                            <span class="material-symbols-outlined">send</span>
+                        </button>
+                    </div>
+
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Floating Cursor Glow Shader -->
+    <div class="fixed w-64 h-64 rounded-full bg-neon-purple/20 blur-[100px] pointer-events-none z-0 transition-opacity opacity-0" id="cursor-glow"></div>
+
+    <!-- App Scripts -->
+    <script src="app.js?v=1.5"></script>
+    <script src="dashboard.js?v=1.3"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Check active custom plan estimates
+            const persistedQuote = sessionStorage.getItem("editkaro_quote");
+            const priceVal = document.getElementById("billing-price-val");
+            const specsVal = document.getElementById("billing-specs-val");
+            const trackerPercent = document.getElementById("tracker-percent");
+            const trackerBar = document.getElementById("tracker-bar");
+            const trackerText = document.getElementById("tracker-text");
+
+            if (persistedQuote) {
+                const quote = JSON.parse(persistedQuote);
+                if (priceVal) priceVal.innerHTML = `$${quote.totalPrice.toLocaleString()}<span class="text-sm text-on-surface-variant font-normal">/mo</span>`;
+                if (specsVal) specsVal.innerHTML = `${quote.volume} Videos x ${quote.videoType} • ${quote.speed} delivery • Upgrades: ${quote.addons.length > 0 ? quote.addons.join(", ") : 'None'}`;
+                
+                // Adjust tracker stats
+                if (trackerPercent) trackerPercent.innerText = "100%";
+                if (trackerBar) {
+                    trackerBar.style.width = "100%";
+                    trackerBar.className = "h-full bg-neon-pink w-full shadow-[0_0_8px_rgba(236,72,153,0.6)]";
+                }
+                if (trackerText) trackerText.innerText = `${quote.volume} of ${quote.volume} edits active`;
+            }
+
+            // Tabs toggle handler
+            const tabLinks = document.querySelectorAll(".sidebar-item");
+            const tabSections = document.querySelectorAll(".dashboard-section");
+
+            tabLinks.forEach(link => {
+                link.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    const targetTab = link.dataset.tab;
+
+                    // Update active tab buttons
+                    tabLinks.forEach(b => {
+                        b.className = "flex items-center gap-4 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-white/5 transition-all group sidebar-item";
+                    });
+                    
+                    if (targetTab === "projects") {
+                        link.className = "flex items-center gap-4 px-4 py-3 rounded-xl bg-primary-container/20 text-neon-purple border border-neon-purple/30 group sidebar-item active";
+                    } else if (targetTab === "files") {
+                        link.className = "flex items-center gap-4 px-4 py-3 rounded-xl bg-primary-container/20 text-neon-pink border border-neon-pink/30 group sidebar-item active";
+                    } else if (targetTab === "billing") {
+                        link.className = "flex items-center gap-4 px-4 py-3 rounded-xl bg-primary-container/20 text-neon-purple border border-neon-purple/30 group sidebar-item active";
+                    } else if (targetTab === "chat") {
+                        link.className = "flex items-center gap-4 px-4 py-3 rounded-xl bg-primary-container/20 text-neon-cyan border border-neon-cyan/30 group sidebar-item active";
+                    }
+
+                    // Display respective section panel
+                    tabSections.forEach(sec => {
+                        if (sec.id === `tab-${targetTab}`) {
+                            sec.classList.remove("hidden");
+                            sec.classList.add("active");
+                        } else {
+                            sec.classList.add("hidden");
+                            sec.classList.remove("active");
+                        }
+                    });
+                });
+            });
+
+            // Chat direct messaging simulation
+            const chatInp = document.getElementById("chat-input");
+            const chatBtn = document.getElementById("send-chat-btn");
+            const chatBox = document.getElementById("chat-messages");
+
+            function sendChatMessage() {
+                const text = chatInp.value.trim();
+                if (text === "") return;
+
+                const div = document.createElement("div");
+                div.className = "flex items-start gap-3 justify-end";
+                div.innerHTML = `
+                    <div class="bg-neon-purple rounded-xl rounded-tr-none p-4 max-w-[70%] text-sm text-white shadow-lg shadow-neon-purple/10">
+                        ${text}
+                    </div>
+                    <div class="w-8 h-8 rounded-full overflow-hidden border border-neon-pink shrink-0">
+                        <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCneH6yFJuxuHWeXG2NDW7BZMd6E7EtwlbU3tfxYuv_NKf9UZZB9otdULUF-UKbkuvlPbgBtk6FXXXO6gKy4PvpyoFa5azGI4DZqiLR_DdPhl9gxikPY3iulHO7eOqy8o1jx1hBqNGSw6j4RhslShu3DUFw2vi0xg1qfmaQ8BkMcOtrZinPHHnV4rG_2QtFCnpBRqmO-nRKtgqvaIjLXJBXhILNrF4FB4jKhXVPQq7-ZvbHicilqxB3"/>
+                    </div>
+                `;
+                chatBox.appendChild(div);
+                chatInp.value = "";
+                
+                setTimeout(() => {
+                    chatBox.scrollTop = chatBox.scrollHeight;
+                }, 50);
+            }
+
+            if (chatBtn && chatInp) {
+                chatBtn.addEventListener("click", sendChatMessage);
+                chatInp.addEventListener("keydown", (e) => {
+                    if(e.key === "Enter") sendChatMessage();
+                });
+            }
+
+            // Glow Cursor Tracker
+            const glow = document.getElementById('cursor-glow');
+            document.addEventListener('mousemove', (e) => {
+                if (glow) {
+                    glow.style.opacity = '1';
+                    glow.style.left = e.clientX - 128 + 'px';
+                    glow.style.top = e.clientY - 128 + 'px';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

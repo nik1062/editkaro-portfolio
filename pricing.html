@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Pricing & Packages | Editkaro.in</title>
+    <meta name="description" content="Calculate your custom video editing quote dynamically. Select video duration, volume, turnaround speed, and custom add-ons to build your perfect plan.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <!-- Shared Tailwind Configurations -->
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-tint": "#ddb7ff",
+                        "tertiary": "#4cd7f6",
+                        "secondary-fixed": "#ffd9e4",
+                        "primary-fixed": "#f0dbff",
+                        "surface-container-high": "#2a2930",
+                        "glass-border": "rgba(255, 255, 255, 0.12)",
+                        "surface-dim": "#131319",
+                        "outline-variant": "#4d4354",
+                        "surface-variant": "#35343b",
+                        "background-surface": "#0A0A14",
+                        "surface-container-low": "#1b1b22",
+                        "on-error-container": "#ffdad6",
+                        "surface": "#131319",
+                        "inverse-primary": "#842bd2",
+                        "on-surface": "#e4e1eb",
+                        "surface-container-highest": "#35343b",
+                        "on-background": "#e4e1eb",
+                        "on-primary-fixed": "#2c0051",
+                        "secondary-container": "#aa0266",
+                        "background": "#131319",
+                        "on-error": "#690005",
+                        "on-primary": "#490080",
+                        "text-primary": "#FFFFFF",
+                        "neon-pink": "#EC4899",
+                        "background-deep": "#030307",
+                        "primary": "#ddb7ff",
+                        "on-surface-variant": "#cfc2d6",
+                        "text-secondary": "#94A3B8",
+                        "secondary": "#ffb0cd",
+                        "on-tertiary-fixed-variant": "#004e5c",
+                        "secondary-fixed-dim": "#ffb0cd",
+                        "primary-fixed-dim": "#ddb7ff",
+                        "neon-cyan": "#06B6D4",
+                        "on-secondary-container": "#ffbad3",
+                        "tertiary-fixed": "#acedff",
+                        "on-primary-fixed-variant": "#6900b3",
+                        "inverse-on-surface": "#303037",
+                        "on-tertiary-container": "#002f38",
+                        "on-primary-container": "#400071",
+                        "error-container": "#93000a",
+                        "on-secondary-fixed": "#3e0022",
+                        "error": "#ffb4ab",
+                        "surface-container-lowest": "#0e0e14",
+                        "tertiary-fixed-dim": "#4cd7f6",
+                        "primary-container": "#b76dff",
+                        "surface-container": "#1f1f26",
+                        "inverse-surface": "#e4e1eb",
+                        "on-tertiary": "#003640",
+                        "outline": "#988d9f",
+                        "on-secondary-fixed-variant": "#8c0053",
+                        "on-secondary": "#640039",
+                        "tertiary-container": "#009eb9",
+                        "neon-purple": "#A855F7",
+                        "on-tertiary-fixed": "#001f26",
+                        "surface-bright": "#393840"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    spacing: {
+                        "margin-mobile": "16px",
+                        "gutter": "24px",
+                        "unit": "4px",
+                        "margin-desktop": "64px",
+                        "container-max": "1280px"
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            background-color: #030307;
+            color: #e4e1eb;
+            overflow-x: hidden;
+            font-family: 'Inter', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(10, 10, 20, 0.7);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .neon-glow-primary:hover {
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
+        }
+        input[type="range"] {
+            -webkit-appearance: none;
+            width: 100%;
+            background: transparent;
+        }
+        input[type="range"]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 6px;
+            cursor: pointer;
+            background: #1f1f26;
+            border-radius: 3px;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            background: #06B6D4;
+            cursor: pointer;
+            -webkit-appearance: none;
+            margin-top: -7px;
+            box-shadow: 0 0 10px rgba(6, 182, 212, 0.8);
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #06B6D4;
+        }
+        .toggle-checkbox:checked + .toggle-label .toggle-dot {
+            transform: translateX(100%);
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(to right, #06B6D4, #A855F7);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="bg-background-deep text-on-surface font-body-md selection:bg-neon-pink/30">
+
+    <!-- Sticky Glassmorphic Navbar -->
+    <nav class="fixed top-0 w-full z-50 bg-surface/70 backdrop-blur-xl border-b border-glass-border shadow-[0_0_15px_rgba(221,183,255,0.1)]">
+        <div class="flex justify-between items-center px-4 md:px-16 py-4 max-w-7xl mx-auto">
+            <a class="font-Outfit text-2xl font-bold bg-gradient-to-r from-neon-purple to-neon-pink bg-clip-text text-transparent" href="index.html">Editkaro<span class="text-neon-cyan">.in</span></a>
+            
+            <!-- Desktop Links -->
+            <div class="hidden md:flex gap-8 items-center">
+                <a class="font-medium text-on-surface-variant hover:text-white transition-colors pb-1 relative nav-link" href="index.html">Home</a>
+                <a class="font-medium text-on-surface-variant hover:text-white transition-colors pb-1 relative nav-link" href="portfolio.html">Portfolio</a>
+                <a class="font-medium text-on-surface-variant hover:text-white transition-colors pb-1 relative nav-link" href="inside-the-edit.html">Inside the Edit</a>
+                <a class="font-medium text-neon-cyan pb-1 relative nav-link active" href="pricing.html">Pricing Customizer</a>
+                <a class="font-medium text-on-surface-variant hover:text-white transition-colors pb-1 relative nav-link" href="about.html">About Us</a>
+                <a class="font-medium text-on-surface-variant hover:text-white transition-colors pb-1 relative nav-link" href="contact.html">Contact Us</a>
+                <a class="font-medium text-on-surface-variant hover:text-white transition-colors pb-1 relative nav-link" href="booking.html">Start Project</a>
+            </div>
+            
+            <div class="flex items-center gap-4">
+                <button class="hidden md:block bg-gradient-to-r from-neon-purple to-neon-pink text-white px-6 py-2 rounded-lg font-semibold hover:shadow-[0_0_15px_rgba(168,85,247,0.5)] transition-all transform active:scale-95" onclick="window.location.href='dashboard.html'">
+                    Client Portal
+                </button>
+                
+                <!-- Hamburger Menu Button (Mobile) -->
+                <button id="mobile-menu-toggle" class="flex md:hidden text-on-surface-variant hover:text-white focus:outline-none" aria-label="Toggle Mobile Menu">
+                    <span class="material-symbols-outlined text-3xl">menu</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Sidebar Backdrop Overlay -->
+    <div id="mobile-menu-backdrop" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm md:hidden opacity-0 pointer-events-none transition-opacity duration-300"></div>
+
+    <!-- Mobile Sidebar Drawer -->
+    <div id="mobile-menu" class="fixed top-0 left-0 bottom-0 w-72 z-[60] bg-background-deep/95 backdrop-blur-2xl border-r border-glass-border md:hidden flex flex-col p-6 -translate-x-full transition-transform duration-300">
+        <!-- Close Button & Brand -->
+        <div class="flex justify-between items-center mb-10">
+            <span class="font-Outfit text-2xl font-bold bg-gradient-to-r from-neon-purple to-neon-pink bg-clip-text text-transparent">Editkaro<span class="text-neon-cyan">.in</span></span>
+            <button id="mobile-menu-close" class="text-on-surface-variant hover:text-white focus:outline-none" aria-label="Close Mobile Menu">
+                <span class="material-symbols-outlined text-2xl">close</span>
+            </button>
+        </div>
+        <!-- Nav Links -->
+        <div class="flex flex-col gap-3 flex-grow">
+            <a class="px-4 py-3 rounded-xl font-semibold text-sm transition-all text-on-surface-variant hover:bg-white/5" href="index.html" id="m-link-home">Home</a>
+            <a class="px-4 py-3 rounded-xl font-semibold text-sm transition-all text-on-surface-variant hover:bg-white/5" href="portfolio.html" id="m-link-portfolio">Portfolio</a>
+            <a class="px-4 py-3 rounded-xl font-semibold text-sm transition-all text-on-surface-variant hover:bg-white/5" href="inside-the-edit.html" id="m-link-inside">Inside the Edit</a>
+            <a class="px-4 py-3 rounded-xl font-semibold text-sm transition-all bg-primary-container/20 text-neon-purple border border-neon-purple/30" href="pricing.html" id="m-link-pricing">Pricing Customizer</a>
+            <a class="px-4 py-3 rounded-xl font-semibold text-sm transition-all text-on-surface-variant hover:bg-white/5" href="about.html" id="m-link-about">About Us</a>
+            <a class="px-4 py-3 rounded-xl font-semibold text-sm transition-all text-on-surface-variant hover:bg-white/5" href="contact.html" id="m-link-contact">Contact Us</a>
+            <a class="px-4 py-3 rounded-xl font-semibold text-sm transition-all text-on-surface-variant hover:bg-white/5 border border-dashed border-neon-pink/30 hover:border-neon-pink/60" href="booking.html" id="m-link-booking">Start Project</a>
+        </div>
+        <div class="pt-6 border-t border-glass-border">
+            <button class="w-full bg-gradient-to-r from-neon-purple to-neon-pink text-white py-3 rounded-xl font-semibold text-sm hover:shadow-[0_0_15px_rgba(168,85,247,0.5)] transition-all" onclick="window.location.href='dashboard.html'">
+                Client Portal
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="pt-32 pb-24 px-4 md:px-16 max-w-7xl mx-auto relative overflow-hidden">
+        
+        <!-- Atmospheric Background Elements -->
+        <div class="absolute -top-24 -right-24 w-96 h-96 bg-neon-purple/10 blur-[120px] rounded-full"></div>
+        <div class="absolute top-1/2 -left-24 w-80 h-80 bg-neon-cyan/10 blur-[100px] rounded-full"></div>
+        
+        <div class="relative z-10 mb-16 text-center md:text-left">
+            <span class="badge">Quote Builder</span>
+            <h1 class="text-3xl md:text-5xl font-extrabold mb-2 text-white leading-none mt-2">Scale Your <span class="text-neon-cyan">Vision</span></h1>
+            <p class="text-sm text-on-surface-variant max-w-xl">Configure your custom post-production engine. Transparent pricing for high-octane content creators.</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 relative items-start">
+            
+            <!-- Configurator Panel -->
+            <section class="lg:col-span-7 space-y-8">
+                <div class="glass-panel p-8 rounded-xl space-y-10">
+                    
+                    <!-- Monthly Video Count -->
+                    <div class="space-y-6">
+                        <div class="flex justify-between items-end">
+                            <label class="text-lg font-bold text-white flex items-center gap-3">
+                                <span class="material-symbols-outlined text-neon-purple">video_library</span>
+                                Monthly Content Vol.
+                            </label>
+                            <span class="text-neon-cyan text-lg font-bold" id="video-count-display">4 Videos</span>
+                        </div>
+                        <input class="w-full" id="video-count" max="20" min="1" type="range" value="4"/>
+                        <div class="flex justify-between text-xs text-on-surface-variant">
+                            <span>1 Video</span>
+                            <span>20 Videos</span>
+                        </div>
+                    </div>
+
+                    <!-- Video Length -->
+                    <div class="space-y-6">
+                        <div class="flex justify-between items-end">
+                            <label class="text-lg font-bold text-white flex items-center gap-3">
+                                <span class="material-symbols-outlined text-neon-pink">timer</span>
+                                Avg. Video Length
+                            </label>
+                            <span class="text-neon-pink text-lg font-bold" id="video-length-display">1-5 Min</span>
+                        </div>
+                        <input class="w-full" id="video-length" max="4" min="1" type="range" value="2"/>
+                        <div class="flex justify-between text-xs text-on-surface-variant">
+                            <span>Shorts (60s)</span>
+                            <span>Long-form (30m+)</span>
+                        </div>
+                    </div>
+
+                    <!-- Add-ons Bento Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4">
+                        
+                        <!-- Expedited Delivery -->
+                        <div class="glass-panel bg-white/5 p-5 rounded-lg flex items-center justify-between border-transparent hover:border-neon-cyan/30 transition-colors group">
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 rounded-full bg-neon-cyan/10 flex items-center justify-center text-neon-cyan group-hover:bg-neon-cyan group-hover:text-black transition-all">
+                                    <span class="material-symbols-outlined">bolt</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-sm text-white">24h Delivery</h4>
+                                    <p class="text-xs text-on-surface-variant">Priority turnaround</p>
+                                </div>
+                            </div>
+                            <div class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in">
+                                <input class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer border-transparent z-10 transition-transform duration-200 ease-in-out" id="expedited" name="toggle" type="checkbox"/>
+                                <label class="toggle-label block overflow-hidden h-6 rounded-full bg-surface-container-high cursor-pointer transition-colors duration-200 ease-in-out" for="expedited">
+                                    <span class="toggle-dot"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- SEO Optimization -->
+                        <div class="glass-panel bg-white/5 p-5 rounded-lg flex items-center justify-between border-transparent hover:border-neon-purple/30 transition-colors group">
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 rounded-full bg-neon-purple/10 flex items-center justify-center text-neon-purple group-hover:bg-neon-purple group-hover:text-black transition-all">
+                                    <span class="material-symbols-outlined">trending_up</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-sm text-white">SEO Titles</h4>
+                                    <p class="text-xs text-on-surface-variant">Max reach strategy</p>
+                                </div>
+                            </div>
+                            <div class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in">
+                                <input class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer border-transparent z-10 transition-transform duration-200 ease-in-out" id="seo" name="toggle" type="checkbox"/>
+                                <label class="toggle-label block overflow-hidden h-6 rounded-full bg-surface-container-high cursor-pointer transition-colors duration-200 ease-in-out" for="seo">
+                                    <span class="toggle-dot"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Thumbnails -->
+                        <div class="glass-panel bg-white/5 p-5 rounded-lg flex items-center justify-between border-transparent hover:border-neon-pink/30 transition-colors group md:col-span-2">
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 rounded-full bg-neon-pink/10 flex items-center justify-center text-neon-pink group-hover:bg-neon-pink group-hover:text-black transition-all">
+                                    <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">image</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-sm text-white">Viral Thumbnails</h4>
+                                    <p class="text-xs text-on-surface-variant">High-CTR custom designs (A/B testing ready)</p>
+                                </div>
+                            </div>
+                            <div class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in">
+                                <input checked="" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer border-transparent z-10 transition-transform duration-200 ease-in-out" id="thumbnails" name="toggle" type="checkbox"/>
+                                <label class="toggle-label block overflow-hidden h-6 rounded-full bg-surface-container-high cursor-pointer transition-colors duration-200 ease-in-out" for="thumbnails">
+                                    <span class="toggle-dot"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- Right Side: Pricing Summary Card -->
+            <aside class="lg:col-span-5 lg:sticky lg:top-32">
+                <div class="glass-panel p-8 rounded-2xl relative overflow-hidden group shadow-2xl shadow-neon-purple/5">
+                    
+                    <!-- Glow effect -->
+                    <div class="absolute -top-10 -right-10 w-32 h-32 bg-neon-purple/20 blur-[60px] rounded-full"></div>
+                    
+                    <h3 class="text-xl font-bold text-white mb-8 border-b border-glass-border pb-4">Estimate Breakdown</h3>
+                    
+                    <div class="space-y-6 mb-10">
+                        <div class="flex justify-between items-center">
+                            <span class="text-on-surface-variant text-sm">Monthly Retainer</span>
+                            <span class="text-white font-semibold" id="base-price">$799</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-on-surface-variant text-sm">Length Factor</span>
+                            <span class="text-white font-semibold" id="length-factor">x 1.25</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-on-surface-variant text-sm">Premium Add-ons</span>
+                            <span class="text-neon-cyan font-semibold" id="addons-total">+$150</span>
+                        </div>
+                        
+                        <div class="pt-6 border-t border-glass-border">
+                            <div class="flex flex-col items-center gap-2">
+                                <span class="text-xs text-on-surface-variant uppercase tracking-widest">Total Monthly Investment</span>
+                                <div class="flex items-baseline gap-1">
+                                    <span class="text-4xl font-extrabold text-white">$</span>
+                                    <span class="text-7xl font-extrabold text-transparent bg-gradient-to-r from-neon-cyan via-neon-purple to-neon-pink bg-clip-text animate-pulse" id="final-price">949</span>
+                                    <span class="text-xl text-on-surface-variant font-bold">/mo</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="w-full bg-white text-background-deep py-5 rounded-xl text-lg font-bold hover:scale-[1.02] transition-all active:scale-95 shadow-[0_0_30px_rgba(255,255,255,0.2)] flex items-center justify-center gap-3" id="lock-price-btn">
+                        Secure Plan
+                        <span class="material-symbols-outlined">arrow_forward</span>
+                    </button>
+                    
+                    <p class="text-center mt-6 text-on-surface-variant text-xs flex items-center justify-center gap-2">
+                        <span class="material-symbols-outlined text-[16px]">verified</span>
+                        No long-term contracts. Cancel anytime.
+                    </p>
+                </div>
+
+                <!-- Testimonial Mini Card -->
+                <div class="mt-8 glass-panel p-6 rounded-xl flex items-center gap-4">
+                    <img class="w-14 h-14 rounded-full border-2 border-neon-cyan object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPCux2NppxJiNMpYyMYABsOyWDjx3fQ__bgtr3xHOM6W5VHXyB1oFwMhOoh6vAzq1jr_S8OlVxwfhjUN7Yv8M3uOyCFYMuTwtF7sfOUxbeA7aArHUWEsluZn6gv86fFpCUaYJ-RVLIu3pOYeKaIKhPScIONXHEUvOvlWswtQPgGyVbzoqRn66mnzlBlModeDnv8mUMYx9WOdZFI-z4LO1Vj8L7hF29G32zUTGWRAlBXwhsU7AXee75"/>
+                    <div>
+                        <p class="text-sm italic text-on-surface-variant">"Editkaro doubled my channel growth while halving my stress levels. The ROI is insane."</p>
+                        <p class="text-xs font-bold text-white mt-1">@DigitalVanguard</p>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-background-deep border-t border-glass-border">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12 px-4 md:px-16 py-16 max-w-7xl mx-auto">
+            <div class="flex flex-col gap-6">
+                <div class="text-2xl font-bold text-primary font-Outfit">Editkaro<span class="text-neon-cyan">.in</span></div>
+                <p class="text-sm text-on-surface-variant">Elevating digital content through high-octane post-production and algorithmic mastery.</p>
+                <div class="flex gap-4">
+                    <a class="w-10 h-10 rounded-full glass-card flex items-center justify-center hover:text-neon-cyan transition-colors" href="https://youtube.com">
+                        <i class="ri-youtube-fill"></i>
+                    </a>
+                    <a class="w-10 h-10 rounded-full glass-card flex items-center justify-center hover:text-neon-pink transition-colors" href="https://instagram.com">
+                        <i class="ri-instagram-line"></i>
+                    </a>
+                    <a class="w-10 h-10 rounded-full glass-card flex items-center justify-center hover:text-neon-purple transition-colors" href="https://twitter.com">
+                        <i class="ri-twitter-line"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="flex flex-col gap-4">
+                <h4 class="text-sm font-bold text-white uppercase tracking-widest">Solutions</h4>
+                <a class="text-sm text-on-surface-variant hover:text-white transition-colors" href="pricing.html">Short-form Magic</a>
+                <a class="text-sm text-on-surface-variant hover:text-white transition-colors" href="pricing.html">Long-form Mastery</a>
+                <a class="text-sm text-on-surface-variant hover:text-white transition-colors" href="dashboard.html">Client Workspace</a>
+                <a class="text-sm text-on-surface-variant hover:text-white transition-colors" href="pricing.html">Thumbnail Design</a>
+            </div>
+            <div class="flex flex-col gap-4">
+                <h4 class="text-sm font-bold text-white uppercase tracking-widest">Company</h4>
+                <a class="text-sm text-on-surface-variant hover:text-white transition-colors" href="about.html">About Us</a>
+                <a class="text-sm text-on-surface-variant hover:text-white transition-colors" href="contact.html">Contact Us</a>
+                <a class="text-sm text-on-surface-variant hover:text-white transition-colors" href="inside-the-edit.html">Inside The Edit</a>
+                <a class="text-sm text-on-surface-variant hover:text-white transition-colors" href="about.html#team-section">Our Editors</a>
+                <a class="text-sm text-on-surface-variant hover:text-white transition-colors" href="inside-the-edit.html#timeline-section">Our Process</a>
+                <a class="text-sm text-on-surface-variant hover:text-white transition-colors" href="booking.html">Discovery Call</a>
+            </div>
+            <div class="flex flex-col gap-6">
+                <h4 class="text-sm font-bold text-white uppercase tracking-widest">The Newsletter</h4>
+                <p class="text-sm text-on-surface-variant">Get viral insights directly in your inbox.</p>
+                <form id="newsletter-form" class="flex flex-col gap-2">
+                    <div class="flex">
+                        <input id="newsletter-email" name="email" required class="bg-surface-container-low border-glass-border border-r-0 rounded-l-lg focus:ring-neon-cyan focus:border-neon-cyan text-white w-full px-4 py-2" placeholder="Email address" type="email"/>
+                        <button type="submit" class="bg-primary text-on-primary px-4 rounded-r-lg hover:opacity-80 transition-opacity">
+                            <span class="material-symbols-outlined">send</span>
+                        </button>
+                    </div>
+                    <span id="newsletter-status" class="text-xs hidden mt-1"></span>
+                </form>
+            </div>
+        </div>
+        <div class="px-4 md:px-16 py-8 border-t border-glass-border text-center text-on-surface-variant text-xs">
+            © 2026 Editkaro.in. All rights reserved. Made for VaultofCodes.
+        </div>
+    </footer>
+
+    <!-- App Scripts -->
+    <script src="app.js?v=1.5"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const videoCountInput = document.getElementById('video-count');
+            const videoLengthInput = document.getElementById('video-length');
+            const videoCountDisplay = document.getElementById('video-count-display');
+            const videoLengthDisplay = document.getElementById('video-length-display');
+            
+            const expeditedToggle = document.getElementById('expedited');
+            const seoToggle = document.getElementById('seo');
+            const thumbnailsToggle = document.getElementById('thumbnails');
+
+            const basePriceDisplay = document.getElementById('base-price');
+            const lengthFactorDisplay = document.getElementById('length-factor');
+            const addonsTotalDisplay = document.getElementById('addons-total');
+            const finalPriceDisplay = document.getElementById('final-price');
+            const lockPriceBtn = document.getElementById('lock-price-btn');
+
+            const lengthLabels = ["Shorts (60s)", "1-5 Min", "10-15 Min", "30m+"];
+            const lengthMultipliers = [0.8, 1.0, 1.25, 1.8];
+
+            function updatePricing() {
+                const count = parseInt(videoCountInput.value);
+                const lengthIdx = parseInt(videoLengthInput.value) - 1;
+                
+                videoCountDisplay.innerText = `${count} Video${count > 1 ? 's' : ''}`;
+                videoLengthDisplay.innerText = lengthLabels[lengthIdx];
+
+                // Calculations
+                const baseVideoPrice = 200;
+                const subtotal = count * baseVideoPrice;
+                const multiplier = lengthMultipliers[lengthIdx];
+                
+                let addons = 0;
+                let activeAddons = [];
+                if(expeditedToggle.checked) {
+                    addons += 250;
+                    activeAddons.push("24h Delivery");
+                }
+                if(seoToggle.checked) {
+                    addons += 100;
+                    activeAddons.push("SEO Titles");
+                }
+                if(thumbnailsToggle.checked) {
+                    addons += (count * 25);
+                    activeAddons.push("Viral Thumbnails");
+                }
+
+                const finalPrice = Math.round((subtotal * multiplier) + addons);
+
+                // Update UI
+                basePriceDisplay.innerText = `$${subtotal}`;
+                lengthFactorDisplay.innerText = `x ${multiplier}`;
+                addonsTotalDisplay.innerText = `+$${addons}`;
+                finalPriceDisplay.innerText = finalPrice.toLocaleString();
+
+                // Store quote configuration in sessionStorage for retrieval in the booking page
+                const quoteConfig = {
+                    volume: count,
+                    videoType: lengthLabels[lengthIdx],
+                    speed: expeditedToggle.checked ? "Priority (24h)" : "Standard",
+                    addons: activeAddons,
+                    totalPrice: finalPrice
+                };
+                sessionStorage.setItem("editkaro_quote", JSON.stringify(quoteConfig));
+            }
+
+            [videoCountInput, videoLengthInput, expeditedToggle, seoToggle, thumbnailsToggle].forEach(el => {
+                el.addEventListener('input', updatePricing);
+            });
+
+            if (lockPriceBtn) {
+                lockPriceBtn.addEventListener('click', () => {
+                    window.location.href = "booking.html";
+                });
+            }
+
+            // Init
+            updatePricing();
+        });
+    </script>
+    <!-- Floating Cursor Glow Shader -->
+    <div class="fixed w-64 h-64 rounded-full bg-neon-purple/20 blur-[100px] pointer-events-none z-0 transition-opacity opacity-0" id="cursor-glow"></div>
+</body>
+</html>

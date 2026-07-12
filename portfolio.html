@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Masterpiece Portfolio | Editkaro.in</title>
+    <meta name="description" content="Explore the Editkaro.in masterpiece portfolio. View our video editing work across Short Form, Long Form, Gaming, Football, eCommerce, Documentary, Color Grading, Anime, and Ads.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <!-- Shared Tailwind Configurations -->
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-tint": "#ddb7ff",
+                        "tertiary": "#4cd7f6",
+                        "secondary-fixed": "#ffd9e4",
+                        "primary-fixed": "#f0dbff",
+                        "surface-container-high": "#2a2930",
+                        "glass-border": "rgba(255, 255, 255, 0.12)",
+                        "surface-dim": "#131319",
+                        "outline-variant": "#4d4354",
+                        "surface-variant": "#35343b",
+                        "background-surface": "#0A0A14",
+                        "surface-container-low": "#1b1b22",
+                        "on-error-container": "#ffdad6",
+                        "surface": "#131319",
+                        "inverse-primary": "#842bd2",
+                        "on-surface": "#e4e1eb",
+                        "surface-container-highest": "#35343b",
+                        "on-background": "#e4e1eb",
+                        "on-primary-fixed": "#2c0051",
+                        "secondary-container": "#aa0266",
+                        "background": "#131319",
+                        "on-error": "#690005",
+                        "on-primary": "#490080",
+                        "text-primary": "#FFFFFF",
+                        "neon-pink": "#EC4899",
+                        "background-deep": "#030307",
+                        "primary": "#ddb7ff",
+                        "on-surface-variant": "#cfc2d6",
+                        "text-secondary": "#94A3B8",
+                        "secondary": "#ffb0cd",
+                        "on-tertiary-fixed-variant": "#004e5c",
+                        "secondary-fixed-dim": "#ffb0cd",
+                        "primary-fixed-dim": "#ddb7ff",
+                        "neon-cyan": "#06B6D4",
+                        "on-secondary-container": "#ffbad3",
+                        "tertiary-fixed": "#acedff",
+                        "on-primary-fixed-variant": "#6900b3",
+                        "inverse-on-surface": "#303037",
+                        "on-tertiary-container": "#002f38",
+                        "on-primary-container": "#400071",
+                        "error-container": "#93000a",
+                        "on-secondary-fixed": "#3e0022",
+                        "error": "#ffb4ab",
+                        "surface-container-lowest": "#0e0e14",
+                        "tertiary-fixed-dim": "#4cd7f6",
+                        "primary-container": "#b76dff",
+                        "surface-container": "#1f1f26",
+                        "inverse-surface": "#e4e1eb",
+                        "on-tertiary": "#003640",
+                        "outline": "#988d9f",
+                        "on-secondary-fixed-variant": "#8c0053",
+                        "on-secondary": "#640039",
+                        "tertiary-container": "#009eb9",
+                        "neon-purple": "#A855F7",
+                        "on-tertiary-fixed": "#001f26",
+                        "surface-bright": "#393840"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            background-color: #030307;
+            color: #e4e1eb;
+            overflow-x: hidden;
+            font-family: 'Inter', sans-serif;
+        }
+        .nebula-bg {
+            background-image: radial-gradient(circle at 50% 50%, rgba(168, 85, 247, 0.08) 0%, transparent 60%),
+                              radial-gradient(circle at 100% 0%, rgba(236, 72, 153, 0.04) 0%, transparent 40%),
+                              radial-gradient(circle at 0% 100%, rgba(6, 182, 212, 0.04) 0%, transparent 40%);
+        }
+        .glass-card {
+            background: rgba(10, 10, 20, 0.7);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(to right, #06B6D4, #A855F7);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+        .portfolio-grid-container {
+            position: relative;
+            --mouse-x: 50%;
+            --mouse-y: 50%;
+        }
+        .portfolio-grid-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle 400px at var(--mouse-x) var(--mouse-y), rgba(6, 182, 212, 0.08), transparent 80%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        .portfolio-card {
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.4s ease, box-shadow 0.4s ease;
+        }
+        .portfolio-card:hover {
+            transform: scale(1.03);
+            border-color: rgba(6, 182, 212, 0.5);
+            box-shadow: 0 0 25px rgba(6, 182, 212, 0.2);
+        }
+        .play-overlay {
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        .portfolio-card:hover .play-overlay {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(3, 3, 7, 0.95);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .lightbox.active {
+            display: flex;
+            opacity: 1;
+        }
+        .lightbox-content {
+            width: 90%;
+            max-width: 1000px;
+            aspect-ratio: 16 / 9;
+            background: #000;
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            box-shadow: 0 0 40px rgba(168, 85, 247, 0.3);
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+        .lightbox.active .lightbox-content {
+            transform: scale(1);
+        }
+    </style>
+</head>
+<body class="bg-[#030307] nebula-bg selection:bg-neon-pink/30">
+
+    <!-- Sticky Glassmorphic Navbar -->
+    <nav class="fixed top-0 w-full z-50 bg-surface/70 backdrop-blur-xl border-b border-glass-border shadow-[0_0_15px_rgba(221,183,255,0.1)]">
+        <div class="flex justify-between items-center px-4 md:px-16 py-4 max-w-7xl mx-auto">
+            <a class="font-Outfit text-2xl font-bold bg-gradient-to-r from-neon-purple to-neon-pink bg-clip-text text-transparent" href="index.html">Editkaro<span class="text-neon-cyan">.in</span></a>
+            
+            <!-- Desktop Links -->
+            <div class="hidden md:flex gap-8 items-center">
+                <a class="font-medium text-on-surface-variant hover:text-white transition-colors pb-1 relative nav-link" href="index.html">Home</a>
+                <a class="font-medium text-neon-cyan pb-1 relative nav-link active" href="portfolio.html">Portfolio</a>
+                <a class="font-medium text-on-surface-variant hover:text-white transition-colors pb-1 relative nav-link" href="inside-the-edit.html">Inside the Edit</a>
+                <a class="font-medium text-on-surface-variant hover:text-white transition-colors pb-1 relative nav-link" href="pricing.html">Pricing Customizer</a>
+                <a class="font-medium text-on-surface-variant hover:text-white transition-colors pb-1 relative nav-link" href="about.html">About Us</a>
+                <a class="font-medium text-on-surface-variant hover:text-white transition-colors pb-1 relative nav-link" href="contact.html">Contact Us</a>
+                <a class="font-medium text-on-surface-variant hover:text-white transition-colors pb-1 relative nav-link" href="booking.html">Start Project</a>
+            </div>
+            
+            <div class="flex items-center gap-4">
+                <button class="hidden md:block bg-gradient-to-r from-neon-purple to-neon-pink text-white px-6 py-2 rounded-lg font-semibold hover:shadow-[0_0_15px_rgba(168,85,247,0.5)] transition-all transform active:scale-95" onclick="window.location.href='dashboard.html'">
+                    Client Portal
+                </button>
+                
+                <!-- Hamburger Menu Button (Mobile) -->
+                <button id="mobile-menu-toggle" class="flex md:hidden text-on-surface-variant hover:text-white focus:outline-none" aria-label="Toggle Mobile Menu">
+                    <span class="material-symbols-outlined text-3xl">menu</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Sidebar Backdrop Overlay -->
+    <div id="mobile-menu-backdrop" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm md:hidden opacity-0 pointer-events-none transition-opacity duration-300"></div>
+
+    <!-- Mobile Sidebar Drawer -->
+    <div id="mobile-menu" class="fixed top-0 left-0 bottom-0 w-72 z-[60] bg-background-deep/95 backdrop-blur-2xl border-r border-glass-border md:hidden flex flex-col p-6 -translate-x-full transition-transform duration-300">
+        <!-- Close Button & Brand -->
+        <div class="flex justify-between items-center mb-10">
+            <span class="font-Outfit text-2xl font-bold bg-gradient-to-r from-neon-purple to-neon-pink bg-clip-text text-transparent">Editkaro<span class="text-neon-cyan">.in</span></span>
+            <button id="mobile-menu-close" class="text-on-surface-variant hover:text-white focus:outline-none" aria-label="Close Mobile Menu">
+                <span class="material-symbols-outlined text-2xl">close</span>
+            </button>
+        </div>
+        <!-- Nav Links -->
+        <div class="flex flex-col gap-3 flex-grow">
+            <a class="px-4 py-3 rounded-xl font-semibold text-sm transition-all text-on-surface-variant hover:bg-white/5" href="index.html" id="m-link-home">Home</a>
+            <a class="px-4 py-3 rounded-xl font-semibold text-sm transition-all bg-primary-container/20 text-neon-purple border border-neon-purple/30" href="portfolio.html" id="m-link-portfolio">Portfolio</a>
+            <a class="px-4 py-3 rounded-xl font-semibold text-sm transition-all text-on-surface-variant hover:bg-white/5" href="inside-the-edit.html" id="m-link-inside">Inside the Edit</a>
+            <a class="px-4 py-3 rounded-xl font-semibold text-sm transition-all text-on-surface-variant hover:bg-white/5" href="pricing.html" id="m-link-pricing">Pricing Customizer</a>
+            <a class="px-4 py-3 rounded-xl font-semibold text-sm transition-all text-on-surface-variant hover:bg-white/5" href="about.html" id="m-link-about">About Us</a>
+            <a class="px-4 py-3 rounded-xl font-semibold text-sm transition-all text-on-surface-variant hover:bg-white/5" href="contact.html" id="m-link-contact">Contact Us</a>
+            <a class="px-4 py-3 rounded-xl font-semibold text-sm transition-all text-on-surface-variant hover:bg-white/5 border border-dashed border-neon-pink/30 hover:border-neon-pink/60" href="booking.html" id="m-link-booking">Start Project</a>
+        </div>
+        <div class="pt-6 border-t border-glass-border">
+            <button class="w-full bg-gradient-to-r from-neon-purple to-neon-pink text-white py-3 rounded-xl font-semibold text-sm hover:shadow-[0_0_15px_rgba(168,85,247,0.5)] transition-all" onclick="window.location.href='dashboard.html'">
+                Client Portal
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="pt-32">
+        
+        <!-- Portfolio Section -->
+        <section class="px-4 md:px-16 py-12 max-w-7xl mx-auto portfolio-grid-container" id="portfolio-section">
+            
+            <div class="flex flex-col lg:flex-row justify-between items-end mb-16 gap-8">
+                <div>
+                    <h1 class="text-3xl md:text-5xl font-extrabold mb-2 text-white">Masterpiece <span class="text-transparent bg-clip-text bg-gradient-to-r from-neon-purple to-neon-cyan">Gallery</span></h1>
+                    <p class="text-sm text-on-surface-variant max-w-md">Curated edits that defined trends and shattered view counts across platforms.</p>
+                </div>
+                
+                <div class="flex flex-col gap-4 w-full lg:w-auto">
+                    <!-- Search Input -->
+                    <div class="relative w-full max-w-md">
+                        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+                        <input type="text" class="w-full bg-surface-container-low border border-glass-border rounded-lg pl-10 pr-4 py-2 text-white placeholder-on-surface-variant/50 focus:ring-neon-cyan focus:border-neon-cyan" id="search-bar" placeholder="Search by title or category...">
+                    </div>
+                    
+                    <!-- Dynamic Filter bar -->
+                    <div class="flex flex-wrap gap-2" id="category-filters">
+                        <button class="px-5 py-2 rounded-full glass-card text-neon-cyan border-neon-cyan font-semibold text-sm filter-btn active" data-filter="all">All Works</button>
+                        <button class="px-5 py-2 rounded-full glass-card text-on-surface-variant hover:text-white font-semibold text-sm filter-btn" data-filter="short-form">Shorts</button>
+                        <button class="px-5 py-2 rounded-full glass-card text-on-surface-variant hover:text-white font-semibold text-sm filter-btn" data-filter="long-form">Long-form</button>
+                        <button class="px-5 py-2 rounded-full glass-card text-on-surface-variant hover:text-white font-semibold text-sm filter-btn" data-filter="gaming">Gaming</button>
+                        <button class="px-5 py-2 rounded-full glass-card text-on-surface-variant hover:text-white font-semibold text-sm filter-btn" data-filter="football">Football</button>
+                        <button class="px-5 py-2 rounded-full glass-card text-on-surface-variant hover:text-white font-semibold text-sm filter-btn" data-filter="ecommerce">eCommerce</button>
+                        <button class="px-5 py-2 rounded-full glass-card text-on-surface-variant hover:text-white font-semibold text-sm filter-btn" data-filter="documentary">Documentary</button>
+                        <button class="px-5 py-2 rounded-full glass-card text-on-surface-variant hover:text-white font-semibold text-sm filter-btn" data-filter="color-grading">Grading</button>
+                        <button class="px-5 py-2 rounded-full glass-card text-on-surface-variant hover:text-white font-semibold text-sm filter-btn" data-filter="anime">Anime</button>
+                        <button class="px-5 py-2 rounded-full glass-card text-on-surface-variant hover:text-white font-semibold text-sm filter-btn" data-filter="ads">Ads</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Grid rendered via JS dynamically to support search & filters -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="portfolio-grid">
+                <!-- Javascript populates cards here -->
+            </div>
+            
+        </section>
+
+        <!-- CTA Section -->
+        <section class="max-w-7xl mx-auto px-4 md:px-16 text-center py-20 bg-surface-container-low rounded-3xl border border-glass-border my-20">
+            <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-6">Ready to <span class="text-neon-pink">Scale?</span></h2>
+            <p class="text-on-surface-variant max-w-xl mx-auto mb-10 text-sm md:text-base">
+                Join 500+ creators who have scaled their channels with Editkaro's retention-focused post-production.
+            </p>
+            <button class="bg-gradient-to-r from-neon-purple to-neon-pink text-white px-10 py-4 rounded-lg font-bold hover:shadow-[0_0_15px_rgba(168,85,247,0.5)] transition-all transform hover:scale-105" onclick="window.location.href='booking.html'">
+                Book Strategy Call
+            </button>
+        </section>
+
+    </main>
+
+    <!-- Video Lightbox Modal -->
+    <div class="lightbox" id="video-lightbox">
+        <button class="absolute top-6 right-6 text-white text-lg font-bold flex items-center gap-2 hover:text-neon-pink" id="lightbox-close">
+            <span class="material-symbols-outlined">close</span> Close
+        </button>
+        <div class="lightbox-content">
+            <div class="w-full h-full" id="lightbox-video-wrapper">
+                <!-- JS injects controls video -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-background-deep border-t border-glass-border mt-32">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12 px-4 md:px-16 py-16 max-w-7xl mx-auto">
+            <div class="flex flex-col gap-6">
+                <div class="text-2xl font-bold text-primary font-Outfit">Editkaro<span class="text-neon-cyan">.in</span></div>
+                <p class="text-sm text-on-surface-variant">Elevating digital content through high-octane post-production and algorithmic mastery.</p>
+                <div class="flex gap-4">
+                    <a class="w-10 h-10 rounded-full glass-card flex items-center justify-center hover:text-neon-cyan transition-colors" href="https://youtube.com">
+                        <i class="ri-youtube-fill"></i>
+                    </a>
+                    <a class="w-10 h-10 rounded-full glass-card flex items-center justify-center hover:text-neon-pink transition-colors" href="https://instagram.com">
+                        <i class="ri-instagram-line"></i>
+                    </a>
+                    <a class="w-10 h-10 rounded-full glass-card flex items-center justify-center hover:text-neon-purple transition-colors" href="https://twitter.com">
+                        <i class="ri-twitter-line"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="flex flex-col gap-4">
+                <h4 class="text-sm font-bold text-white uppercase tracking-widest">Solutions</h4>
+                <a class="text-sm text-on-surface-variant hover:text-white transition-colors" href="pricing.html">Short-form Magic</a>
+                <a class="text-sm text-on-surface-variant hover:text-white transition-colors" href="pricing.html">Long-form Mastery</a>
+                <a class="text-sm text-on-surface-variant hover:text-white transition-colors" href="dashboard.html">Client Workspace</a>
+                <a class="text-sm text-on-surface-variant hover:text-white transition-colors" href="pricing.html">Thumbnail Design</a>
+            </div>
+            <div class="flex flex-col gap-4">
+                <h4 class="text-sm font-bold text-white uppercase tracking-widest">Company</h4>
+                <a class="text-sm text-on-surface-variant hover:text-white transition-colors" href="inside-the-edit.html">Inside The Edit</a>
+                <a class="text-sm text-on-surface-variant hover:text-white transition-colors" href="about.html#team-section">Our Editors</a>
+                <a class="text-sm text-on-surface-variant hover:text-white transition-colors" href="inside-the-edit.html#timeline-section">Our Process</a>
+                <a class="text-sm text-on-surface-variant hover:text-white transition-colors" href="booking.html">Discovery Call</a>
+            </div>
+            <div class="flex flex-col gap-6">
+                <h4 class="text-sm font-bold text-white uppercase tracking-widest">The Newsletter</h4>
+                <p class="text-sm text-on-surface-variant">Get viral insights directly in your inbox.</p>
+                <form id="newsletter-form" class="flex flex-col gap-2">
+                    <div class="flex">
+                        <input id="newsletter-email" name="email" required class="bg-surface-container-low border-glass-border border-r-0 rounded-l-lg focus:ring-neon-cyan focus:border-neon-cyan text-white w-full px-4 py-2" placeholder="Email address" type="email"/>
+                        <button type="submit" class="bg-primary text-on-primary px-4 rounded-r-lg hover:opacity-80 transition-opacity">
+                            <span class="material-symbols-outlined">send</span>
+                        </button>
+                    </div>
+                    <span id="newsletter-status" class="text-xs hidden mt-1"></span>
+                </form>
+            </div>
+        </div>
+        <div class="px-4 md:px-16 py-8 border-t border-glass-border flex flex-col md:flex-row justify-between items-center gap-4 max-w-7xl mx-auto text-xs text-on-surface-variant">
+            <span>© 2026 Editkaro.in. All rights reserved. Made for VaultofCodes.</span>
+            <div class="flex gap-8">
+                <a class="hover:text-tertiary transition-colors" href="#">Terms</a>
+                <a class="hover:text-tertiary transition-colors" href="#">Privacy</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- App JavaScript -->
+    <script src="app.js?v=1.5"></script>
+    <script>
+        // Stagger reveal scroll effects
+        const gridContainer = document.querySelector('.portfolio-grid-container');
+        if (gridContainer) {
+            gridContainer.addEventListener('mousemove', (e) => {
+                const rect = gridContainer.getBoundingClientRect();
+                const x = ((e.clientX - rect.left) / rect.width) * 100;
+                const y = ((e.clientY - rect.top) / rect.height) * 100;
+                gridContainer.style.setProperty('--mouse-x', `${x}%`);
+                gridContainer.style.setProperty('--mouse-y', `${y}%`);
+            });
+        }
+    </script>
+</body>
+</html>

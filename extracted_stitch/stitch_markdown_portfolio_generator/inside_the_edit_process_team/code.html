@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Inside the Edit | Editkaro</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-tint": "#ddb7ff",
+                    "tertiary": "#4cd7f6",
+                    "secondary-fixed": "#ffd9e4",
+                    "primary-fixed": "#f0dbff",
+                    "surface-container-high": "#2a2930",
+                    "glass-border": "rgba(255, 255, 255, 0.12)",
+                    "surface-dim": "#131319",
+                    "outline-variant": "#4d4354",
+                    "surface-variant": "#35343b",
+                    "background-surface": "#0A0A14",
+                    "surface-container-low": "#1b1b22",
+                    "on-error-container": "#ffdad6",
+                    "surface": "#131319",
+                    "inverse-primary": "#842bd2",
+                    "on-surface": "#e4e1eb",
+                    "surface-container-highest": "#35343b",
+                    "on-background": "#e4e1eb",
+                    "on-primary-fixed": "#2c0051",
+                    "secondary-container": "#aa0266",
+                    "background": "#131319",
+                    "on-error": "#690005",
+                    "on-primary": "#490080",
+                    "text-primary": "#FFFFFF",
+                    "neon-pink": "#EC4899",
+                    "background-deep": "#030307",
+                    "primary": "#ddb7ff",
+                    "on-surface-variant": "#cfc2d6",
+                    "text-secondary": "#94A3B8",
+                    "secondary": "#ffb0cd",
+                    "on-tertiary-fixed-variant": "#004e5c",
+                    "secondary-fixed-dim": "#ffb0cd",
+                    "primary-fixed-dim": "#ddb7ff",
+                    "neon-cyan": "#06B6D4",
+                    "on-secondary-container": "#ffbad3",
+                    "tertiary-fixed": "#acedff",
+                    "on-primary-fixed-variant": "#6900b3",
+                    "inverse-on-surface": "#303037",
+                    "on-tertiary-container": "#002f38",
+                    "on-primary-container": "#400071",
+                    "error-container": "#93000a",
+                    "on-secondary-fixed": "#3e0022",
+                    "error": "#ffb4ab",
+                    "surface-container-lowest": "#0e0e14",
+                    "tertiary-fixed-dim": "#4cd7f6",
+                    "primary-container": "#b76dff",
+                    "surface-container": "#1f1f26",
+                    "inverse-surface": "#e4e1eb",
+                    "on-tertiary": "#003640",
+                    "outline": "#988d9f",
+                    "on-secondary-fixed-variant": "#8c0053",
+                    "on-secondary": "#640039",
+                    "tertiary-container": "#009eb9",
+                    "neon-purple": "#A855F7",
+                    "on-tertiary-fixed": "#001f26",
+                    "surface-bright": "#393840"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-mobile": "16px",
+                    "gutter": "24px",
+                    "unit": "4px",
+                    "margin-desktop": "64px",
+                    "container-max": "1280px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Outfit"],
+                    "body-md": ["Inter"],
+                    "label-lg": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-md": ["Outfit"],
+                    "display-lg-mobile": ["Outfit"],
+                    "headline-xl": ["Outfit"],
+                    "body-lg": ["Inter"],
+                    "display-lg": ["Outfit"]
+            },
+            "fontSize": {
+                    "headline-lg": ["32px", {"lineHeight": "1.3", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "label-lg": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "display-lg-mobile": ["48px", {"lineHeight": "1.2", "fontWeight": "800"}],
+                    "headline-xl": ["48px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "display-lg": ["72px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #030307;
+            color: #e4e1eb;
+            overflow-x: hidden;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .glass-card {
+            background: rgba(10, 10, 20, 0.7);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .diagonal-bg {
+            clip-path: polygon(0 0, 100% 5%, 100% 100%, 0 95%);
+        }
+        .scanline {
+            background: linear-gradient(to bottom, transparent 50%, rgba(6, 182, 212, 0.05) 50%);
+            background-size: 100% 4px;
+            pointer-events: none;
+        }
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 15px rgba(168, 85, 247, 0.4); }
+            50% { box-shadow: 0 0 30px rgba(236, 72, 153, 0.6); }
+        }
+        .animate-pulse-glow {
+            animation: pulse-glow 3s infinite ease-in-out;
+        }
+        .slider-handle {
+            cursor: ew-resize;
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-surface/70 dark:bg-surface/70 backdrop-blur-xl border-b border-glass-border shadow-[0_0_15px_rgba(221,183,255,0.1)]">
+<div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop py-4 max-w-container-max mx-auto">
+<div class="font-headline-lg text-headline-lg font-bold bg-gradient-to-r from-neon-purple to-neon-pink bg-clip-text text-transparent">
+                Editkaro
+            </div>
+<div class="hidden md:flex gap-8 items-center">
+<a class="font-label-lg text-label-lg text-on-surface-variant hover:text-primary transition-colors" href="#">Home</a>
+<a class="font-label-lg text-label-lg text-on-surface-variant hover:text-primary transition-colors" href="#">Portfolio</a>
+<a class="font-label-lg text-label-lg text-neon-cyan border-b-2 border-neon-cyan pb-1" href="#">Inside the Edit</a>
+<a class="font-label-lg text-label-lg text-on-surface-variant hover:text-primary transition-colors" href="#">Pricing</a>
+<a class="font-label-lg text-label-lg text-on-surface-variant hover:text-primary transition-colors" href="#">Contact</a>
+</div>
+<button class="bg-gradient-to-r from-neon-purple to-neon-pink text-white px-6 py-2 rounded-lg font-label-lg hover:scale-95 transition-transform shadow-[0_0_15px_rgba(168,85,247,0.4)]">
+                Client Portal
+            </button>
+</div>
+</nav>
+<!-- Hero Section -->
+<section class="relative pt-32 pb-20 px-margin-mobile md:px-margin-desktop overflow-hidden">
+
+<div class="relative z-10 max-w-4xl mx-auto text-center">
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg mb-6 leading-tight">
+                Crafting <span class="text-neon-cyan">Digital Adrenaline</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-10 max-w-2xl mx-auto">
+                Step inside our digital workshop. We don't just cut clips; we engineer attention using high-octane post-production and cyber-brutalist aesthetics.
+            </p>
+</div>
+</section>
+<!-- Before & After Slider -->
+<section class="py-20 px-margin-mobile md:px-margin-desktop bg-surface-container-lowest relative">
+<div class="max-w-container-max mx-auto">
+<div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+<div>
+<h2 class="font-headline-xl text-headline-xl mb-4">The Alchemy of Edit</h2>
+<p class="text-on-surface-variant max-w-xl">Slide to see how we transform flat log footage into high-contrast, neon-infused masterpieces that stop the scroll.</p>
+</div>
+<div class="flex gap-4">
+<span class="flex items-center gap-2 text-label-sm font-label-sm text-on-surface-variant">
+<span class="w-3 h-3 rounded-full bg-slate-500"></span> RAW FOOTAGE
+                    </span>
+<span class="flex items-center gap-2 text-label-sm font-label-sm text-neon-cyan">
+<span class="w-3 h-3 rounded-full bg-neon-cyan animate-pulse"></span> THE EDIT
+                    </span>
+</div>
+</div>
+<!-- Slider Container -->
+<div class="relative w-full aspect-video rounded-xl overflow-hidden glass-card group" id="comparison-slider">
+<!-- After Image (Color Graded) -->
+<div class="absolute inset-0 w-full h-full bg-cover bg-center" data-alt="A high-octane, cinematic video edit featuring vibrant neon pink and cyan color grading, motion graphics overlays, and sharp, dynamic focus on a central subject in a futuristic city environment. The visual style is aggressive and polished, showcasing expert post-production mastery." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDWYux1uO-IphlO4nAXU9A68MBwLEYu_NFErW1ncKNZVVXoADdxn3R7dzeeVBPGODRHQlceWPSz9iUNc1BSz7ucpKZphwKZby-s8Ll-BgttlWuGZFAFpqjidMrKvZyfwWw3KO_z-D8mwLArYk1OJFb6uGqeFagQGWxTvx1TaLxnab5u0yEJYqFICRO1pPOeXPQfBtHONmjI0eXwtwmlWDQZjNyoO-BJ_Js_kyJrA5ew9jHTyfLAjYtw')">
+<div class="absolute inset-0 scanline opacity-30"></div>
+</div>
+<!-- Before Image (Log/Flat) -->
+<div class="absolute inset-0 h-full bg-cover bg-center overflow-hidden border-r-2 border-white/50" data-alt="A raw, flat log-profile video frame of the same futuristic city environment, showing desaturated colors, low contrast, and no motion graphics. The image is a technical 'before' shot, highlighting the lack of processing before the Editkaro transformation." id="before-image" style="width: 50%; background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAFFrJgNxYD5f0rUGwHSIWu8Nr93S_jFuD_SVMkVNhdemrVGZdnXMLbVFAUUgJjBj3RhN3voQ-OAr408jWXvvdMSc0OgUKe5X0-OZD1F9OG-gqIhSQd5T0CZvbWM5ZsPsM6GafqDsRKqBvyVDifBE67CyUeubGXQIi6Rh5ZI-ty9S6VR0u8sZvUL5uoHJLSOUN0ncMjG6_MCceavqPs3uJAaGaPLWOW5DoXpLtNvCrir4hqOuKgUct9')">
+</div>
+<!-- Handle -->
+<div class="absolute top-0 bottom-0 left-1/2 w-1 bg-white shadow-[0_0_15px_white] slider-handle flex items-center justify-center z-20" id="slider-handle" style="transform: translateX(-50%)">
+<div class="w-10 h-10 rounded-full bg-white text-black flex items-center justify-center shadow-xl">
+<span class="material-symbols-outlined text-[20px]">unfold_more</span>
+</div>
+</div>
+<!-- Labels -->
+<div class="absolute bottom-6 left-6 z-30 pointer-events-none">
+<span class="bg-black/60 backdrop-blur-md px-4 py-2 rounded-full border border-white/10 text-label-sm uppercase tracking-widest">Original RAW</span>
+</div>
+<div class="absolute bottom-6 right-6 z-30 pointer-events-none text-right">
+<span class="bg-neon-pink/20 backdrop-blur-md px-4 py-2 rounded-full border border-neon-pink/50 text-label-sm uppercase tracking-widest text-neon-pink">Editkaro Grade</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Meet the Editors -->
+<section class="py-24 px-margin-mobile md:px-margin-desktop bg-background-deep relative overflow-hidden">
+<div class="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-neon-purple/5 to-transparent"></div>
+<div class="max-w-container-max mx-auto relative z-10">
+<div class="text-center mb-16">
+<h2 class="font-headline-xl text-headline-xl mb-4">The Architects of Viral</h2>
+<p class="text-on-surface-variant max-w-2xl mx-auto">Our editors aren't just technicians; they are visual storytellers specializing in the rhythm of attention.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Editor 1 -->
+<div class="glass-card p-6 rounded-xl hover:border-neon-cyan/50 transition-all duration-500 group">
+<div class="aspect-[3/4] rounded-lg overflow-hidden mb-6 relative">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" data-alt="A professional video editor in a dark studio illuminated by glowing neon cyan monitor lights. He is wearing high-end headphones and looking intensely at a screen with complex timeline software. The aesthetic is tech-focused, professional, and futuristic, following a dark nebula cyber theme." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHDo8V-y3fW76J16kLV-DvroTnb7Psk_hDTMogm1SY-F2L7rn4M8xErXmU6UFoFK-_mMyvYmCIJ-oxt9PMqGuh0Y5NAFzpVbuMqBy2XOCbjQmDm6x9lraVHwusridqIrzd7v_Id2R2Gn4UdJdTyGmNhh2Dm-udFH6fIIBWgm_KpC2gxSUuZ__1kUC0DUwokNuIDaunW3ZEAQkIiUhTOlP6kS-lj6GtaLc1j1trABsp_LhyoqIAqQ52"/>
+<div class="absolute top-4 right-4 bg-neon-cyan/90 text-black px-3 py-1 rounded-full font-label-sm text-[10px] font-bold">MASTER</div>
+</div>
+<h3 class="font-headline-md text-headline-md mb-1">Alex "Volt" Chen</h3>
+<p class="text-neon-cyan font-label-lg mb-4">Lead Motion Architect</p>
+<div class="flex flex-wrap gap-2 mb-6">
+<span class="bg-white/5 border border-white/10 px-3 py-1 rounded text-[11px] font-medium">After Effects</span>
+<span class="bg-white/5 border border-white/10 px-3 py-1 rounded text-[11px] font-medium">Premiere Pro</span>
+<span class="bg-white/5 border border-white/10 px-3 py-1 rounded text-[11px] font-medium">C4D</span>
+</div>
+<div class="flex gap-3">
+<span class="bg-neon-purple/10 text-neon-purple border border-neon-purple/20 px-3 py-1 rounded-full text-[10px] font-bold">SHORT-FORM</span>
+<span class="bg-tertiary/10 text-tertiary border border-tertiary/20 px-3 py-1 rounded-full text-[10px] font-bold">VFX</span>
+</div>
+</div>
+<!-- Editor 2 -->
+<div class="glass-card p-6 rounded-xl border-neon-pink/20 transition-all duration-500 group translate-y-8">
+<div class="aspect-[3/4] rounded-lg overflow-hidden mb-6 relative">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" data-alt="A female lead colorist sitting in a high-end color grading suite with a DaVinci Resolve control surface. Soft magenta and purple ambient lighting fills the room. She is focused on a large professional monitor displaying a high-contrast cinematic shot. Deep black background, luxury digital workstation aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBO3iFTBbwr2kXhMd7VL37o6cQKQqhLNv5KXh0K1eppNORHJbB9mYUJXcbQQWtlb6UKvTxmb30k8dJaNfC76Bmo9LTl2-6L5E8e3kXpTSt2ytTXQ4ueEoN4jRL8YrBpKJindgo6XUwjs4Axm6YWVfX23FjZg8AgYuOHWedoo5jdlsU1fBhqcvDYk2BgQDKHhWhHMSmswDWrAPN9f1_QpRT5VKVPHbJSkZDA2Ubqn445g7oKKwAQgiHV"/>
+<div class="absolute top-4 right-4 bg-neon-pink text-white px-3 py-1 rounded-full font-label-sm text-[10px] font-bold">SPECIALIST</div>
+</div>
+<h3 class="font-headline-md text-headline-md mb-1">Sarah "Prism" K.</h3>
+<p class="text-neon-pink font-label-lg mb-4">Senior Color Scientist</p>
+<div class="flex flex-wrap gap-2 mb-6">
+<span class="bg-white/5 border border-white/10 px-3 py-1 rounded text-[11px] font-medium">DaVinci Resolve</span>
+<span class="bg-white/5 border border-white/10 px-3 py-1 rounded text-[11px] font-medium">Log Workflow</span>
+</div>
+<div class="flex gap-3">
+<span class="bg-neon-cyan/10 text-neon-cyan border border-neon-cyan/20 px-3 py-1 rounded-full text-[10px] font-bold">CINEMATIC</span>
+<span class="bg-primary/10 text-primary border border-primary/20 px-3 py-1 rounded-full text-[10px] font-bold">STORY</span>
+</div>
+</div>
+<!-- Editor 3 -->
+<div class="glass-card p-6 rounded-xl hover:border-neon-purple/50 transition-all duration-500 group">
+<div class="aspect-[3/4] rounded-lg overflow-hidden mb-6 relative">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" data-alt="A young creative editor in a minimalist cyberpunk-inspired home office. Multi-monitor setup with fast-paced social media editing timelines visible. Vibrant purple and blue lighting. The editor is leaning back, holding a professional camera lens. High-octane, youthful, and trendy digital vibe." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMDEEpElYqhmUDRcOtdPN957ZDhpTr1GDjiTq_rJGondOdm9xrw7s01_5n11LTKdI9bHvzyRSnMAsbBOzEddu1XHQ-hrsyM2Pim5oxgJ3XkJdnrb3dFuYuzs_ZYgPRHwrsAR6SbLMeLze01xTD69dJi6NRIZnsqjKI6OnjX4GguG1RsSYOqCoTDTl-B0sy91SUE6gTTfFbkswtaYKqLuogfvInsfs2rZm0Lk-YK-Ev0deQeFliT95b"/>
+<div class="absolute top-4 right-4 bg-neon-purple text-white px-3 py-1 rounded-full font-label-sm text-[10px] font-bold">VIRAL ARTIST</div>
+</div>
+<h3 class="font-headline-md text-headline-md mb-1">Jordan "Snap" Reed</h3>
+<p class="text-neon-purple font-label-lg mb-4">Hooks &amp; Retention Expert</p>
+<div class="flex flex-wrap gap-2 mb-6">
+<span class="bg-white/5 border border-white/10 px-3 py-1 rounded text-[11px] font-medium">Premiere Pro</span>
+<span class="bg-white/5 border border-white/10 px-3 py-1 rounded text-[11px] font-medium">Audition</span>
+</div>
+<div class="flex gap-3">
+<span class="bg-secondary/10 text-secondary border border-secondary/20 px-3 py-1 rounded-full text-[10px] font-bold">TIKTOK</span>
+<span class="bg-tertiary/10 text-tertiary border border-tertiary/20 px-3 py-1 rounded-full text-[10px] font-bold">ADS</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Workflow Timeline -->
+<section class="py-24 px-margin-mobile md:px-margin-desktop bg-background-surface">
+<div class="max-w-4xl mx-auto">
+<div class="text-center mb-20">
+<h2 class="font-headline-xl text-headline-xl mb-4">Our Processing Pipeline</h2>
+<p class="text-on-surface-variant">The systematic destruction and reconstruction of content.</p>
+</div>
+<div class="relative pl-12 md:pl-0">
+<!-- Vertical Line -->
+<div class="absolute left-6 md:left-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-neon-cyan via-neon-purple to-neon-pink md:-translate-x-1/2"></div>
+<!-- Step 1 -->
+<div class="relative mb-24 md:flex items-center justify-between">
+<div class="md:w-[45%] mb-4 md:mb-0 md:text-right">
+<h4 class="font-headline-md text-headline-md text-neon-cyan">01. INGESTION</h4>
+<p class="text-on-surface-variant">We take your raw footage (LOG, 4K, 8K) and map the narrative trajectory. No frame is wasted.</p>
+</div>
+<div class="absolute left-[-24px] md:left-1/2 md:-translate-x-1/2 w-12 h-12 rounded-full bg-background-surface border-2 border-neon-cyan flex items-center justify-center z-10 shadow-[0_0_15px_rgba(6,182,212,0.5)]">
+<span class="material-symbols-outlined text-neon-cyan">cloud_upload</span>
+</div>
+<div class="hidden md:block md:w-[45%]"></div>
+</div>
+<!-- Step 2 -->
+<div class="relative mb-24 md:flex items-center justify-between">
+<div class="hidden md:block md:w-[45%]"></div>
+<div class="absolute left-[-24px] md:left-1/2 md:-translate-x-1/2 w-12 h-12 rounded-full bg-background-surface border-2 border-neon-purple flex items-center justify-center z-10 shadow-[0_0_15px_rgba(168,85,247,0.5)]">
+<span class="material-symbols-outlined text-neon-purple">shutter_speed</span>
+</div>
+<div class="md:w-[45%] mb-4 md:mb-0">
+<h4 class="font-headline-md text-headline-md text-neon-purple">02. THE HOOK</h4>
+<p class="text-on-surface-variant">The first 3 seconds are war. We engineer high-retention intros using aggressive pacing and kinetic typography.</p>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="relative mb-24 md:flex items-center justify-between">
+<div class="md:w-[45%] mb-4 md:mb-0 md:text-right">
+<h4 class="font-headline-md text-headline-md text-tertiary">03. SONIC DESIGN</h4>
+<p class="text-on-surface-variant">Sound is 50% of the video. Layered foley, rhythmic SFX, and frequency-balanced mastering for crystal clear audio.</p>
+</div>
+<div class="absolute left-[-24px] md:left-1/2 md:-translate-x-1/2 w-12 h-12 rounded-full bg-background-surface border-2 border-tertiary flex items-center justify-center z-10 shadow-[0_0_15px_rgba(76,215,246,0.5)]">
+<span class="material-symbols-outlined text-tertiary">graphic_eq</span>
+</div>
+<div class="hidden md:block md:w-[45%]"></div>
+</div>
+<!-- Step 4 -->
+<div class="relative mb-24 md:flex items-center justify-between">
+<div class="hidden md:block md:w-[45%]"></div>
+<div class="absolute left-[-24px] md:left-1/2 md:-translate-x-1/2 w-12 h-12 rounded-full bg-background-surface border-2 border-secondary flex items-center justify-center z-10 shadow-[0_0_15px_rgba(255,176,205,0.5)]">
+<span class="material-symbols-outlined text-secondary">forum</span>
+</div>
+<div class="md:w-[45%] mb-4 md:mb-0">
+<h4 class="font-headline-md text-headline-md text-secondary">04. COLLABORATION</h4>
+<p class="text-on-surface-variant">Real-time frame-by-frame feedback loop. We refine until every pixel aligns with your brand's pulse.</p>
+</div>
+</div>
+<!-- Step 5 -->
+<div class="relative md:flex items-center justify-between">
+<div class="md:w-[45%] mb-4 md:mb-0 md:text-right">
+<h4 class="font-headline-md text-headline-md text-neon-pink">05. DEPLOYMENT</h4>
+<p class="text-on-surface-variant">Final render optimization for platform-specific algorithms. Ready to go viral on YouTube, IG, or TikTok.</p>
+</div>
+<div class="absolute left-[-24px] md:left-1/2 md:-translate-x-1/2 w-12 h-12 rounded-full bg-background-surface border-2 border-neon-pink flex items-center justify-center z-10 animate-pulse-glow">
+<span class="material-symbols-outlined text-neon-pink">rocket_launch</span>
+</div>
+<div class="hidden md:block md:w-[45%]"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-background-deep relative bottom-0">
+<div class="bg-gradient-to-b from-transparent to-surface-container-low h-1 w-full"></div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-mobile md:px-margin-desktop py-16 max-w-container-max mx-auto">
+<div class="col-span-1 md:col-span-1">
+<div class="font-headline-md text-headline-md font-bold text-primary mb-6">Editkaro</div>
+<p class="text-on-surface-variant font-body-md text-body-md">Precision-engineered post-production for the creators of tomorrow.</p>
+</div>
+<div class="col-span-1">
+<h5 class="text-white font-bold mb-6">Explore</h5>
+<ul class="space-y-4">
+<li><a class="font-label-sm text-label-sm text-on-surface-variant hover:text-white transition-colors" href="#">Portfolio</a></li>
+<li><a class="font-label-sm text-label-sm text-on-surface-variant hover:text-white transition-colors" href="#">Pricing</a></li>
+<li><a class="font-label-sm text-label-sm text-on-surface-variant hover:text-white transition-colors" href="#">Inside the Edit</a></li>
+</ul>
+</div>
+<div class="col-span-1">
+<h5 class="text-white font-bold mb-6">Company</h5>
+<ul class="space-y-4">
+<li><a class="font-label-sm text-label-sm text-on-surface-variant hover:text-white transition-colors" href="#">Careers</a></li>
+<li><a class="font-label-sm text-label-sm text-on-surface-variant hover:text-white transition-colors" href="#">Terms</a></li>
+<li><a class="font-label-sm text-label-sm text-on-surface-variant hover:text-white transition-colors" href="#">Privacy</a></li>
+</ul>
+</div>
+<div class="col-span-1">
+<h5 class="text-white font-bold mb-6">Newsletter</h5>
+<div class="flex">
+<input class="bg-surface-container-low border-none rounded-l-lg text-white w-full focus:ring-1 focus:ring-neon-cyan" placeholder="Email" type="email"/>
+<button class="bg-primary text-on-primary px-4 rounded-r-lg hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+</div>
+</div>
+<div class="border-t border-white/5 py-8 text-center text-on-surface-variant text-label-sm">
+            © 2024 Editkaro. All rights reserved.
+        </div>
+</footer>
+<script>
+        // Before/After Slider Interaction
+        const sliderContainer = document.getElementById('comparison-slider');
+        const beforeImage = document.getElementById('before-image');
+        const handle = document.getElementById('slider-handle');
+
+        const moveSlider = (e) => {
+            const rect = sliderContainer.getBoundingClientRect();
+            const x = e.clientX || e.touches[0].clientX;
+            let position = ((x - rect.left) / rect.width) * 100;
+
+            if (position < 0) position = 0;
+            if (position > 100) position = 100;
+
+            beforeImage.style.width = `${position}%`;
+            handle.style.left = `${position}%`;
+        };
+
+        sliderContainer.addEventListener('mousemove', moveSlider);
+        sliderContainer.addEventListener('touchmove', moveSlider);
+
+        // Simple Fade-in intersection observer for timeline nodes
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100');
+                    entry.target.classList.remove('opacity-0', 'translate-y-10');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.relative.mb-24').forEach(node => {
+            node.classList.add('opacity-0', 'translate-y-10', 'transition-all', 'duration-1000');
+            observer.observe(node);
+        });
+    </script>
+</body></html>
