@@ -8,7 +8,7 @@ const portfolioData = [
     {
         id: 1,
         title: "Despacito – Luis Fonsi ft. Daddy Yankee",
-        category: "long-form",
+        category: "color-grading",
         aspect: "aspect-video",
         gridSpan: "col-span-1",
         accent: "neon-cyan",
@@ -22,7 +22,7 @@ const portfolioData = [
     {
         id: 2,
         title: "Gangnam Style – PSY",
-        category: "long-form",
+        category: "gaming",
         aspect: "aspect-video",
         gridSpan: "col-span-1",
         accent: "neon-purple",
@@ -64,7 +64,7 @@ const portfolioData = [
     {
         id: 5,
         title: "Evolution of Dance – Judson Laipply",
-        category: "long-form",
+        category: "documentary",
         aspect: "aspect-video",
         gridSpan: "col-span-1",
         accent: "neon-purple",
@@ -78,7 +78,7 @@ const portfolioData = [
     {
         id: 6,
         title: "Baby Shark Dance – Pinkfong",
-        category: "long-form",
+        category: "anime",
         aspect: "aspect-video",
         gridSpan: "col-span-1",
         accent: "neon-cyan",
@@ -120,7 +120,7 @@ const portfolioData = [
     {
         id: 9,
         title: "Uptown Funk – Mark Ronson ft. Bruno Mars",
-        category: "long-form",
+        category: "ads",
         aspect: "aspect-video",
         gridSpan: "col-span-1",
         accent: "neon-purple",
@@ -134,7 +134,7 @@ const portfolioData = [
     {
         id: 10,
         title: "Temu's Big Game Ad (2024)",
-        category: "ads",
+        category: "ecommerce",
         aspect: "aspect-video",
         gridSpan: "col-span-1",
         accent: "neon-cyan",
