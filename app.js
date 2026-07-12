@@ -1,7 +1,7 @@
 // Editkaro.in - Core App JavaScript Interactivity
 
 // Deployed Google Apps Script Web App URL for Google Sheets Database integration
-window.GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwU9L1f_v6mB64QZp-c1wK_y8_b0MvS9N1P3H3z3z3z3z3z3z3z/exec"; // Replace with your deployed Web App URL
+window.GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwm2ZBZ6mrnR1zPm3EGG1kmPWYXa1jgV-0RClJcaEFJMShZBHlIbp7YjR2kHwlbOt0r/exec"; // Deployed Google Apps Script URL
 
 // Mock Portfolio Data with Mixkit Free Stock Videos (professional representation)
 const portfolioData = [
