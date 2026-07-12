@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Interactive project presentation slides for Editkaro.in platform.">
+    <title>Project Presentation - Editkaro.in | Final Task</title>
+    
+    <!-- Google Fonts & Material Symbols -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0..1,-50..200" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        background: {
+                            deep: '#030307',
+                            surface: '#0A0A14'
+                        },
+                        neon: {
+                            purple: '#A855F7',
+                            pink: '#EC4899',
+                            cyan: '#06B6D4'
+                        },
+                        glass: {
+                            border: 'rgba(255, 255, 255, 0.08)'
+                        }
+                    },
+                    fontFamily: {
+                        Inter: ['Inter', 'sans-serif'],
+                        Outfit: ['Outfit', 'sans-serif'],
+                        Mono: ['JetBrains Mono', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #030307;
+            background-image: radial-gradient(circle at 10% 20%, rgba(168, 85, 247, 0.05) 0%, transparent 40%),
+                              radial-gradient(circle at 90% 80%, rgba(6, 182, 212, 0.05) 0%, transparent 40%);
+            overflow: hidden;
+        }
+        .slide {
+            display: none;
+            opacity: 0;
+            transform: scale(0.98) translateY(10px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .slide.active {
+            display: flex;
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+        .glow-accent {
+            box-shadow: 0 0 40px rgba(168, 85, 247, 0.15);
+        }
+    </style>
+</head>
+<body class="font-Inter text-slate-300 min-h-screen flex flex-col justify-between p-6 md:p-12 relative">
+
+    <!-- Top Slide Progress Bar -->
+    <div class="fixed top-0 left-0 w-full h-1.5 bg-white/5 z-50">
+        <div id="progress-bar" class="h-full bg-gradient-to-r from-neon-cyan via-neon-purple to-neon-pink w-0 transition-all duration-300"></div>
+    </div>
+
+    <!-- Header navigation bar -->
+    <header class="flex justify-between items-center z-10">
+        <div class="flex items-center gap-2">
+            <span class="font-Outfit text-xl font-bold bg-gradient-to-r from-neon-purple to-neon-pink bg-clip-text text-transparent">Editkaro<span class="text-neon-cyan">.in</span></span>
+            <span class="text-xs px-2.5 py-0.5 rounded-full border border-neon-cyan/20 bg-neon-cyan/5 text-neon-cyan uppercase font-bold tracking-wider font-Mono">Final Presentation</span>
+        </div>
+        <button onclick="window.location.href='index.html'" class="px-4 py-2 rounded-lg bg-white/5 hover:bg-white/10 border border-glass-border text-xs text-white flex items-center gap-2 transition-colors">
+            <span class="material-symbols-outlined text-[16px]">arrow_back</span>
+            Return to Site
+        </button>
+    </header>
+
+    <!-- Slide Canvas Container -->
+    <main class="flex-1 flex items-center justify-center py-8 z-10">
+        <div class="w-full max-w-5xl glow-accent border border-glass-border bg-background-surface/80 backdrop-blur-2xl rounded-2xl p-8 md:p-12 min-h-[500px] flex flex-col justify-between relative overflow-hidden">
+            
+            <!-- Atmospheric background ring -->
+            <div class="absolute -top-24 -right-24 w-80 h-80 bg-neon-purple/5 blur-[120px] rounded-full"></div>
+
+            <!-- Slides List -->
+            
+            <!-- Slide 1: Title -->
+            <section class="slide active flex-col justify-center items-center text-center gap-6 h-full flex-1">
+                <span class="text-xs px-3 py-1 rounded-full border border-neon-pink/30 bg-neon-pink/5 text-neon-pink font-bold uppercase tracking-widest font-Mono">VaultofCodes Internship Submission</span>
+                <h1 class="text-4xl md:text-6xl font-extrabold text-white leading-tight font-Outfit tracking-tight">
+                    Editkaro.in <span class="text-transparent bg-clip-text bg-gradient-to-r from-neon-purple via-neon-pink to-neon-cyan">Redesign & Expansion</span>
+                </h1>
+                <p class="text-on-surface-variant max-w-xl text-sm md:text-base">
+                    A high-octane creative agency portal, dynamic quote customizer, intake scheduler, and collaborative client annotation workspace.
+                </p>
+                <div class="mt-4 text-xs text-on-surface-variant flex gap-6 font-Mono">
+                    <span>Developer: <strong>Nikunj Kumar</strong></span>
+                    <span>Topic: <strong>Collaborative Content Production Platform</strong></span>
+                </div>
+            </section>
+
+            <!-- Slide 2: Project Scope & Objectives -->
+            <section class="slide flex-col gap-6 h-full flex-1 justify-center">
+                <div>
+                    <span class="text-xs text-neon-cyan font-bold tracking-widest uppercase font-Mono">Slide 2 // Goal & Scope</span>
+                    <h2 class="text-3xl font-extrabold text-white mt-1 font-Outfit">Project Objectives</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
+                    <div class="p-5 rounded-xl border border-glass-border bg-white/5 space-y-3">
+                        <h3 class="font-bold text-white flex items-center gap-2">
+                            <span class="material-symbols-outlined text-neon-cyan text-sm">check_circle</span>
+                            Major Project Scope
+                        </h3>
+                        <p class="text-xs leading-relaxed text-slate-400">
+                            Build the entire web portal for Editkaro.in, expanding a static single page into a full-scale creative workspace. Create structured placeholder templates for the Team biography and Contact boards.
+                        </p>
+                    </div>
+                    <div class="p-5 rounded-xl border border-glass-border bg-white/5 space-y-3">
+                        <h3 class="font-bold text-white flex items-center gap-2">
+                            <span class="material-symbols-outlined text-neon-pink text-sm">check_circle</span>
+                            Required Implementations
+                        </h3>
+                        <ul class="text-xs text-slate-400 list-disc list-inside space-y-1">
+                            <li>Responsive layout scaling down to 320px screens.</li>
+                            <li>Integration of form databases using Google Sheets.</li>
+                            <li>Categorized portfolio filters matching client niches.</li>
+                            <li>Polished, custom visual aesthetics.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 3: Brand Identity: "Dark Nebula Cyber" -->
+            <section class="slide flex-col gap-6 h-full flex-1 justify-center">
+                <div>
+                    <span class="text-xs text-neon-pink font-bold tracking-widest uppercase font-Mono">Slide 3 // UI/UX Visual Identity</span>
+                    <h2 class="text-3xl font-extrabold text-white mt-1 font-Outfit">Visual Brand Design System</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+                    <div class="p-5 rounded-xl border border-neon-purple/20 bg-neon-purple/5 space-y-2">
+                        <span class="material-symbols-outlined text-neon-purple text-3xl">dark_mode</span>
+                        <h4 class="font-bold text-white text-sm">Canvas Background</h4>
+                        <p class="text-slate-400">Deep, premium dark theme (#030307) optimized to reduce eye strain for video editors.</p>
+                    </div>
+                    <div class="p-5 rounded-xl border border-neon-cyan/20 bg-neon-cyan/5 space-y-2">
+                        <span class="material-symbols-outlined text-neon-cyan text-3xl">bolt</span>
+                        <h4 class="font-bold text-white text-sm">Cyber Accent Lights</h4>
+                        <p class="text-slate-400">Neon Cyan, Neon Pink, and Neon Purple spotlights guiding users to primary CTAs.</p>
+                    </div>
+                    <div class="p-5 rounded-xl border border-neon-pink/20 bg-neon-pink/5 space-y-2">
+                        <span class="material-symbols-outlined text-neon-pink text-3xl">layers</span>
+                        <h4 class="font-bold text-white text-sm">Glassmorphism</h4>
+                        <p class="text-slate-400">Semi-transparent blur overlays giving elements float-depth and structured borders.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 4: Web Application Architecture -->
+            <section class="slide flex-col gap-6 h-full flex-1 justify-center">
+                <div>
+                    <span class="text-xs text-neon-purple font-bold tracking-widest uppercase font-Mono">Slide 4 // Page Breakdown</span>
+                    <h2 class="text-3xl font-extrabold text-white mt-1 font-Outfit">The 8-Page Web Application</h2>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-xs text-center">
+                    <div class="p-3 rounded-lg border border-glass-border bg-white/5 font-semibold text-white">Home Page</div>
+                    <div class="p-3 rounded-lg border border-glass-border bg-white/5 font-semibold text-white">Masterpiece Gallery</div>
+                    <div class="p-3 rounded-lg border border-glass-border bg-white/5 font-semibold text-white">Inside the Edit</div>
+                    <div class="p-3 rounded-lg border border-glass-border bg-white/5 font-semibold text-white">Quote Customizer</div>
+                    <div class="p-3 rounded-lg border border-glass-border bg-white/5 font-semibold text-white">About Us</div>
+                    <div class="p-3 rounded-lg border border-glass-border bg-white/5 font-semibold text-white">Contact Us</div>
+                    <div class="p-3 rounded-lg border border-glass-border bg-white/5 font-semibold text-white">Onboarding Wizard</div>
+                    <div class="p-3 rounded-lg border border-neon-purple bg-neon-purple/5 font-semibold text-white">Client Workspace</div>
+                </div>
+                <p class="text-xs text-slate-400 leading-relaxed">
+                    Combines standard static marketing pages (Home, About, Contact) with high-fidelity custom interactive panels (Color Slider Comparison, Real-time Pricing, intake Scheduler, and Timestamped Annotations).
+                </p>
+            </section>
+
+            <!-- Slide 5: Google Sheets Integration -->
+            <section class="slide flex-col gap-6 h-full flex-1 justify-center">
+                <div>
+                    <span class="text-xs text-neon-cyan font-bold tracking-widest uppercase font-Mono">Slide 5 // Backend Database</span>
+                    <h2 class="text-3xl font-extrabold text-white mt-1 font-Outfit">Google Sheets Backend API</h2>
+                </div>
+                <div class="flex flex-col md:flex-row gap-6 items-center text-xs">
+                    <div class="flex-1 space-y-3">
+                        <h4 class="font-bold text-white text-sm">Serverless Database Architecture</h4>
+                        <p class="text-slate-400 leading-relaxed">
+                            Form submissions are converted to URL-encoded datasets to bypass browser preflight CORS blockages. They are processed securely by a custom-deployed Google Apps Script, which inserts the entries into a Google Sheet in real-time.
+                        </p>
+                        <p class="text-neon-cyan font-semibold">Includes a local storage fallback system if offline or URL is missing.</p>
+                    </div>
+                    <div class="flex-1 p-5 rounded-xl border border-glass-border bg-background-deep font-Mono text-[10px] space-y-1.5 overflow-x-auto w-full">
+                        <div class="text-slate-500">// Serialization Pipeline</div>
+                        <div>const formData = new URLSearchParams();</div>
+                        <div>for (const key in data) { formData.append(key, data[key]); }</div>
+                        <div>fetch(url, { method: "POST", body: formData })</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 6: Mobile Responsiveness -->
+            <section class="slide flex-col gap-6 h-full flex-1 justify-center">
+                <div>
+                    <span class="text-xs text-neon-pink font-bold tracking-widest uppercase font-Mono">Slide 6 // Mobile Optimization</span>
+                    <h2 class="text-3xl font-extrabold text-white mt-1 font-Outfit">Mobile-First Responsiveness</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs">
+                    <div class="space-y-3">
+                        <h4 class="font-bold text-white text-sm">Adaptive Collapsible Layouts</h4>
+                        <p class="text-slate-400 leading-relaxed">
+                            Web navigation and Client Dashboard workspace collapse into toggleable drawers using smooth CSS transitions. Oversized headers scale down dynamically to avoid word wrapping.
+                        </p>
+                    </div>
+                    <div class="space-y-3 p-4 rounded-lg bg-white/5 border border-glass-border">
+                        <h4 class="font-bold text-neon-pink text-sm flex items-center gap-2">
+                            <span class="material-symbols-outlined text-[16px]">touch_app</span>
+                            Touchstart Event bindings
+                        </h4>
+                        <p class="text-slate-400">
+                            Registered standard touchstart listeners alongside mouse clicks. This completely clears out the 300ms click delay in iOS Safari and Android Chrome, making interactions feel immediate.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 7: Advantages & Disadvantages -->
+            <section class="slide flex-col gap-6 h-full flex-1 justify-center">
+                <div>
+                    <span class="text-xs text-neon-purple font-bold tracking-widest uppercase font-Mono">Slide 7 // Technical Evaluation</span>
+                    <h2 class="text-3xl font-extrabold text-white mt-1 font-Outfit">Advantages & Disadvantages</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs">
+                    <div class="space-y-2">
+                        <h4 class="font-bold text-green-400 flex items-center gap-1.5">
+                            <span class="material-symbols-outlined text-[16px]">thumb_up</span>
+                            Key Advantages
+                        </h4>
+                        <ul class="list-disc list-inside text-slate-400 space-y-1.5">
+                            <li><strong>Zero Database Overhead</strong>: Google Sheets provides a free backend database.</li>
+                            <li><strong>Premium Interactivity</strong>: Features comparison grading slider and timestamp timeline jump selectors.</li>
+                            <li><strong>Offline-Ready fallback</strong>: Gracefully falls back to browser localStorage.</li>
+                        </ul>
+                    </div>
+                    <div class="space-y-2">
+                        <h4 class="font-bold text-red-400 flex items-center gap-1.5">
+                            <span class="material-symbols-outlined text-[16px]">warning</span>
+                            Key Limitations
+                        </h4>
+                        <ul class="list-disc list-inside text-slate-400 space-y-1.5">
+                            <li><strong>Client-Side Only Session</strong>: Real-time feedback requires browser sessions to stay local unless synchronized with an external server database.</li>
+                            <li><strong>Apps Script Redirect Block</strong>: Apps Script redirection headers are blocked by browser CORS, requiring custom response-bypassing wrappers.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 8: Future Roadmap & Future Scope -->
+            <section class="slide flex-col gap-6 h-full flex-1 justify-center">
+                <div>
+                    <span class="text-xs text-neon-cyan font-bold tracking-widest uppercase font-Mono">Slide 8 // Next Phases</span>
+                    <h2 class="text-3xl font-extrabold text-white mt-1 font-Outfit">Future Scope & Roadmap</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs text-center">
+                    <div class="p-5 rounded-xl border border-glass-border bg-white/5 space-y-2">
+                        <span class="material-symbols-outlined text-neon-cyan text-3xl">database</span>
+                        <h4 class="font-bold text-white">Full User Database</h4>
+                        <p class="text-[11px] text-slate-400">Migrating to Firebase or PostgreSQL to support secure client logins and save active reviewer feedback.</p>
+                    </div>
+                    <div class="p-5 rounded-xl border border-glass-border bg-white/5 space-y-2">
+                        <span class="material-symbols-outlined text-neon-purple text-3xl">forum</span>
+                        <h4 class="font-bold text-white">Live WebSocket Collab</h4>
+                        <p class="text-[11px] text-slate-400">Integrating real-time team chat and direct canvas-drawing tools to highlight video changes live.</p>
+                    </div>
+                    <div class="p-5 rounded-xl border border-glass-border bg-white/5 space-y-2">
+                        <span class="material-symbols-outlined text-neon-pink text-3xl">payments</span>
+                        <h4 class="font-bold text-white">Stripe Checkout API</h4>
+                        <p class="text-[11px] text-slate-400">Connecting invoice cards directly to merchant accounts for automated client monthly billing.</p>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Slide Deck Controls Footer -->
+    <footer class="flex justify-between items-center z-10 pt-4 border-t border-glass-border/30">
+        <span class="text-xs text-on-surface-variant font-Mono" id="slide-number">Slide 1 of 8</span>
+        
+        <div class="flex items-center gap-4">
+            <button id="prev-slide-btn" class="w-10 h-10 rounded-full border border-glass-border bg-white/5 hover:bg-white/10 flex items-center justify-center text-white transition-colors disabled:opacity-30 disabled:pointer-events-none" aria-label="Previous Slide">
+                <span class="material-symbols-outlined">chevron_left</span>
+            </button>
+            <button id="next-slide-btn" class="w-10 h-10 rounded-full border border-glass-border bg-white/5 hover:bg-white/10 flex items-center justify-center text-white transition-colors disabled:opacity-30 disabled:pointer-events-none" aria-label="Next Slide">
+                <span class="material-symbols-outlined">chevron_right</span>
+            </button>
+        </div>
+    </footer>
+
+    <!-- Slide Control Script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const slides = document.querySelectorAll(".slide");
+            const progressBar = document.getElementById("progress-bar");
+            const slideNumberText = document.getElementById("slide-number");
+            const prevBtn = document.getElementById("prev-slide-btn");
+            const nextBtn = document.getElementById("next-slide-btn");
+            
+            let activeIdx = 0;
+            const totalSlides = slides.length;
+
+            function updateSlides() {
+                slides.forEach((slide, idx) => {
+                    if (idx === activeIdx) {
+                        slide.classList.add("active");
+                    } else {
+                        slide.classList.remove("active");
+                    }
+                });
+
+                // Update progress bar width
+                const pct = ((activeIdx + 1) / totalSlides) * 100;
+                progressBar.style.width = `${pct}%`;
+
+                // Update text
+                slideNumberText.textContent = `Slide ${activeIdx + 1} of ${totalSlides}`;
+
+                // Update buttons state
+                prevBtn.disabled = activeIdx === 0;
+                nextBtn.disabled = activeIdx === totalSlides - 1;
+            }
+
+            prevBtn.addEventListener("click", () => {
+                if (activeIdx > 0) {
+                    activeIdx--;
+                    updateSlides();
+                }
+            });
+
+            nextBtn.addEventListener("click", () => {
+                if (activeIdx < totalSlides - 1) {
+                    activeIdx++;
+                    updateSlides();
+                }
+            });
+
+            // Add keyboard shortcuts
+            window.addEventListener("keydown", (e) => {
+                if (e.key === "ArrowRight" || e.key === "Right") {
+                    if (activeIdx < totalSlides - 1) {
+                        activeIdx++;
+                        updateSlides();
+                    }
+                } else if (e.key === "ArrowLeft" || e.key === "Left") {
+                    if (activeIdx > 0) {
+                        activeIdx--;
+                        updateSlides();
+                    }
+                }
+            });
+
+            // Init
+            updateSlides();
+        });
+    </script>
+</body>
+</html>
